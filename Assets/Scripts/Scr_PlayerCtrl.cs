@@ -26,6 +26,9 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public float jumpCheckRaidus;
     public float MaxJumpNum;
 
+    public float hitpoints = 100;
+    public float maxHp = 100;
+    public bool isDead = false;
     public GameObject attackArrow;
     public float meleeRange;
     public float CurrMeleeCD = 0;
@@ -42,6 +45,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
         playertransform = gameObject.transform;
         playerAnimator = gameObject.GetComponent<Animator>();
         playerAnimator.Play("Idle");
+        hitpoints = maxHp;
     }
     // Start is called before the first frame update
     void Start()
@@ -55,6 +59,12 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
         ReceiveInputFunc();
         attack();
+
+        if(isDead == true)
+        {
+            Destroy(gameObject);
+            print("Player Died!");
+        }
     }
 
     //fixed update for movement
@@ -156,6 +166,15 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
         //play animation
         playerAnimator.Play(animState);
+    }
+
+    public void takeDmg(float dmg)
+    {
+        hitpoints -= dmg;
+        if(hitpoints < 0)
+        {
+            isDead = true;
+        }
     }
 }
 

@@ -6,6 +6,9 @@ public class scr_attackArrow : MonoBehaviour
 {
     public string enemyTag;
     public HashSet<GameObject> enemyInRange = new HashSet<GameObject>();
+
+    public float KbackForce = 30;
+    public float KbackUp = 0;
     // Start is called before the first frame update
 
     private void Awake()
@@ -26,6 +29,7 @@ public class scr_attackArrow : MonoBehaviour
     void OnTriggerEnter2D(Collider2D c)
     {
         if (!c.gameObject.CompareTag(this.enemyTag)) return;
+        if (c.isTrigger) return;
 
         enemyInRange.Add(c.gameObject);
         print("enemy in range");
@@ -33,6 +37,7 @@ public class scr_attackArrow : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D c) 
     {
+        if (c.isTrigger) return;
         enemyInRange.Remove(c.gameObject);
         print("enemy out of range");
     }
@@ -46,7 +51,17 @@ public class scr_attackArrow : MonoBehaviour
     {
         foreach (GameObject enemy in enemyInRange)
         {
-            enemy.GetComponent<scr_enemy>().receiveDmg(dmg);
+            enemy.GetComponent<scr_enemyBase>().receiveDmg(dmg);
+            Vector2 attackForce = new Vector2();
+            attackForce.y = transform.localPosition.y;
+            attackForce.x = 70f;
+
+            Vector2 difference = enemy.transform.position - transform.position;
+            difference = difference.normalized * 80f;
+            difference.y = 0;
+            difference *= 100f;
+            enemy.GetComponent<scr_meleeEnemyMove>().tempFreeze();
+            enemy.GetComponent<scr_meleeEnemyMove>().knockBack();
             print("enemy received dmg");
         }    
     }

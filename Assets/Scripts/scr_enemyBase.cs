@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scr_enemy : MonoBehaviour
+public class scr_enemyBase : MonoBehaviour
 {
+    //Enemy base should only include parameters like hitpoints
     public float hitpoints = 50f;
     public GameObject thisEnemy;
     // Start is called before the first frame update
