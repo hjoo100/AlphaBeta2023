@@ -28,9 +28,17 @@ public class scr_meleeEnemyMove : MonoBehaviour
 
     Vector3 baseScale;
 
+    public Animator animator;
     public bool isKnockedBack = false;
     public float knockBackMaxTime = 1.2f;
     public float knockbackTime = 0f;
+
+
+
+    public bool isGrounded = false;
+    public Transform groundCheck;
+    public float airCheckRadius = 0.6f;
+    public LayerMask GroundLayer;
 
 
     public GameObject playerobj;
@@ -48,39 +56,59 @@ public class scr_meleeEnemyMove : MonoBehaviour
     
     private void FixedUpdate()
     {
-        float velocityX = movespeed;
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, airCheckRadius, GroundLayer);
 
-
-        if (isKnockedBack)
+        if (enemy.isDead == false)
         {
-            knockbackTime -= Time.deltaTime;
-            if(knockbackTime <=0f)
-            {
-                knockbackTime = 0f;
-                isKnockedBack = false;
-            }
-        }
-        else
+            float velocityX = movespeed;
 
-        {
-            if (facingDir == LEFT)
+            if(enemy.isinAir == false && enemy.isAttacked == false && isKnockedBack == false)
             {
-                velocityX = -movespeed;
+                if (rb.velocity.x != 0f)
+                {
+                    if(enemy.attacking == false)
+                    animator.Play("Walk");
+                }else
+                {
+                    if (enemy.attacking == false)
+                        animator.Play("Idle");
+                }
             }
-            //enemy patrol move
-            rb.velocity = new Vector2(velocityX, rb.velocity.y);
+            if (isKnockedBack)
+            {
+                knockbackTime -= Time.deltaTime;
+                if (knockbackTime <= 0f)
+                {
+                    knockbackTime = 0f;
+                    isKnockedBack = false;
+                }
+                else
+                {
+                    animator.Play("Knockedback");
+                }
+            }
+            else
 
-            if (isHittingWall() || isNearEdge())
             {
                 if (facingDir == LEFT)
                 {
-                    changeFaceDir(RIGHT);
+                    velocityX = -movespeed;
                 }
-                else if (facingDir == RIGHT)
-                {
-                    changeFaceDir(LEFT);
-                }
+                //enemy patrol move
+                rb.velocity = new Vector2(velocityX, rb.velocity.y);
 
+                if ((isHittingWall() || isNearEdge()) && isGrounded == true)
+                {
+                    if (facingDir == LEFT)
+                    {
+                        changeFaceDir(RIGHT);
+                    }
+                    else if (facingDir == RIGHT)
+                    {
+                        changeFaceDir(LEFT);
+                    }
+
+                }
             }
         }
     }

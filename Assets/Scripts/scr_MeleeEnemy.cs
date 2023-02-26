@@ -12,13 +12,13 @@ public class scr_MeleeEnemy : MonoBehaviour
     public Scr_PlayerCtrl player;
 
     public float enemyhitpoints = 50f;
-    public bool isdead = false;
     public float meleeDmg = 20f;
     public float attackCD = 1f;
     public scr_enemyAttackArrow attackArrow;
     public float moveSpd = 5f;
 
-    public bool isAttacked = false;
+    public bool isAttacked = false,isinAir = false, isKnockedBack = false, isDead = false;
+    public bool attacking = false;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -50,7 +50,7 @@ public class scr_MeleeEnemy : MonoBehaviour
 
         //transform.LookAt(PlayerTransform);
 
-        if (!isAttacked)
+        if (!isAttacked && !isDead)
         {
             // attack player
             if (player != null)
@@ -77,10 +77,16 @@ public class scr_MeleeEnemy : MonoBehaviour
     void stopAttackingAnim()
     {
         enemyAnimator.Play("Idle");
+        attacking = false;
     }
 
     private void ResetAttack()
     {
         isAttacked = false;
+    }
+
+    public void DeadFunc()
+    {
+        isDead = true;
     }
 }

@@ -38,6 +38,7 @@ public class scr_attackArrow : MonoBehaviour
     void OnTriggerExit2D(Collider2D c) 
     {
         if (c.isTrigger) return;
+        if (c.GetType() == typeof(CircleCollider2D)) return;
         enemyInRange.Remove(c.gameObject);
         print("enemy out of range");
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Scr_PlayerCtrl : MonoBehaviour
@@ -13,7 +14,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
     private float moveDir;
     private bool toRight = true;
     private bool isJumping = false;
-    private bool isGrounded;
+    
     private bool isInMeleeRange;
     private float jumpCount;
 
@@ -35,9 +36,13 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public float meleeCD = 0.2f;
     public float meleeDmg = 10f;
 
+    public bool isWalking = false, isAir = false, isAttacking = false;
+    public bool isGrounded = false;
     //animation
     Animator playerAnimator;
     private string currentState;
+
+    scr_GManager Gamemanager;
     public void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -46,6 +51,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
         playerAnimator = gameObject.GetComponent<Animator>();
         playerAnimator.Play("Idle");
         hitpoints = maxHp;
+        Gamemanager = GameObject.FindGameObjectWithTag("GManager").GetComponent<scr_GManager>();
     }
     // Start is called before the first frame update
     void Start()
@@ -62,8 +68,10 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
         if(isDead == true)
         {
-            Destroy(gameObject);
             print("Player Died!");
+            Gamemanager.LoseFunc();
+            Destroy(gameObject);
+            
         }
     }
 
@@ -123,11 +131,11 @@ public class Scr_PlayerCtrl : MonoBehaviour
             jumpCount--;
         }
         isJumping = false;
-        if(moveDir == 0)
+        if(moveDir == 0 && isGrounded && !isAttacking)
         {
             animationSwitch("Idle");
         }
-        else if(isGrounded)
+        else if(isGrounded && !isAttacking)
         {
             animationSwitch("Walk");
         }
@@ -149,6 +157,8 @@ public class Scr_PlayerCtrl : MonoBehaviour
             //do melee attack
             attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg);
             playerAnimator.Play("Attack");
+            isAttacking = true;
+            Invoke(nameof(resetAttack), 0.27f);
             CurrMeleeCD = meleeCD;
         }
     }
@@ -175,6 +185,11 @@ public class Scr_PlayerCtrl : MonoBehaviour
         {
             isDead = true;
         }
+    }
+
+    void resetAttack()
+    {
+        isAttacking = false;
     }
 }
 

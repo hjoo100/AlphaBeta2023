@@ -37,6 +37,7 @@ Transform:
   - {fileID: 2499584356161258532}
   - {fileID: 6806809699343173931}
   - {fileID: 3310619745163000679}
+  - {fileID: 2766463704350655645}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -101,6 +102,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitpoints: 50
   thisEnemy: {fileID: 1084336295049451545}
+  isDead: 0
+  animator: {fileID: 7231572939593649944}
 --- !u!114 &3673211997658551888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,12 +119,15 @@ MonoBehaviour:
   enemyAnimator: {fileID: 0}
   player: {fileID: 0}
   enemyhitpoints: 50
-  isdead: 0
   meleeDmg: 20
   attackCD: 1
   attackArrow: {fileID: 3751594923843581592}
   moveSpd: 5
   isAttacked: 0
+  isinAir: 0
+  isKnockedBack: 0
+  isDead: 0
+  attacking: 0
 --- !u!114 &6141572020965943122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,8 +143,20 @@ MonoBehaviour:
   isPlayerInRange: 0
   enemy: {fileID: 0}
   movespeed: 1
+  inAir: 0
   castPos: {fileID: 6806809699343173931}
   baseCastDist: 0.2
+  animator: {fileID: 7231572939593649944}
+  isKnockedBack: 0
+  knockBackMaxTime: 1.2
+  knockbackTime: 0
+  isGrounded: 0
+  groundCheck: {fileID: 2766463704350655645}
+  airCheckRadius: 0.6
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  playerobj: {fileID: 0}
 --- !u!58 &5077795253476447197
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -155,6 +173,37 @@ CircleCollider2D:
   m_Offset: {x: 0.57, y: -1.23}
   serializedVersion: 2
   m_Radius: 0.057334423
+--- !u!1 &1779469766968707562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2766463704350655645}
+  m_Layer: 7
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2766463704350655645
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1779469766968707562}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.063, y: -1.224, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1084336295049451548}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2309342613935167396
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +321,7 @@ GameObject:
   - component: {fileID: 4418595621474834578}
   - component: {fileID: 4085712435916883746}
   - component: {fileID: 3751594923843581592}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: MeleeCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
