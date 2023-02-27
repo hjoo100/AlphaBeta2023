@@ -290,7 +290,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 3
+  m_Mass: 6
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -341,8 +341,8 @@ MonoBehaviour:
   M_left: 97
   M_right: 100
   M_jump: 0
-  PlayerSpd: 2
-  jumpForce: 1000
+  PlayerSpd: 4
+  jumpForce: 2000
   cellingCheck: {fileID: 6107447075752454853}
   groundCheck: {fileID: 6107447076082362689}
   GroundObj:
@@ -362,7 +362,11 @@ MonoBehaviour:
   isWalking: 0
   isAir: 0
   isAttacking: 0
+  isHited: 0
   isGrounded: 0
+  gettingKnocked: 0
+  MaxKnockTimeMelee: 0.4
+  knockedTime: 0
 --- !u!95 &8473302939333591654
 Animator:
   serializedVersion: 5

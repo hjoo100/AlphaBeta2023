@@ -203,7 +203,7 @@ public class scr_meleeEnemyMove : MonoBehaviour
         knockbackTime = knockBackMaxTime;
         Transform attackerTrans = playerobj.transform;
         Vector2 knockBackDir = new Vector2(transform.position.x - attackerTrans.transform.position.x, 0);
-        rb.velocity = new Vector2(knockBackDir.x, 1.4f) * 3;
+        rb.velocity = new Vector2(knockBackDir.x, 0.2f) * 1.3f;
     }
     /*
      *  public NavMeshAgent agent;

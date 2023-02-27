@@ -36,11 +36,14 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public float meleeCD = 0.2f;
     public float meleeDmg = 10f;
 
-    public bool isWalking = false, isAir = false, isAttacking = false;
+    public bool isWalking = false, isAir = false, isAttacking = false, isHited = false;
     public bool isGrounded = false;
     //animation
     Animator playerAnimator;
     private string currentState;
+    public bool gettingKnocked = false;
+    public float MaxKnockTimeMelee = 0.25f;
+    public float knockedTime = 0;
 
     scr_GManager Gamemanager;
     public void Awake()
@@ -62,9 +65,11 @@ public class Scr_PlayerCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        ReceiveInputFunc();
-        attack();
+        if (!gettingKnocked)
+        {
+            ReceiveInputFunc();
+            attack();
+        }
 
         if(isDead == true)
         {
@@ -80,22 +85,36 @@ public class Scr_PlayerCtrl : MonoBehaviour
     {
         //check for ground 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, jumpCheckRaidus, GroundObj);
-        if(isGrounded)
+        if (!gettingKnocked)
         {
-            jumpCount = MaxJumpNum;
-        }
-
-        charaMoveFunc();
-
-        if(CurrMeleeCD > 0)
-        {
-            CurrMeleeCD -= Time.deltaTime;
-            if(CurrMeleeCD <0)
+            if (isGrounded)
             {
-                CurrMeleeCD = 0;
+                jumpCount = MaxJumpNum;
+            }
+
+            charaMoveFunc();
+
+            if (CurrMeleeCD > 0)
+            {
+                CurrMeleeCD -= Time.deltaTime;
+                if (CurrMeleeCD < 0)
+                {
+                    CurrMeleeCD = 0;
+                }
             }
         }
-
+        else
+        {
+            if (knockedTime > 0)
+            {
+                knockedTime -= Time.deltaTime;
+                if (knockedTime < 0)
+                {
+                    knockedTime = 0;
+                    gettingKnocked = false;
+                }
+            }
+        }
         
     }
 
@@ -184,12 +203,26 @@ public class Scr_PlayerCtrl : MonoBehaviour
         if(hitpoints < 0)
         {
             isDead = true;
+            return;
         }
+        if(gettingKnocked == false)
+        {
+            
+            gettingKnocked = true;
+            knockedTime = MaxKnockTimeMelee;
+        }else
+        {
+            knockedTime = MaxKnockTimeMelee;
+        }
+        animationSwitch("Knocked");
     }
 
     void resetAttack()
     {
         isAttacking = false;
+
     }
+
+
 }
 

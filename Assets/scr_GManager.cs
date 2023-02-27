@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class scr_GManager : MonoBehaviour
 {
     public bool allClear = false;
+    public bool failed = false;
     private int SceneCount = 1;
-    public GameObject GameOverImage, GameEndText;
+    public GameObject GameOverImage, GameEndText,RetryText;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +21,20 @@ public class scr_GManager : MonoBehaviour
     void Update()
     {
         CheckEnemyNum();
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            ExitGame();
+        }
+
+        if(failed)
+        {
+            if (Input.GetKeyDown(KeyCode.R) == true)
+            {
+                retry();
+            }
+
+        }
     }
 
     void CheckEnemyNum()
@@ -64,8 +80,20 @@ public class scr_GManager : MonoBehaviour
 
     public void LoseFunc()
     {
+        failed = true;
         GameOverImage.SetActive(true);
         GameEndText.SetActive(true);
         GameEndText.GetComponent<TextMeshProUGUI>().SetText("Game Over");
+        RetryText.SetActive(true);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+    public void retry()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
