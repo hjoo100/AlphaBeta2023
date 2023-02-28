@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Scr_PlayerCtrl : MonoBehaviour
 {
@@ -45,6 +46,8 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public float MaxKnockTimeMelee = 0.25f;
     public float knockedTime = 0;
 
+    public Image hpBar;
+    
     scr_GManager Gamemanager;
     public void Awake()
     {
@@ -55,6 +58,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
         playerAnimator.Play("Idle");
         hitpoints = maxHp;
         Gamemanager = GameObject.FindGameObjectWithTag("GManager").GetComponent<scr_GManager>();
+        hpBar = GameObject.FindGameObjectWithTag("UI.Hud.Hp").GetComponent<Image>();
     }
     // Start is called before the first frame update
     void Start()
@@ -78,6 +82,8 @@ public class Scr_PlayerCtrl : MonoBehaviour
             Destroy(gameObject);
             
         }
+
+        hpbarUpdate();
     }
 
     //fixed update for movement
@@ -223,6 +229,11 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
     }
 
-
+    public void hpbarUpdate()
+    {
+       
+        float hpPercent = hitpoints / maxHp;
+        hpBar.fillAmount = hpPercent;
+    }
 }
 

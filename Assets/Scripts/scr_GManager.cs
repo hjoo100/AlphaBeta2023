@@ -11,10 +11,11 @@ public class scr_GManager : MonoBehaviour
     public bool failed = false;
     private int SceneCount = 1;
     public GameObject GameOverImage, GameEndText,RetryText;
+    public Animator clearAnim;
     // Start is called before the first frame update
     void Start()
     {
-        
+        clearAnim = GameObject.FindGameObjectWithTag("UI.Hud.Clear").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -46,9 +47,12 @@ public class scr_GManager : MonoBehaviour
         {
             allClear = false;
         }
-        else
+        else if(!allClear)
         {
             allClear = true;
+            clearAnim.Play("StageClear");
+            Invoke(nameof(resetClearImg), 5f);
+            
             if (SceneManager.GetActiveScene().buildIndex >= SceneCount)
             {
                 proceedToNextLevel();
@@ -95,5 +99,10 @@ public class scr_GManager : MonoBehaviour
     public void retry()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void resetClearImg()
+    {
+        clearAnim.Play("ClearImgReturn");
     }
 }

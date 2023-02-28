@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Enemy
   - GManager
+  - Obstacles
+  - UI
+  - UI.Hud.Hp
+  - UI.Hud.Clear
   layers:
   - Default
   - TransparentFX
