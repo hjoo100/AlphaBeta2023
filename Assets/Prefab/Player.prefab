@@ -370,6 +370,7 @@ MonoBehaviour:
   gettingKnocked: 0
   MaxKnockTimeMelee: 0.4
   knockedTime: 0
+  hpBar: {fileID: 0}
 --- !u!95 &8473302939333591654
 Animator:
   serializedVersion: 5
@@ -417,7 +418,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.788
+  m_Volume: 0.56
   m_Pitch: 1
   Loop: 0
   Mute: 0
