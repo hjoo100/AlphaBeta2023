@@ -723,6 +723,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -880
       objectReference: {fileID: 0}
+    - target: {fileID: 1102459068669364367, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 76.99996
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102459068669364367, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 86.000015
+      objectReference: {fileID: 0}
     - target: {fileID: 1217597223190385258, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
       propertyPath: m_Name
       value: GameoverPanel
@@ -734,6 +742,14 @@ PrefabInstance:
     - target: {fileID: 1884842173448508227, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2346825203000215996, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 61.999966
+      objectReference: {fileID: 0}
+    - target: {fileID: 2346825203000215996, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 139.00002
       objectReference: {fileID: 0}
     - target: {fileID: 2346825203000215999, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
       propertyPath: m_IsActive
@@ -823,6 +839,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2346825204840552077, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
     - target: {fileID: 2346825204840552078, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
       propertyPath: m_Name
       value: UICanvas
@@ -834,6 +854,22 @@ PrefabInstance:
     - target: {fileID: 4148378547004958724, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
       propertyPath: m_TagString
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793241448519171875, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 46.999977
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793241448519171875, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -27.927567
+      objectReference: {fileID: 0}
+    - target: {fileID: 6981360483105414684, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 47
+      objectReference: {fileID: 0}
+    - target: {fileID: 6981360483105414684, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -26
       objectReference: {fileID: 0}
     - target: {fileID: 7265245126159625822, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
       propertyPath: m_TagString

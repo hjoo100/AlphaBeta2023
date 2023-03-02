@@ -37,6 +37,7 @@ public class scr_enemyBase : MonoBehaviour
     public void receiveDmg(float dmg)
     {
         hitpoints -= dmg;
+        
         if(hitpoints <=0)
         {
             hitpoints = 0;
@@ -44,6 +45,7 @@ public class scr_enemyBase : MonoBehaviour
             if (enemyType == 1)
             {
                 animator.Play("Die");
+                
                 thisEnemy.GetComponent<scr_MeleeEnemy>().DeadFunc();
             }
             if(enemyType == 2)
@@ -51,7 +53,14 @@ public class scr_enemyBase : MonoBehaviour
                 thisEnemy.GetComponent<scr_turretEnemy>().deadFunc();
             }
             Invoke(nameof(deadFunc), 0.25f);
-           // Destroy(thisEnemy);
+            // Destroy(thisEnemy);
+        }
+        else
+        {
+            if(enemyType == 1)
+            {
+                thisEnemy.GetComponent<scr_MeleeEnemy>().alertEnemy();
+            }
         }
     }
 

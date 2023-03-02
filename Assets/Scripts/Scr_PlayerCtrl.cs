@@ -150,6 +150,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
         rb.velocity = new Vector2(PlayerSpd * moveDir, rb.velocity.y);
         if(isJumping && jumpCount >0)
         {
+            rb.velocity = Vector2.zero;
             rb.AddForce(new Vector2(0f, jumpForce));
             print("jumped");
             animationSwitch("Jump");

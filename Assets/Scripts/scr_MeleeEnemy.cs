@@ -10,6 +10,7 @@ public class scr_MeleeEnemy : MonoBehaviour
     private NavMeshAgent agent;
     public Animator enemyAnimator;
     public Scr_PlayerCtrl player;
+    public scr_meleeEnemyMove moveSys;
 
     public float enemyhitpoints = 50f;
     public float meleeDmg = 20f;
@@ -17,7 +18,7 @@ public class scr_MeleeEnemy : MonoBehaviour
     public scr_enemyAttackArrow attackArrow;
     public float moveSpd = 5f;
 
-    public bool isAttacked = false,isinAir = false, isKnockedBack = false, isDead = false;
+    public bool isAttacked = false,isinAir = false, isKnockedBack = false, isDead = false,isAlerted = false;
     public bool attacking = false;
     // Start is called before the first frame update
     private void Awake()
@@ -30,7 +31,7 @@ public class scr_MeleeEnemy : MonoBehaviour
     }
     void Start()
     {
-        
+        moveSys = GetComponent<scr_meleeEnemyMove>();
     }
 
     // Update is called once per frame
@@ -57,6 +58,7 @@ public class scr_MeleeEnemy : MonoBehaviour
             {
                 if (attackArrow.IsInRange(player.gameObject))
                 {
+                    alertEnemy();
                     attackArrow.attackEnemyInRange(meleeDmg);
                     //do melee attack 
                     Debug.Log("Enemy attacking (melee)");
@@ -88,5 +90,15 @@ public class scr_MeleeEnemy : MonoBehaviour
     public void DeadFunc()
     {
         isDead = true;
+    }
+
+    public void alertEnemy()
+    {
+        if (isAlerted == false)
+        {
+            isAlerted = true;
+            moveSys.isAlerted = true;
+        }
+        
     }
 }

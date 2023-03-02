@@ -15,6 +15,8 @@ public class scr_meleeEnemyMove : MonoBehaviour
 
     public bool inAir = false;
 
+    public bool isAlerted = false;
+
     Rigidbody2D rb;
     BoxCollider2D boxCollider;
 
@@ -90,6 +92,8 @@ public class scr_meleeEnemyMove : MonoBehaviour
             else
 
             {
+                TargetOnPlayer();
+
                 if (facingDir == LEFT)
                 {
                     velocityX = -movespeed;
@@ -204,6 +208,22 @@ public class scr_meleeEnemyMove : MonoBehaviour
         Transform attackerTrans = playerobj.transform;
         Vector2 knockBackDir = new Vector2(transform.position.x - attackerTrans.transform.position.x, 0);
         rb.velocity = new Vector2(knockBackDir.x, 0.2f) * 1.3f;
+    }
+
+    public void TargetOnPlayer()
+    {
+        if(isAlerted)
+        {
+            if(playerobj.transform.position.x > transform.position.x)
+            {
+                changeFaceDir(RIGHT);
+            }else if(playerobj.transform.position.x < transform.position.x)
+            {
+                changeFaceDir(LEFT);
+            }
+            
+        }
+        
     }
     /*
      *  public NavMeshAgent agent;
