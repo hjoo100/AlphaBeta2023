@@ -104,6 +104,7 @@ MonoBehaviour:
   thisEnemy: {fileID: 1084336295049451545}
   isDead: 0
   animator: {fileID: 7231572939593649944}
+  enemyType: 1
 --- !u!114 &3673211997658551888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,6 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyAnimator: {fileID: 0}
   player: {fileID: 0}
+  moveSys: {fileID: 0}
   enemyhitpoints: 50
   meleeDmg: 20
   attackCD: 1
@@ -127,6 +129,7 @@ MonoBehaviour:
   isinAir: 0
   isKnockedBack: 0
   isDead: 0
+  isAlerted: 0
   attacking: 0
 --- !u!114 &6141572020965943122
 MonoBehaviour:
@@ -144,11 +147,12 @@ MonoBehaviour:
   enemy: {fileID: 0}
   movespeed: 1
   inAir: 0
+  isAlerted: 0
   castPos: {fileID: 6806809699343173931}
   baseCastDist: 0.2
   animator: {fileID: 7231572939593649944}
   isKnockedBack: 0
-  knockBackMaxTime: 1.2
+  knockBackMaxTime: 1.8
   knockbackTime: 0
   isGrounded: 0
   groundCheck: {fileID: 2766463704350655645}
