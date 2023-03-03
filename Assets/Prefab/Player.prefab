@@ -253,6 +253,7 @@ GameObject:
   - component: {fileID: 8473302939333591654}
   - component: {fileID: 1294813057170782725}
   - component: {fileID: 8209937576745785613}
+  - component: {fileID: 5810833654239189346}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -345,6 +346,7 @@ MonoBehaviour:
   M_right: 100
   M_jump: 0
   PlayerSpd: 4
+  basicSpd: 4
   jumpForce: 2000
   cellingCheck: {fileID: 6107447075752454853}
   groundCheck: {fileID: 6107447076082362689}
@@ -502,6 +504,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5810833654239189346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6107447076169596606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70853f93d6034694db8b6868fdac4ee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skill: {fileID: 11400000, guid: 447f0b303752c1d45a9a4b86ea46ca9e, type: 2}
+  key: 120
 --- !u!1 &6647420543895741868
 GameObject:
   m_ObjectHideFlags: 0

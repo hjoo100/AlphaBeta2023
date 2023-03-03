@@ -10,6 +10,8 @@ TagManager:
   - UI
   - UI.Hud.Hp
   - UI.Hud.Clear
+  - posObj
+  - Obstacle
   layers:
   - Default
   - TransparentFX

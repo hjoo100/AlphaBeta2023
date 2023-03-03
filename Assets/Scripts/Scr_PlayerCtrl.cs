@@ -19,7 +19,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
     private bool isInMeleeRange;
     private float jumpCount;
 
-    public float PlayerSpd = 0.5f;
+    public float PlayerSpd = 4f, basicSpd = 4f;
     public float jumpForce = 5f;
     public Transform cellingCheck;
     public Transform groundCheck;
