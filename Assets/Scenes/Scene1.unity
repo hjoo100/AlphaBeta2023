@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &7709238 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6107447076169596606, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+  m_PrefabInstance: {fileID: 6107447075806779079}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &78764742
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,6 +377,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6107447076169596601, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
   m_PrefabInstance: {fileID: 6107447075806779079}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &474419612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7709238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70853f93d6034694db8b6868fdac4ee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skill: {fileID: 11400000, guid: 447f0b303752c1d45a9a4b86ea46ca9e, type: 2}
+  key: 120
 --- !u!20 &519420031 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 7538435054668998597, guid: b5d60490964d2b74cb1c72a4128a887d, type: 3}
@@ -611,42 +630,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 384449808168364854, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -880
-      objectReference: {fileID: 0}
-    - target: {fileID: 1102459068669364367, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 76.99996
-      objectReference: {fileID: 0}
-    - target: {fileID: 1102459068669364367, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 86.000015
-      objectReference: {fileID: 0}
-    - target: {fileID: 1217597223190385258, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
-      propertyPath: m_Name
-      value: GameoverPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 1217597223190385258, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1884842173448508227, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2346825203000215996, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 61.999966
-      objectReference: {fileID: 0}
-    - target: {fileID: 2346825203000215996, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 139.00002
-      objectReference: {fileID: 0}
-    - target: {fileID: 2346825203000215999, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2346825204840552074, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -735,45 +718,9 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
-    - target: {fileID: 2346825204840552077, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
-      propertyPath: m_RenderMode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2346825204840552078, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
       propertyPath: m_Name
       value: UICanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 2346825204840552078, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
-      propertyPath: m_TagString
-      value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 4148378547004958724, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
-      propertyPath: m_TagString
-      value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 5793241448519171875, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 46.99997
-      objectReference: {fileID: 0}
-    - target: {fileID: 5793241448519171875, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -27.927567
-      objectReference: {fileID: 0}
-    - target: {fileID: 6981360483105414684, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 47
-      objectReference: {fileID: 0}
-    - target: {fileID: 6981360483105414684, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -26
-      objectReference: {fileID: 0}
-    - target: {fileID: 7265245126159625822, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
-      propertyPath: m_TagString
-      value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 8506092871953054662, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
-      propertyPath: m_TagString
-      value: UI.Hud.Hp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
@@ -1731,6 +1678,10 @@ PrefabInstance:
     - target: {fileID: 547891681759714968, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
       propertyPath: m_TagString
       value: posObj
+      objectReference: {fileID: 0}
+    - target: {fileID: 5810833654239189346, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+      propertyPath: key
+      value: 99
       objectReference: {fileID: 0}
     - target: {fileID: 5810833654239189346, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
       propertyPath: skill
