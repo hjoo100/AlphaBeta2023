@@ -99,7 +99,11 @@ public class scr_meleeEnemyMove : MonoBehaviour
                     velocityX = -movespeed;
                 }
                 //enemy patrol move
-                rb.velocity = new Vector2(velocityX, rb.velocity.y);
+                if(isGrounded == true)
+                {
+                    rb.velocity = new Vector2(velocityX, rb.velocity.y);
+                }
+               
 
                 if ((isHittingWall() || isNearEdge()) && isGrounded == true)
                 {
@@ -224,6 +228,11 @@ public class scr_meleeEnemyMove : MonoBehaviour
             
         }
         
+    }
+
+    public void Aircheck()
+    {
+
     }
     /*
      *  public NavMeshAgent agent;
