@@ -11,6 +11,8 @@ public class scr_enemyBase : MonoBehaviour
 
     public Animator animator;
 
+    public AudioSource enemyAudioSrc;
+    public AudioClip fallAudio;
     //1:melee 2:turret
     public int enemyType = 1;
 
@@ -26,6 +28,8 @@ public class scr_enemyBase : MonoBehaviour
         {
             hitpoints = thisEnemy.GetComponent<scr_turretEnemy>().hitpoints;
         }
+
+        enemyAudioSrc = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -45,7 +49,8 @@ public class scr_enemyBase : MonoBehaviour
             if (enemyType == 1)
             {
                 animator.Play("Die");
-                
+                enemyAudioSrc.clip = fallAudio;
+                enemyAudioSrc.Play();
                 thisEnemy.GetComponent<scr_MeleeEnemy>().DeadFunc();
             }
             if(enemyType == 2)

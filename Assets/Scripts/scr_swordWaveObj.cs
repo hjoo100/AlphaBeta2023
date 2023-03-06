@@ -43,6 +43,11 @@ public class scr_swordWaveObj : MonoBehaviour
         {
             //do impact scr here
             collision.gameObject.GetComponent<scr_enemyBase>().receiveDmg(dmg);
+            if(collision.gameObject.GetComponent<scr_MeleeEnemy>() != null)
+            {
+                collision.gameObject.GetComponent<scr_meleeEnemyMove>().knockBack();
+            }
+            
             Destroy(gameObject);
         }
         else if(collision.gameObject.tag == "Obstacle")

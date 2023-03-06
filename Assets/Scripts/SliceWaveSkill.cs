@@ -22,6 +22,8 @@ public class SliceWaveSkill : Skill
             //launch sword wave
             Instantiate(swordWave, AttackPos.position, Quaternion.identity);
             isShot = true;
+            Scr_PlayerAudioCtrl playeraudio = player.GetComponent<Scr_PlayerAudioCtrl>();
+            playeraudio.PlayAudio(2);
         }
     }
 

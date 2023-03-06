@@ -20,6 +20,9 @@ public class scr_MeleeEnemy : MonoBehaviour
 
     public bool isAttacked = false,isinAir = false, isKnockedBack = false, isDead = false,isAlerted = false;
     public bool attacking = false;
+
+    public AudioSource enemyAudio;
+    public AudioClip punchAudio;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -28,6 +31,7 @@ public class scr_MeleeEnemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         //enemyAnimator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Scr_PlayerCtrl>();
+        enemyAudio = GetComponent<AudioSource>();
     }
     void Start()
     {
@@ -68,6 +72,8 @@ public class scr_MeleeEnemy : MonoBehaviour
 
 
                     isAttacked = true;
+                    enemyAudio.clip = punchAudio;
+                    enemyAudio.Play();
                     Invoke(nameof(stopAttackingAnim), 0.2f);
                     Invoke(nameof(ResetAttack), attackCD);
                 }

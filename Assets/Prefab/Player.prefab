@@ -408,6 +408,7 @@ MonoBehaviour:
   audioSource: {fileID: 8209937576745785613}
   meleeHit: {fileID: 8300000, guid: a226f7acc7451cb499a7dbd80e877012, type: 3}
   meleeNothit: {fileID: 8300000, guid: a5ad045398a7b894a8173ab84eff2726, type: 3}
+  rangeSword: {fileID: 8300000, guid: 242fad1d34e8dd745a07cdf472bfcb39, type: 3}
 --- !u!82 &8209937576745785613
 AudioSource:
   m_ObjectHideFlags: 0

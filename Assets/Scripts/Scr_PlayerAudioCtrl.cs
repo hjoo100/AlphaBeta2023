@@ -5,7 +5,7 @@ using UnityEngine;
 public class Scr_PlayerAudioCtrl : MonoBehaviour
 {
     public AudioSource audioSource;
-    public AudioClip meleeHit,meleeNothit;
+    public AudioClip meleeHit,meleeNothit,rangeSword;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +29,12 @@ public class Scr_PlayerAudioCtrl : MonoBehaviour
         if(num == 1)
         {//Play melee hit sound
             audioSource.clip = meleeHit;
+            audioSource.Play();
+        }
+        if(num == 2)
+        {
+            //Play ranged sword sound
+            audioSource.clip = rangeSword;
             audioSource.Play();
         }
 
