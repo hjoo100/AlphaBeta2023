@@ -315,7 +315,7 @@ MonoBehaviour:
   attackArrow: {fileID: 1284988841750489619}
   meleeRange: 0
   CurrMeleeCD: 0
-  meleeCD: 0.4
+  meleeCD: 0.15
   meleeDmg: 20
   isWalking: 0
   isAir: 0
@@ -325,6 +325,12 @@ MonoBehaviour:
   gettingKnocked: 0
   MaxKnockTimeMelee: 0.4
   knockedTime: 0
+  comboNo: 0
+  isFirstMelee: 0
+  isSecondMelee: 0
+  isThirdMelee: 0
+  meleeMaxInputTimer: 0.6
+  meleeTimer: 0
   hpBar: {fileID: 0}
 --- !u!95 &3494802569485918477
 Animator:

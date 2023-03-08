@@ -35,6 +35,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public float meleeRange;
     public float CurrMeleeCD = 0;
     public float meleeCD = 0.2f;
+    public float ComboEndMeleeCd = 0.6f;
     public float meleeDmg = 10f;
 
     public bool isWalking = false, isAir = false, isAttacking = false, isHited = false;
@@ -45,7 +46,10 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public bool gettingKnocked = false;
     public float MaxKnockTimeMelee = 0.25f;
     public float knockedTime = 0;
-
+    //melee combo
+    public int comboNo = 0;
+    public bool isFirstMelee = false, isSecondMelee = false, isThirdMelee = false;
+    public float meleeMaxInputTimer = 0.3f,meleeTimer = 0;
     public Image hpBar;
     
     scr_GManager Gamemanager;
@@ -121,7 +125,17 @@ public class Scr_PlayerCtrl : MonoBehaviour
                 }
             }
         }
-        
+
+        meleeTimer += Time.fixedDeltaTime;
+        if(meleeTimer > meleeMaxInputTimer)
+        {
+            //reset all melee states
+            comboNo = 0;
+            isThirdMelee = false;
+            isSecondMelee = false;
+            isFirstMelee = false;   
+            meleeTimer = 0;
+        }
     }
 
     void ReceiveInputFunc()
@@ -182,10 +196,11 @@ public class Scr_PlayerCtrl : MonoBehaviour
             print("Melee Pressed");
             //do melee attack
             attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg);
-            playerAnimator.Play("Attack");
+           // playerAnimator.Play("Attack");
+            meleeComboFunc();
             isAttacking = true;
-            Invoke(nameof(resetAttack), 0.27f);
-            CurrMeleeCD = meleeCD;
+            Invoke(nameof(resetAttack), 0.12f);
+            //CurrMeleeCD = meleeCD;
         }
     }
 
@@ -235,6 +250,45 @@ public class Scr_PlayerCtrl : MonoBehaviour
        
         float hpPercent = hitpoints / maxHp;
         hpBar.fillAmount = hpPercent;
+    }
+
+    public void meleeComboFunc()
+    {
+        //call func when pressed melee key
+        if(comboNo == 0)
+        {
+            //First melee anim
+            animationSwitch("Melee1");
+            comboNo += 1;
+            isFirstMelee = true;
+            meleeTimer = 0;
+            CurrMeleeCD = meleeCD;
+            return;
+        }
+        else if(comboNo == 1 && meleeTimer < meleeMaxInputTimer)
+        {
+            if(isFirstMelee == true)
+            {
+                animationSwitch("Melee2");
+                comboNo += 1;
+                isFirstMelee =false;
+                isSecondMelee = true;
+                meleeTimer = 0;
+                CurrMeleeCD = meleeCD;
+            }
+            return;
+        }else if(comboNo == 2 && meleeTimer <meleeMaxInputTimer)
+        {
+            if(isSecondMelee == true)
+            {
+                animationSwitch("Melee3");
+                comboNo += 1;
+                isSecondMelee = false;
+                isThirdMelee = true;
+                meleeTimer = 0;
+                CurrMeleeCD = ComboEndMeleeCd;
+            }
+        }
     }
 }
 
