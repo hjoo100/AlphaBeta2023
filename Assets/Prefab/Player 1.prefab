@@ -316,6 +316,7 @@ MonoBehaviour:
   meleeRange: 0
   CurrMeleeCD: 0
   meleeCD: 0.15
+  ComboEndMeleeCd: 0.6
   meleeDmg: 20
   isWalking: 0
   isAir: 0
@@ -517,7 +518,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1826017824126928583}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.27, y: -0.306, z: 0}
+  m_LocalPosition: {x: -0.296, y: -0.302, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -539,7 +540,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.07809627, y: -0.3311627}
   serializedVersion: 2
-  m_Radius: 0.090732455
+  m_Radius: 0.045
 --- !u!1 &2320805979609565898
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,7 +650,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4795683647455362547}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.577, y: -0.306, z: 0}
+  m_LocalPosition: {x: 0.562, y: -0.302, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -671,4 +672,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.07809627, y: -0.3311627}
   serializedVersion: 2
-  m_Radius: 0.090732455
+  m_Radius: 0.045

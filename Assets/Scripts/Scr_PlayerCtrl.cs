@@ -27,6 +27,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public string EnemyTag;
     public float jumpCheckRaidus;
     public float MaxJumpNum;
+    public bool isHittingWall = false  ;
 
     public float hitpoints = 100;
     public float maxHp = 100;
@@ -101,8 +102,14 @@ public class Scr_PlayerCtrl : MonoBehaviour
             {
                 jumpCount = MaxJumpNum;
             }
-
-            charaMoveFunc();
+            if ((isHittingWall && !isGrounded))
+            {
+                
+            }else
+            {
+                charaMoveFunc();
+            }
+           
 
             if (CurrMeleeCD > 0)
             {
@@ -288,6 +295,24 @@ public class Scr_PlayerCtrl : MonoBehaviour
                 meleeTimer = 0;
                 CurrMeleeCD = ComboEndMeleeCd;
             }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Obstacle")
+        {
+            //stop movement
+            isHittingWall = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Obstacle")
+        {
+            //resume movement
+            isHittingWall = false;
         }
     }
 }
