@@ -33,7 +33,7 @@ public class scr_attackArrow : MonoBehaviour
     {
         if (!c.gameObject.CompareTag(this.enemyTag)) return;
         if (c.isTrigger) return;
-
+        if (c.GetComponent<scr_enemyBase>().isDead) return;
         enemyInRange.Add(c.gameObject);
         print("enemy in range");
     }
@@ -87,5 +87,10 @@ public class scr_attackArrow : MonoBehaviour
             print("melee not hit");
             playerAudio.PlayAudio(0);
         }
+    }
+
+    public void removeEnemy(GameObject ene)
+    {
+        enemyInRange.Remove(ene);
     }
 }

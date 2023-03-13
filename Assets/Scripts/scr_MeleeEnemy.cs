@@ -55,7 +55,7 @@ public class scr_MeleeEnemy : MonoBehaviour
 
         //transform.LookAt(PlayerTransform);
 
-        if (!isAttacked && !isDead)
+        if (!isAttacked && !isDead && !moveSys.isKnockedBack)
         {
             // attack player
             if (player != null)
@@ -67,13 +67,14 @@ public class scr_MeleeEnemy : MonoBehaviour
                     //do melee attack 
                     Debug.Log("Enemy attacking (melee)");
                     enemyAnimator.Play("Attacking");
-                    player.takeDmg(meleeDmg);
+                    
                     // add trigger to attack animation
 
 
                     isAttacked = true;
                     enemyAudio.clip = punchAudio;
                     enemyAudio.Play();
+                    Invoke(nameof(attackPlayer), 0.165f);
                     Invoke(nameof(stopAttackingAnim), 0.2f);
                     Invoke(nameof(ResetAttack), attackCD);
                 }
@@ -106,5 +107,10 @@ public class scr_MeleeEnemy : MonoBehaviour
             moveSys.isAlerted = true;
         }
         
+    }
+
+    public void attackPlayer()
+    {
+        player.takeDmg(meleeDmg);
     }
 }
