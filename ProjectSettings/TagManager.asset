@@ -12,6 +12,7 @@ TagManager:
   - UI.Hud.Clear
   - posObj
   - Obstacle
+  - PlayerAttackArrow
   layers:
   - Default
   - TransparentFX

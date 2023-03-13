@@ -19,6 +19,7 @@ public class scr_enemyBase : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        thisEnemy = gameObject;
         //animator = GetComponent<Animator>();
         if(enemyType == 1)
         {
@@ -45,7 +46,14 @@ public class scr_enemyBase : MonoBehaviour
         if(hitpoints <=0)
         {
             hitpoints = 0;
-            
+            GameObject playerArrow = GameObject.FindGameObjectWithTag("PlayerAttackArrow");
+            playerArrow.GetComponent<scr_attackArrow>().removeEnemy(gameObject);
+            if(enemyType == -1)
+            {
+                //Dummy
+                deadFunc();
+
+            }
             if (enemyType == 1)
             {
                 animator.Play("Die");
