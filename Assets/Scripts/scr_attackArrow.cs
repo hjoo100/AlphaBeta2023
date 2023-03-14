@@ -66,6 +66,10 @@ public class scr_attackArrow : MonoBehaviour
                 difference = difference.normalized * 80f;
                 difference.y = 0;
                 difference *= 100f;
+                if(enemy.GetComponent<scr_enemyBase>().enemyType == -1)
+                {
+                    playerAudio.PlayAudio(1);   
+                }
                 if (enemy.GetComponent<scr_enemyBase>().enemyType == 1)
                 {
                     enemy.GetComponent<scr_meleeEnemyMove>().tempFreeze();

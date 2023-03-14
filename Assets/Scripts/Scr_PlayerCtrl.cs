@@ -78,6 +78,17 @@ public class Scr_PlayerCtrl : MonoBehaviour
         {
             ReceiveInputFunc();
             attack();
+        }else
+        {
+            if (knockedTime > 0)
+            {
+                knockedTime -= Time.deltaTime;
+                if (knockedTime <= 0)
+                {
+                    knockedTime = 0;
+                    gettingKnocked = false;
+                }
+            }
         }
 
         if(isDead == true)
@@ -122,15 +133,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
         }
         else
         {
-            if (knockedTime > 0)
-            {
-                knockedTime -= Time.deltaTime;
-                if (knockedTime < 0)
-                {
-                    knockedTime = 0;
-                    gettingKnocked = false;
-                }
-            }
+            
         }
 
         meleeTimer += Time.fixedDeltaTime;
