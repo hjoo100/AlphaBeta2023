@@ -312,7 +312,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.011090666, y: 0.0136626065}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -323,7 +323,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1692195, y: 0.9993258}
+  m_Size: {x: 3.33, y: 20.666182}
   m_EdgeRadius: 0
 --- !u!212 &78764744
 SpriteRenderer:
@@ -1414,7 +1414,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.011090666, y: 0.0136626065}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1425,7 +1425,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1692195, y: 0.9993258}
+  m_Size: {x: 3.33, y: 20.666182}
   m_EdgeRadius: 0
 --- !u!212 &1695560108
 SpriteRenderer:
@@ -1831,11 +1831,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7538435054668998458, guid: b5d60490964d2b74cb1c72a4128a887d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.25
+      value: 1.35
       objectReference: {fileID: 0}
     - target: {fileID: 7538435054668998458, guid: b5d60490964d2b74cb1c72a4128a887d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.21
+      value: -2.11
       objectReference: {fileID: 0}
     - target: {fileID: 7538435054668998458, guid: b5d60490964d2b74cb1c72a4128a887d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1867,6 +1867,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7538435054668998458, guid: b5d60490964d2b74cb1c72a4128a887d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7538435054668998459, guid: b5d60490964d2b74cb1c72a4128a887d, type: 3}
+      propertyPath: maxPos.x
+      value: 1.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7538435054668998459, guid: b5d60490964d2b74cb1c72a4128a887d, type: 3}
+      propertyPath: maxPos.y
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7538435054668998459, guid: b5d60490964d2b74cb1c72a4128a887d, type: 3}
+      propertyPath: minPos.x
+      value: -9.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7538435054668998459, guid: b5d60490964d2b74cb1c72a4128a887d, type: 3}
+      propertyPath: minPos.y
+      value: -2.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7538435054668998459, guid: b5d60490964d2b74cb1c72a4128a887d, type: 3}
+      propertyPath: camOffset.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7538435054668998459, guid: b5d60490964d2b74cb1c72a4128a887d, type: 3}
