@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 6107447075102050566}
   - component: {fileID: 664254184276682448}
   - component: {fileID: 7325998710391701029}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Arrow
   m_TagString: PlayerAttackArrow
   m_Icon: {fileID: 0}
@@ -347,6 +347,7 @@ MonoBehaviour:
   M_left: 97
   M_right: 100
   M_jump: 0
+  jumpCount: 0
   PlayerSpd: 4
   basicSpd: 4
   jumpForce: 2000
