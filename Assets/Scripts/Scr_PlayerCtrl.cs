@@ -329,5 +329,23 @@ public class Scr_PlayerCtrl : MonoBehaviour
             isHittingWall = false;
         }
     }
+
+    public void levelUP(int level)
+    {
+        meleeDmg += 10;
+
+        if(hitpoints < maxHp)
+        {
+            hitpoints += 30;
+            if(hitpoints > maxHp)
+            {
+                hitpoints = maxHp;
+            }
+        }
+        
+
+        //improve skills
+        
+    }
 }
 

@@ -253,7 +253,9 @@ GameObject:
   - component: {fileID: 8473302939333591654}
   - component: {fileID: 1294813057170782725}
   - component: {fileID: 8209937576745785613}
-  - component: {fileID: 5810833654239189346}
+  - component: {fileID: 5621309686752513453}
+  - component: {fileID: 950411553269570097}
+  - component: {fileID: 3876972230361124329}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -516,7 +518,42 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5810833654239189346
+--- !u!114 &5621309686752513453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6107447076169596606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 886119b161719b346a149e9eedaee930, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerLevel: 1
+  currExp: 0
+  ExpForLevelUp: 200
+  slicewaveLv0: {fileID: 11400000, guid: e49168eb035dd944f8ad91588d13fe16, type: 2}
+  slicewaveLv1: {fileID: 11400000, guid: b35a1660cb63d994e9af119ea88bb395, type: 2}
+  slicewaveLv2: {fileID: 0}
+  dashSkillLv0: {fileID: 11400000, guid: 447f0b303752c1d45a9a4b86ea46ca9e, type: 2}
+  dashSkillLv1: {fileID: 0}
+  dashSkillLv2: {fileID: 0}
+--- !u!114 &950411553269570097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6107447076169596606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70853f93d6034694db8b6868fdac4ee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skill: {fileID: 11400000, guid: e49168eb035dd944f8ad91588d13fe16, type: 2}
+  key: 99
+--- !u!114 &3876972230361124329
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

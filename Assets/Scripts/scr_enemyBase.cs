@@ -16,6 +16,9 @@ public class scr_enemyBase : MonoBehaviour
     //1:melee 2:turret
     public int enemyType = 1;
 
+    //Exp for player level up
+    public int exp = 20;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -79,6 +82,8 @@ public class scr_enemyBase : MonoBehaviour
 
     void deadFunc()
     {
+        var playerLv = GameObject.FindGameObjectWithTag("Player").GetComponent<scr_playerLevel>();
+        playerLv.gainExp(exp);
         Destroy(thisEnemy);
     }
 }

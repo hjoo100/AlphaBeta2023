@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &7709238 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6107447076169596606, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
-  m_PrefabInstance: {fileID: 6107447075806779079}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &20107378
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,6 +162,7 @@ MonoBehaviour:
   enemyAudioSrc: {fileID: 0}
   fallAudio: {fileID: 0}
   enemyType: -1
+  exp: 300
 --- !u!61 &20107380
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -530,20 +526,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6107447076169596601, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
   m_PrefabInstance: {fileID: 6107447075806779079}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &474419612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7709238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70853f93d6034694db8b6868fdac4ee0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skill: {fileID: 11400000, guid: 447f0b303752c1d45a9a4b86ea46ca9e, type: 2}
-  key: 120
 --- !u!20 &519420031 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 7538435054668998597, guid: b5d60490964d2b74cb1c72a4128a887d, type: 3}
@@ -1720,11 +1702,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: posObj
       objectReference: {fileID: 0}
-    - target: {fileID: 5810833654239189346, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+    - target: {fileID: 0}
       propertyPath: key
       value: 99
       objectReference: {fileID: 0}
-    - target: {fileID: 5810833654239189346, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+    - target: {fileID: 0}
       propertyPath: skill
       value: 
       objectReference: {fileID: 11400000, guid: e49168eb035dd944f8ad91588d13fe16, type: 2}
