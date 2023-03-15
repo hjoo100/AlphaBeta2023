@@ -17,7 +17,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
     private bool isJumping = false;
     
     private bool isInMeleeRange;
-    private float jumpCount;
+    public float jumpCount;
 
     public float PlayerSpd = 4f, basicSpd = 4f;
     public float jumpForce = 5f;
@@ -115,8 +115,10 @@ public class Scr_PlayerCtrl : MonoBehaviour
             }
             if ((isHittingWall && !isGrounded))
             {
-                
-            }else
+                charaJumpFunc();
+                isJumping = false;
+            }
+            else
             {
                 charaMoveFunc();
             }
@@ -132,11 +134,15 @@ public class Scr_PlayerCtrl : MonoBehaviour
             }
         }
         else
-        {
+        { //getting knocked
             
         }
 
-        meleeTimer += Time.fixedDeltaTime;
+        if(comboNo >= 1)
+        {
+            meleeTimer += Time.fixedDeltaTime;
+        }
+        
         if(meleeTimer > meleeMaxInputTimer)
         {
             //reset all melee states
@@ -172,14 +178,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
     void charaMoveFunc()
     {
         rb.velocity = new Vector2(PlayerSpd * moveDir, rb.velocity.y);
-        if(isJumping && jumpCount >0)
-        {
-            rb.velocity = Vector2.zero;
-            rb.AddForce(new Vector2(0f, jumpForce));
-            print("jumped");
-            animationSwitch("Jump");
-            jumpCount--;
-        }
+        charaJumpFunc();
         isJumping = false;
         if(moveDir == 0 && isGrounded && !isAttacking)
         {
@@ -188,6 +187,18 @@ public class Scr_PlayerCtrl : MonoBehaviour
         else if(isGrounded && !isAttacking)
         {
             animationSwitch("Walk");
+        }
+    }
+
+    void charaJumpFunc()
+    {
+        if (isJumping && jumpCount > 0)
+        {
+            rb.velocity = Vector2.zero;
+            rb.AddForce(new Vector2(0f, jumpForce));
+            print("jumped");
+            animationSwitch("Jump");
+            jumpCount--;
         }
     }
 
