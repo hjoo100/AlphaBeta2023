@@ -50,8 +50,13 @@ public class scr_enemyAttackArrow : MonoBehaviour
     {
         foreach (GameObject enemy in enemyInRange)
         {
-            enemy.GetComponent<Scr_PlayerCtrl>().takeDmg(dmg);
-            print("player received dmg");
+            if(enemy != null)
+
+            {
+                enemy.GetComponent<Scr_PlayerCtrl>().takeDmg(dmg);
+                print("player received dmg");
+            }
+            
         }
     }
 }

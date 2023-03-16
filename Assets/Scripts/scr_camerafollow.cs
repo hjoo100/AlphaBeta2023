@@ -16,7 +16,11 @@ public class scr_camerafollow : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        follow();
+        if(followTarget != null)
+        {
+            follow();
+        }
+        
     }   
     
     void Update()

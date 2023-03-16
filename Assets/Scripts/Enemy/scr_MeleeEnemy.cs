@@ -60,22 +60,24 @@ public class scr_MeleeEnemy : MonoBehaviour
             // attack player
             if (player != null)
             {
+
                 if (attackArrow.IsInRange(player.gameObject))
                 {
                     alertEnemy();
-                    attackArrow.attackEnemyInRange(meleeDmg);
+                    //attackArrow.attackEnemyInRange(meleeDmg);
                     //do melee attack 
                     Debug.Log("Enemy attacking (melee)");
                     enemyAnimator.Play("Attacking");
-                    
+
                     // add trigger to attack animation
 
 
                     isAttacked = true;
+                    attacking = true;
                     enemyAudio.clip = punchAudio;
                     enemyAudio.Play();
-                    Invoke(nameof(attackPlayer), 0.165f);
-                    Invoke(nameof(stopAttackingAnim), 0.2f);
+                    Invoke(nameof(attackPlayer), 0.5f);
+                    Invoke(nameof(stopAttackingAnim), 1.01f);
                     Invoke(nameof(ResetAttack), attackCD);
                 }
             }  
@@ -84,14 +86,20 @@ public class scr_MeleeEnemy : MonoBehaviour
     }
 
     void stopAttackingAnim()
-    {
-        enemyAnimator.Play("Idle");
-        attacking = false;
+    {   
+        if(attacking == true)
+        {
+           
+            enemyAnimator.Play("Idle");
+            attacking = false;
+        }
+        
     }
 
     private void ResetAttack()
     {
         isAttacked = false;
+        print("boss attack reset");
     }
 
     public void DeadFunc()
@@ -111,6 +119,6 @@ public class scr_MeleeEnemy : MonoBehaviour
 
     public void attackPlayer()
     {
-        player.takeDmg(meleeDmg);
+        attackArrow.attackEnemyInRange(meleeDmg);
     }
 }

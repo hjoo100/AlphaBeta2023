@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 382237195}
   - component: {fileID: 5373251666568824422}
   - component: {fileID: 3130663785584330660}
+  - component: {fileID: 4410609035360671020}
   m_Layer: 7
   m_Name: WoodManBoss
   m_TagString: Enemy
@@ -125,7 +126,7 @@ MonoBehaviour:
   enemyAnimator: {fileID: 7547427467107113635}
   player: {fileID: 0}
   moveSys: {fileID: 0}
-  enemyhitpoints: 50
+  enemyhitpoints: 250
   meleeDmg: 20
   attackCD: 2.5
   attackArrow: {fileID: 382237195}
@@ -139,6 +140,7 @@ MonoBehaviour:
   isCharging: 0
   isDashing: 0
   isDefending: 0
+  defendRate: 0
   enemyAudio: {fileID: 0}
   punchAudio: {fileID: 0}
 --- !u!114 &1917504463867940834
@@ -296,6 +298,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4410609035360671020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282101770216328610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c0c1b3c39ba6e4bb7467183c303325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skill: {fileID: 11400000, guid: de7ce0429d7b9044b8e2f5a32cbc6f32, type: 2}
 --- !u!1 &1465814330490166353
 GameObject:
   m_ObjectHideFlags: 0

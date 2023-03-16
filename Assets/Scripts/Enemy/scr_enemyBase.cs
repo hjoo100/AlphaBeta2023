@@ -33,6 +33,11 @@ public class scr_enemyBase : MonoBehaviour
             hitpoints = thisEnemy.GetComponent<scr_turretEnemy>().hitpoints;
         }
 
+        if(enemyType == 3)
+        {
+            //Boss
+            hitpoints = thisEnemy.GetComponent<scr_meleeBoss>().enemyhitpoints;
+        }
         enemyAudioSrc = gameObject.GetComponent<AudioSource>();
     }
 
@@ -44,7 +49,22 @@ public class scr_enemyBase : MonoBehaviour
 
     public void receiveDmg(float dmg)
     {
-        hitpoints -= dmg;
+        if(enemyType == 3)
+        {
+            var bossScr = gameObject.GetComponent<scr_meleeBoss>();
+            if(bossScr.isDefending)
+            {
+                hitpoints -=((1 - bossScr.defendRate) * dmg);
+            }else
+            {
+                hitpoints -= dmg;
+            }
+        }
+        else
+        {
+            hitpoints -= dmg;
+        }
+       
         
         if(hitpoints <=0)
         {
@@ -77,6 +97,11 @@ public class scr_enemyBase : MonoBehaviour
             {
                 thisEnemy.GetComponent<scr_MeleeEnemy>().alertEnemy();
             }
+            if(enemyType == 3)
+            {
+                thisEnemy.GetComponent<scr_meleeBoss>().alertEnemy();
+            }
+            
         }
     }
 

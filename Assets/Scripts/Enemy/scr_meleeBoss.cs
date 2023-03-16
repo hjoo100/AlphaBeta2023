@@ -21,6 +21,7 @@ public class scr_meleeBoss : MonoBehaviour
     public bool attacking = false;
 
     public bool isCharging = false, isDashing = false, isDefending = false;
+    public float defendRate = 0;
 
     public AudioSource enemyAudio;
     public AudioClip punchAudio;
@@ -56,7 +57,7 @@ public class scr_meleeBoss : MonoBehaviour
 
         //transform.LookAt(PlayerTransform);
 
-        if (!isAttacked && !isDead && !moveSys.isKnockedBack)
+        if (!isAttacked && !isDead && !moveSys.isKnockedBack && !isDefending)
         {
             // attack player
             if (player != null)
@@ -64,7 +65,7 @@ public class scr_meleeBoss : MonoBehaviour
                 if (attackArrow.IsInRange(player.gameObject))
                 {
                     alertEnemy();
-                    attackArrow.attackEnemyInRange(meleeDmg);
+                    //attackArrow.attackEnemyInRange(meleeDmg);
                     //do melee attack 
                     Debug.Log("Enemy attacking (melee)");
                     enemyAnimator.Play("Attacking");
@@ -73,10 +74,11 @@ public class scr_meleeBoss : MonoBehaviour
 
 
                     isAttacked = true;
+                    attacking = true;
                     enemyAudio.clip = punchAudio;
                     enemyAudio.Play();
-                    Invoke(nameof(attackPlayer), 0.165f);
-                    Invoke(nameof(stopAttackingAnim), 0.2f);
+                    Invoke(nameof(attackPlayer), 0.5f);
+                    Invoke(nameof(stopAttackingAnim), 1.01f);
                     Invoke(nameof(ResetAttack), attackCD);
                 }
             }
@@ -86,7 +88,8 @@ public class scr_meleeBoss : MonoBehaviour
 
     void stopAttackingAnim()
     {
-        enemyAnimator.Play("Idle");
+        Debug.Log("playing idle animation");
+        //enemyAnimator.Play("Idle");
         attacking = false;
     }
 
@@ -112,6 +115,6 @@ public class scr_meleeBoss : MonoBehaviour
 
     public void attackPlayer()
     {
-        player.takeDmg(meleeDmg);
+        attackArrow.attackEnemyInRange(meleeDmg);
     }
 }

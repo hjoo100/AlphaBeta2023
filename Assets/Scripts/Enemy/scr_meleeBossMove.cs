@@ -62,7 +62,7 @@ public class scr_meleeBossMove : MonoBehaviour
         {
             float velocityX = movespeed;
 
-            if (bossEnemy.isinAir == false && bossEnemy.isAttacked == false && isKnockedBack == false && bossEnemy.isAlerted == false)
+            if (bossEnemy.isinAir == false && bossEnemy.attacking == false && isKnockedBack == false )
             {
                 if (rb.velocity.x != 0f)
                 {
@@ -71,8 +71,11 @@ public class scr_meleeBossMove : MonoBehaviour
                 }
                 else
                 {
-                    if (bossEnemy.attacking == false)
-                        animator.Play("Idle");
+                   
+                    
+                       animator.Play("Idle");
+                    
+                        
                 }
             }
             if (isKnockedBack)
@@ -92,30 +95,33 @@ public class scr_meleeBossMove : MonoBehaviour
 
             {
                 TargetOnPlayer();
-
-                if (facingDir == LEFT)
-                {
-                    velocityX = -movespeed;
-                }
-                //enemy patrol move
-                if (isGrounded == true)
-                {
-                    rb.velocity = new Vector2(velocityX, rb.velocity.y);
-                }
-
-
-                if ((isHittingWall() || isNearEdge()) && isGrounded == true)
+                if (bossEnemy.attacking == false)
                 {
                     if (facingDir == LEFT)
                     {
-                        changeFaceDir(RIGHT);
+                        velocityX = -movespeed;
                     }
-                    else if (facingDir == RIGHT)
+                    //enemy patrol move
+                    if (isGrounded == true && bossEnemy.isAttacked == false)
                     {
-                        changeFaceDir(LEFT);
+                        rb.velocity = new Vector2(velocityX, rb.velocity.y);
                     }
 
+
+                    if ((isHittingWall() || isNearEdge()) && isGrounded == true)
+                    {
+                        if (facingDir == LEFT)
+                        {
+                            changeFaceDir(RIGHT);
+                        }
+                        else if (facingDir == RIGHT)
+                        {
+                            changeFaceDir(LEFT);
+                        }
+
+                    }
                 }
+               
             }
         }
     }

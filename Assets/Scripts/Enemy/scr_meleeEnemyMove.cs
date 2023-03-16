@@ -93,30 +93,33 @@ public class scr_meleeEnemyMove : MonoBehaviour
 
             {
                 TargetOnPlayer();
-
-                if (facingDir == LEFT)
-                {
-                    velocityX = -movespeed;
-                }
-                //enemy patrol move
-                if(isGrounded == true)
-                {
-                    rb.velocity = new Vector2(velocityX, rb.velocity.y);
-                }
-               
-
-                if ((isHittingWall() || isNearEdge()) && isGrounded == true)
+                if(enemy.attacking == false)
                 {
                     if (facingDir == LEFT)
                     {
-                        changeFaceDir(RIGHT);
+                        velocityX = -movespeed;
                     }
-                    else if (facingDir == RIGHT)
+                    //enemy patrol move
+                    if (isGrounded == true && enemy.isAttacked == false)
                     {
-                        changeFaceDir(LEFT);
+                        rb.velocity = new Vector2(velocityX, rb.velocity.y);
                     }
 
+
+                    if ((isHittingWall() || isNearEdge()) && isGrounded == true)
+                    {
+                        if (facingDir == LEFT)
+                        {
+                            changeFaceDir(RIGHT);
+                        }
+                        else if (facingDir == RIGHT)
+                        {
+                            changeFaceDir(LEFT);
+                        }
+
+                    }
                 }
+               
             }
         }
     }
