@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 282101770216328611}
   - component: {fileID: 7815245526507495189}
   - component: {fileID: 1917504463867940834}
-  - component: {fileID: 382237195}
   - component: {fileID: 5373251666568824422}
   - component: {fileID: 3130663785584330660}
   - component: {fileID: 4410609035360671020}
+  - component: {fileID: 1964313696992196226}
   m_Layer: 7
   m_Name: WoodManBoss
   m_TagString: Enemy
@@ -110,7 +110,7 @@ MonoBehaviour:
   enemyAudioSrc: {fileID: 0}
   fallAudio: {fileID: 8300000, guid: e55bc9c0bd446db40a259ba589f61b93, type: 3}
   enemyType: 3
-  exp: 20
+  exp: 400
 --- !u!114 &7815245526507495189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,10 +127,12 @@ MonoBehaviour:
   player: {fileID: 0}
   moveSys: {fileID: 0}
   enemyhitpoints: 250
-  meleeDmg: 20
+  meleeDmg: 30
+  basicDmg: 30
   attackCD: 2.5
-  attackArrow: {fileID: 382237195}
-  moveSpd: 1
+  attackArrow: {fileID: 4104533780040409891}
+  moveSpd: 2
+  BasicSpd: 2
   isAttacked: 0
   isinAir: 0
   isKnockedBack: 0
@@ -142,7 +144,8 @@ MonoBehaviour:
   isDefending: 0
   defendRate: 0
   enemyAudio: {fileID: 0}
-  punchAudio: {fileID: 0}
+  punchAudio: {fileID: 8300000, guid: 3a8c60122554b5242b8175f28c25c107, type: 3}
+  stompAudio: {fileID: 8300000, guid: 53c49ee30b50f1a4f9b2e7697c0f4297, type: 3}
 --- !u!114 &1917504463867940834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,19 +176,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   playerobj: {fileID: 0}
---- !u!114 &382237195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 282101770216328610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa2bbb8dec12825408cc36286514693a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyTag: Player
 --- !u!58 &5373251666568824422
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -311,6 +301,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skill: {fileID: 11400000, guid: de7ce0429d7b9044b8e2f5a32cbc6f32, type: 2}
+  cooldownTime: 0
+  activeTime: 0
+  state: 2
+--- !u!114 &1964313696992196226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282101770216328610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c0c1b3c39ba6e4bb7467183c303325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skill: {fileID: 11400000, guid: 0c4c5315ee9aeb24987bbb86505bf216, type: 2}
+  cooldownTime: 0
+  activeTime: 0
+  state: 2
 --- !u!1 &1465814330490166353
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,6 +467,7 @@ GameObject:
   - component: {fileID: 2384589014488919772}
   - component: {fileID: 3581607741000912169}
   - component: {fileID: 3770975088284029593}
+  - component: {fileID: 7880218881535001838}
   - component: {fileID: 4104533780040409891}
   m_Layer: 7
   m_Name: MeleeCollider
@@ -549,6 +559,22 @@ CircleCollider2D:
   m_Offset: {x: 0.00000011517289, y: 0.98626834}
   serializedVersion: 2
   m_Radius: 1.2591202
+--- !u!70 &7880218881535001838
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5736654721331613374}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.7346656, y: 0.14999998}
+  m_Size: {x: 1.1707889, y: 3.5648403}
+  m_Direction: 0
 --- !u!114 &4104533780040409891
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 188965c725c4e054bab19630a2fc0d6a, type: 3}
-  m_Name: BossDefendSkill1
+  m_Script: {fileID: 11500000, guid: 7af463bf35925cd49918a65da3c7a0d8, type: 3}
+  m_Name: BossStomp1
   m_EditorClassIdentifier: 
-  name: BossDefendSkill1
-  cooldownTime: 20
-  activeTime: 6
-  defendRate: 0.3
-  DefenceMoveSpd: 1
+  name: BossStomp1
+  cooldownTime: 6
+  activeTime: 2.5
+  stompDmg: 50

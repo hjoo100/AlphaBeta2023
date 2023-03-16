@@ -53,11 +53,20 @@ public class scr_meleeBossMove : MonoBehaviour
         playerobj = GameObject.FindGameObjectWithTag("Player");
     }
 
+    private void Update()
+    {
+        movespeed = bossEnemy.moveSpd;
+    }
+
 
     private void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, airCheckRadius, GroundLayer);
 
+        if(bossEnemy.isCharging)
+        {
+            return;
+        }
         if (bossEnemy.isDead == false)
         {
             float velocityX = movespeed;

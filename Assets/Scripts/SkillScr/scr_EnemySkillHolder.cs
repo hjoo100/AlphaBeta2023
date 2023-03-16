@@ -5,30 +5,63 @@ using UnityEngine;
 public class scr_EnemySkillHolder : MonoBehaviour
 {
     public Skill skill;
-    float cooldownTime, activeTime;
+    public float cooldownTime, activeTime;
 
-    enum SkillState
+    public enum SkillState
     {
         ready,
         active,
         cooldown
     }
 
-    SkillState state = SkillState.cooldown;
+   public SkillState state = SkillState.cooldown;
 
     // Update is called once per frame
     void Update()
     {
-        switch (state)
+        if(state == SkillState.ready)
+        {
+            skill.ActivateSkill(gameObject);
+            state = SkillState.active;
+            Debug.Log("state changed to active");
+            activeTime = skill.activeTime;
+        }
+
+        if(state == SkillState.active)
+        {
+            if (activeTime > 0)
+            {
+                activeTime -= Time.deltaTime;
+            }
+            else
+            {
+                skill.StartSkillCD(gameObject);
+                state = SkillState.cooldown;
+                cooldownTime = skill.cooldownTime;
+            }
+        }
+
+        if(state == SkillState.cooldown)
+        {
+            if (cooldownTime > 0)
+            {
+                cooldownTime -= Time.deltaTime;
+            }
+            else
+            {
+                state = SkillState.ready;
+            }
+        }
+      /*  switch (state)
         {
             case SkillState.ready:
-               
-                    //use skill
-                    skill.ActivateSkill(gameObject);
-                    state = SkillState.active;
-                    activeTime = skill.activeTime;
-                
-                break;
+             //use skill
+             skill.ActivateSkill(gameObject);
+             state = SkillState.active;
+             Debug.Log("state changed to active");
+             activeTime = skill.activeTime;
+             break;
+
             case SkillState.active:
                 {
                     if (activeTime > 0)
@@ -55,7 +88,7 @@ public class scr_EnemySkillHolder : MonoBehaviour
                 break;
 
 
-        }
+        }*/
 
     }
 }

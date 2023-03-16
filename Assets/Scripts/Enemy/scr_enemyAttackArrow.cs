@@ -59,4 +59,17 @@ public class scr_enemyAttackArrow : MonoBehaviour
             
         }
     }
+
+    public void enableStompCollider()
+    {
+        CapsuleCollider2D stompCollider = GetComponent<CapsuleCollider2D>();
+        stompCollider.enabled = true;
+    }
+
+    public void disableStompCollider()
+    {
+
+        CapsuleCollider2D stompCollider = GetComponent<CapsuleCollider2D>();
+        stompCollider.enabled = false;
+    }
 }

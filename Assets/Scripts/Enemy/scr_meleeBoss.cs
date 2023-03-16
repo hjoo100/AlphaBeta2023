@@ -12,19 +12,25 @@ public class scr_meleeBoss : MonoBehaviour
     public scr_meleeBossMove moveSys;
 
     public float enemyhitpoints = 50f;
-    public float meleeDmg = 20f;
+    public float meleeDmg = 30f;
+    public float basicDmg = 30f;
     public float attackCD = 2.5f;
     public scr_enemyAttackArrow attackArrow;
     public float moveSpd = 5f;
+    public float BasicSpd = 1f;
 
     public bool isAttacked = false, isinAir = false, isKnockedBack = false, isDead = false, isAlerted = false;
     public bool attacking = false;
 
-    public bool isCharging = false, isDashing = false, isDefending = false;
+    public bool isCharging = false, isDashing = false, isDefending = false,isResting = false;
+    public float restTime = 0;
+    public float MaxRestTime = 2f;
     public float defendRate = 0;
+    
 
     public AudioSource enemyAudio;
     public AudioClip punchAudio;
+    public AudioClip stompAudio;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -43,12 +49,21 @@ public class scr_meleeBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(isCharging)
+        {
+            return;
+        }
+        if(isResting)
+        {
+            resting();
+            return;
+        }
+        Attacking();
     }
 
     private void FixedUpdate()
     {
-        Attacking();
+        
     }
 
     public void Attacking()
@@ -57,7 +72,7 @@ public class scr_meleeBoss : MonoBehaviour
 
         //transform.LookAt(PlayerTransform);
 
-        if (!isAttacked && !isDead && !moveSys.isKnockedBack && !isDefending)
+        if (!isAttacked && !isDead && !moveSys.isKnockedBack)
         {
             // attack player
             if (player != null)
@@ -76,9 +91,12 @@ public class scr_meleeBoss : MonoBehaviour
                     isAttacked = true;
                     attacking = true;
                     enemyAudio.clip = punchAudio;
+                    //cancel defence state if attacking
+                    cancelDefence();
                     Invoke(nameof(playAudio), 0.5f);
                     Invoke(nameof(attackPlayer), 0.5f);
                     Invoke(nameof(stopAttackingAnim), 1.01f);
+                   // Invoke(nameof(cancelDefence), 1.02f);
                     Invoke(nameof(ResetAttack), attackCD);
                 }
             }
@@ -121,5 +139,43 @@ public class scr_meleeBoss : MonoBehaviour
     public void playAudio()
     {
         enemyAudio.Play();
+    }
+
+    public void cancelDefence()
+    {
+        isDefending = false;
+        moveSpd = BasicSpd;
+    }
+
+    public void resting()
+    {
+       
+            restTime -= Time.deltaTime;
+            if(restTime <= 0)
+            {
+                isResting = false;
+                restTime = MaxRestTime;
+            }
+
+        
+     
+    }
+
+    public void stompAttack()
+    {
+        //enable the stomp collider and attack player once
+        attackArrow.enableStompCollider();
+        //Play stomp audio
+        enemyAudio.clip = stompAudio;
+        playAudio();
+        attackPlayer();
+        
+
+        //then disable the stomp collider
+        attackArrow.disableStompCollider();
+
+        //start resting to avoid player die too quick
+        isResting = true;
+        restTime = MaxRestTime;
     }
 }
