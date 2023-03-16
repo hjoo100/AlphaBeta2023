@@ -75,9 +75,9 @@ public class scr_MeleeEnemy : MonoBehaviour
                     isAttacked = true;
                     attacking = true;
                     enemyAudio.clip = punchAudio;
-                    enemyAudio.Play();
-                    Invoke(nameof(attackPlayer), 0.5f);
-                    Invoke(nameof(stopAttackingAnim), 1.01f);
+                    Invoke(nameof(playAudio), 0.3f);
+                    Invoke(nameof(attackPlayer), 0.3f);
+                    Invoke(nameof(stopAttackingAnim), 0.46f);
                     Invoke(nameof(ResetAttack), attackCD);
                 }
             }  
@@ -120,5 +120,10 @@ public class scr_MeleeEnemy : MonoBehaviour
     public void attackPlayer()
     {
         attackArrow.attackEnemyInRange(meleeDmg);
+    }
+
+    public void playAudio()
+    {
+        enemyAudio.Play();
     }
 }

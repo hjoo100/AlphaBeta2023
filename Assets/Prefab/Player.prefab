@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4458849155534586148}
   - component: {fileID: 8666104069827766321}
   m_Layer: 6
-  m_Name: GameObject
+  m_Name: SupportingCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547891681759714968}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.577, y: -0.306, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.51231, y: -0.484, z: 0}
+  m_LocalScale: {x: 0.47, y: 0.47, z: 0.47}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6107447076169596601}
@@ -47,7 +47,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.07809627, y: -0.3311627}
   serializedVersion: 2
-  m_Radius: 0.090732455
+  m_Radius: 0.1
 --- !u!1 &6107447075102050680
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,7 +578,7 @@ GameObject:
   - component: {fileID: 1506153824154757072}
   - component: {fileID: 1064567294982617441}
   m_Layer: 6
-  m_Name: GameObject (1)
+  m_Name: SupportingCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -592,8 +592,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6647420543895741868}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.27, y: -0.306, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.325, y: -0.4839999, z: 0}
+  m_LocalScale: {x: 0.47, y: 0.47, z: 0.47}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6107447076169596601}
@@ -614,7 +614,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.07809627, y: -0.3311627}
   serializedVersion: 2
-  m_Radius: 0.090732455
+  m_Radius: 0.1
 --- !u!1 &7287414585574762913
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,7 +710,7 @@ GameObject:
   - component: {fileID: 2716509818512937757}
   - component: {fileID: 2677930840921172742}
   m_Layer: 6
-  m_Name: GameObject (2)
+  m_Name: SupportingCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -724,8 +724,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7307433314127733171}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.577, y: 1.1039999, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.503, y: 0.91699994, z: 0}
+  m_LocalScale: {x: 0.47, y: 0.47, z: 0.47}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6107447076169596601}
@@ -746,7 +746,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.07809627, y: -0.3311627}
   serializedVersion: 2
-  m_Radius: 0.090732455
+  m_Radius: 0.1
 --- !u!1 &7526002857597437521
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,7 +758,7 @@ GameObject:
   - component: {fileID: 1420705560411862533}
   - component: {fileID: 8614448855807697465}
   m_Layer: 6
-  m_Name: GameObject (3)
+  m_Name: SupportingCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -772,8 +772,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7526002857597437521}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.27, y: 1.104, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.329, y: 0.913, z: 0}
+  m_LocalScale: {x: 0.47, y: 0.47, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6107447076169596601}
@@ -794,4 +794,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.07809627, y: -0.3311627}
   serializedVersion: 2
-  m_Radius: 0.090732455
+  m_Radius: 0.1
