@@ -1609,13 +1609,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: posObj
       objectReference: {fileID: 0}
+    - target: {fileID: 950411553269570097, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+      propertyPath: skillNo
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1506153824154757072, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.3
+      value: -0.484
+      objectReference: {fileID: 0}
+    - target: {fileID: 3876972230361124329, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+      propertyPath: skillNo
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4458849155534586148, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.3
+      value: -0.484
       objectReference: {fileID: 0}
     - target: {fileID: 6107447075102050680, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
       propertyPath: m_TagString

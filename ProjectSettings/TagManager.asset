@@ -13,6 +13,8 @@ TagManager:
   - posObj
   - Obstacle
   - PlayerAttackArrow
+  - Skill1
+  - Skill2
   layers:
   - Default
   - TransparentFX
