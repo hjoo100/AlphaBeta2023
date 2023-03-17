@@ -10,6 +10,10 @@ public class BossDefenceSkill : Skill
     scr_meleeBoss bossScr;
     public override void ActivateSkill(GameObject Boss)
     {
+        if(bossScr.isCharging)
+        {
+            return;
+        }
         Debug.Log("defenceskill active function");
         bossScr = Boss.GetComponent<scr_meleeBoss>();
         bossScr.isDefending = true;

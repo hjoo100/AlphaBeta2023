@@ -24,6 +24,7 @@ public class scr_enemyBase : MonoBehaviour
     {
         thisEnemy = gameObject;
         //animator = GetComponent<Animator>();
+        //Use enum instead of int
         if(enemyType == 1)
         {
             hitpoints = thisEnemy.GetComponent<scr_MeleeEnemy>().enemyhitpoints;

@@ -17,14 +17,14 @@ public class scr_meleeBoss : MonoBehaviour
     public float attackCD = 2.5f;
     public scr_enemyAttackArrow attackArrow;
     public float moveSpd = 5f;
-    public float BasicSpd = 1f;
+    public float basicSpd = 1f;
 
     public bool isAttacked = false, isinAir = false, isKnockedBack = false, isDead = false, isAlerted = false;
     public bool attacking = false;
 
     public bool isCharging = false, isDashing = false, isDefending = false,isResting = false;
     public float restTime = 0;
-    public float MaxRestTime = 2f;
+    public float maxRestTime = 2f;
     public float defendRate = 0;
     
 
@@ -80,14 +80,10 @@ public class scr_meleeBoss : MonoBehaviour
                 if (attackArrow.IsInRange(player.gameObject))
                 {
                     alertEnemy();
-                    //attackArrow.attackEnemyInRange(meleeDmg);
+                    
                     //do melee attack 
                     Debug.Log("Enemy attacking (melee)");
                     enemyAnimator.Play("Attacking");
-
-                    // add trigger to attack animation
-
-
                     isAttacked = true;
                     attacking = true;
                     enemyAudio.clip = punchAudio;
@@ -144,7 +140,7 @@ public class scr_meleeBoss : MonoBehaviour
     public void cancelDefence()
     {
         isDefending = false;
-        moveSpd = BasicSpd;
+        moveSpd = basicSpd;
     }
 
     public void resting()
@@ -154,7 +150,7 @@ public class scr_meleeBoss : MonoBehaviour
             if(restTime <= 0)
             {
                 isResting = false;
-                restTime = MaxRestTime;
+                restTime = maxRestTime;
             }
 
         
@@ -176,6 +172,6 @@ public class scr_meleeBoss : MonoBehaviour
 
         //start resting to avoid player die too quick
         isResting = true;
-        restTime = MaxRestTime;
+        restTime = maxRestTime;
     }
 }
