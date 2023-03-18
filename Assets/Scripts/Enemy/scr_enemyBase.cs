@@ -6,6 +6,7 @@ public class scr_enemyBase : MonoBehaviour
 {
     //Enemy base should only include parameters like hitpoints
     public float hitpoints = 50f;
+    public float MaxHitpoints = 50f;
     public GameObject thisEnemy;
     public bool isDead = false;
 
@@ -39,6 +40,7 @@ public class scr_enemyBase : MonoBehaviour
             //Boss
             hitpoints = thisEnemy.GetComponent<scr_meleeBoss>().enemyhitpoints;
         }
+        MaxHitpoints = hitpoints;
         enemyAudioSrc = gameObject.GetComponent<AudioSource>();
     }
 

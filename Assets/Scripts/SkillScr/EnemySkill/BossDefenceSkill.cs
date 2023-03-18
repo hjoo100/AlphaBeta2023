@@ -7,9 +7,13 @@ public class BossDefenceSkill : Skill
 {
     public float defendRate = 0.3f;
     public float DefenceMoveSpd = 0.15f;
+    
     scr_meleeBoss bossScr;
+
+    
     public override void ActivateSkill(GameObject Boss)
     {
+        bossScr = Boss.GetComponent<scr_meleeBoss>();
         if(bossScr.isCharging)
         {
             return;
