@@ -53,6 +53,10 @@ public class scr_enemyAttackArrow : MonoBehaviour
             if(enemy != null)
 
             {
+                if(enemy.GetComponent<BoxCollider2D>().isTrigger)
+                {
+                    return;
+                }
                 enemy.GetComponent<Scr_PlayerCtrl>().takeDmg(dmg);
                 print("player received dmg");
             }
