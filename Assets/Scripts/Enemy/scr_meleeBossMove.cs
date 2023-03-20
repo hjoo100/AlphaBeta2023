@@ -68,7 +68,7 @@ public class scr_meleeBossMove : MonoBehaviour
 
 
         if(bossEnemy.isCharging)
-        {
+        {  //use this line to get clip info, including clip name
             var clipInfo = animator.GetCurrentAnimatorClipInfo(0);
             if (clipInfo[0].clip.name != "Charging")
             {
