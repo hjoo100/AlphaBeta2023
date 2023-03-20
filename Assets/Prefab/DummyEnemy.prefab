@@ -148,12 +148,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitpoints: 250
+  MaxHitpoints: 50
   thisEnemy: {fileID: 0}
   isDead: 0
   animator: {fileID: 0}
   enemyAudioSrc: {fileID: 7573316622155484195}
   fallAudio: {fileID: 8300000, guid: e55bc9c0bd446db40a259ba589f61b93, type: 3}
-  enemyType: -1
+  theEnemyType: 0
   exp: 300
 --- !u!82 &7573316622155484195
 AudioSource:

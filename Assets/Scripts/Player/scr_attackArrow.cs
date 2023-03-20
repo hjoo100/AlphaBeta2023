@@ -66,11 +66,11 @@ public class scr_attackArrow : MonoBehaviour
                 difference = difference.normalized * 80f;
                 difference.y = 0;
                 difference *= 100f;
-                if(enemy.GetComponent<scr_enemyBase>().enemyType == -1)
+                if(enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.dummy)
                 {
                     playerAudio.PlayAudio(1);   
                 }
-                if (enemy.GetComponent<scr_enemyBase>().enemyType == 1)
+                if (enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.melee)
                 {
                     enemy.GetComponent<scr_meleeEnemyMove>().tempFreeze();
                     enemy.GetComponent<scr_meleeEnemyMove>().knockBack();
@@ -79,9 +79,16 @@ public class scr_attackArrow : MonoBehaviour
 
                 }
 
-                if (enemy.GetComponent<scr_enemyBase>().enemyType == 2)
+                if (enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.turret)
                 {
 
+                }
+
+                if(enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.boss)
+                {
+                     
+                     print("boss received dmg");
+                     playerAudio.PlayAudio(1);
                 }
           
 

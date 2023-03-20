@@ -63,7 +63,13 @@ public class scr_meleeBossMove : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, airCheckRadius, GroundLayer);
 
+
         if(bossEnemy.isCharging)
+        {
+            return;
+        }
+
+        if(bossEnemy.getAwake() == false)
         {
             return;
         }
@@ -75,8 +81,15 @@ public class scr_meleeBossMove : MonoBehaviour
             {
                 if (rb.velocity.x != 0f)
                 {
-                    if (bossEnemy.attacking == false)
+                    if (bossEnemy.attacking == false && bossEnemy.isDefending == false)
+                    {
                         animator.Play("Walk");
+                    }
+                    if(bossEnemy.attacking == false && bossEnemy.isDefending )
+                    {
+                        animator.Play("GuardMoving");
+                    }
+                        
                 }
                 else
                 {

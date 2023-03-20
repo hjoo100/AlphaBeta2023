@@ -148,7 +148,7 @@ MonoBehaviour:
   animator: {fileID: 6988984137132151604}
   enemyAudioSrc: {fileID: 0}
   fallAudio: {fileID: 0}
-  enemyType: 2
+  theEnemyType: 2
   exp: 20
 --- !u!95 &6988984137132151604
 Animator:

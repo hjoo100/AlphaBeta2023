@@ -36,6 +36,10 @@ public class scr_SkillHolder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(skill == null)
+        {
+            return;
+        }
 
         switch(state)
         {

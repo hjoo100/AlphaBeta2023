@@ -111,7 +111,7 @@ MonoBehaviour:
   animator: {fileID: 7547427467107113635}
   enemyAudioSrc: {fileID: 0}
   fallAudio: {fileID: 8300000, guid: e55bc9c0bd446db40a259ba589f61b93, type: 3}
-  enemyType: 3
+  theEnemyType: 3
   exp: 400
 --- !u!114 &7815245526507495189
 MonoBehaviour:
@@ -148,6 +148,7 @@ MonoBehaviour:
   restTime: 0
   maxRestTime: 2
   defendRate: 0
+  isAwake: 0
   enemyAudio: {fileID: 0}
   punchAudio: {fileID: 8300000, guid: 3a8c60122554b5242b8175f28c25c107, type: 3}
   stompAudio: {fileID: 8300000, guid: 53c49ee30b50f1a4f9b2e7697c0f4297, type: 3}
@@ -308,6 +309,7 @@ MonoBehaviour:
   skill: {fileID: 11400000, guid: de7ce0429d7b9044b8e2f5a32cbc6f32, type: 2}
   cooldownTime: 10
   activeTime: 6
+  enemyObj: {fileID: 0}
   state: 2
 --- !u!114 &1964313696992196226
 MonoBehaviour:
@@ -324,6 +326,7 @@ MonoBehaviour:
   skill: {fileID: 11400000, guid: 0c4c5315ee9aeb24987bbb86505bf216, type: 2}
   cooldownTime: 7
   activeTime: 2
+  enemyObj: {fileID: 0}
   state: 2
 --- !u!1 &1465814330490166353
 GameObject:

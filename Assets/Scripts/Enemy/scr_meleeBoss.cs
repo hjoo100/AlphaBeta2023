@@ -18,15 +18,18 @@ public class scr_meleeBoss : MonoBehaviour
     public scr_enemyAttackArrow attackArrow;
     public float moveSpd = 5f;
     public float basicSpd = 1f;
-
+    [SerializeField]
     public bool isAttacked = false, isinAir = false, isKnockedBack = false, isDead = false, isAlerted = false;
+    [SerializeField]
     public bool attacking = false;
 
+    [SerializeField]
     public bool isCharging = false, isDashing = false, isDefending = false,isResting = false;
     public float restTime = 0;
     public float maxRestTime = 2f;
     public float defendRate = 0;
-    
+    [SerializeField]
+    private bool isAwake = false;
 
     public AudioSource enemyAudio;
     public AudioClip punchAudio;
@@ -49,7 +52,7 @@ public class scr_meleeBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isCharging)
+        if(isCharging || !isAwake)
         {
             return;
         }
@@ -121,6 +124,7 @@ public class scr_meleeBoss : MonoBehaviour
     {
         if (isAlerted == false)
         {
+            isAwake = true;
             isAlerted = true;
             moveSys.isAlerted = true;
         }
@@ -173,5 +177,10 @@ public class scr_meleeBoss : MonoBehaviour
         //start resting to avoid player die too quick
         isResting = true;
         restTime = maxRestTime;
+    }
+
+    public bool getAwake()
+    {
+        return isAwake;
     }
 }

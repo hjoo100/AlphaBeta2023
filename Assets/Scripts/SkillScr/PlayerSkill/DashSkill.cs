@@ -19,6 +19,7 @@ public class DashSkill : Skill
     public override void StartSkillCD(GameObject player)
     {
         Scr_PlayerCtrl playerScr = player.GetComponent<Scr_PlayerCtrl>();
+        playerScr.resetVelocity();
         playerScr.PlayerSpd = playerScr.basicSpd;
         player.GetComponent<BoxCollider2D>().isTrigger = false;
     }

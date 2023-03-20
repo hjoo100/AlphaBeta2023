@@ -14,8 +14,16 @@ public class scr_enemyBase : MonoBehaviour
 
     public AudioSource enemyAudioSrc;
     public AudioClip fallAudio;
-    //1:melee 2:turret
-    public int enemyType = 1;
+    //-1: dummy  1:melee 2:turret 3: boss 
+    // public int enemyType = 1;
+    public enum enemyType
+    {
+        dummy,
+        melee,
+        turret,
+        boss
+    }
+    public enemyType theEnemyType = enemyType.melee;
 
     //Exp for player level up
     public int exp = 20;
@@ -26,16 +34,16 @@ public class scr_enemyBase : MonoBehaviour
         thisEnemy = gameObject;
         //animator = GetComponent<Animator>();
         //Use enum instead of int
-        if(enemyType == 1)
+        if(theEnemyType == enemyType.melee)
         {
             hitpoints = thisEnemy.GetComponent<scr_MeleeEnemy>().enemyhitpoints;
         }
-        if(enemyType == 2)
+        if(theEnemyType == enemyType.turret)
         {
             hitpoints = thisEnemy.GetComponent<scr_turretEnemy>().hitpoints;
         }
 
-        if(enemyType == 3)
+        if(theEnemyType == enemyType.boss)
         {
             //Boss
             hitpoints = thisEnemy.GetComponent<scr_meleeBoss>().enemyhitpoints;
@@ -52,7 +60,7 @@ public class scr_enemyBase : MonoBehaviour
 
     public void receiveDmg(float dmg)
     {
-        if(enemyType == 3)
+        if(theEnemyType == enemyType.boss)
         {
             var bossScr = gameObject.GetComponent<scr_meleeBoss>();
             if(bossScr.isDefending)
@@ -74,20 +82,20 @@ public class scr_enemyBase : MonoBehaviour
             hitpoints = 0;
             GameObject playerArrow = GameObject.FindGameObjectWithTag("PlayerAttackArrow");
             playerArrow.GetComponent<scr_attackArrow>().removeEnemy(gameObject);
-            if(enemyType == -1)
+            if(theEnemyType == enemyType.dummy)
             {
                 //Dummy
                 deadFunc();
 
             }
-            if (enemyType == 1)
+            if (theEnemyType == enemyType.melee)
             {
                 animator.Play("Die");
                 enemyAudioSrc.clip = fallAudio;
                 enemyAudioSrc.Play();
                 thisEnemy.GetComponent<scr_MeleeEnemy>().DeadFunc();
             }
-            if(enemyType == 2)
+            if(theEnemyType == enemyType.turret)
             {
                 thisEnemy.GetComponent<scr_turretEnemy>().deadFunc();
             }
@@ -96,11 +104,11 @@ public class scr_enemyBase : MonoBehaviour
         }
         else
         {
-            if(enemyType == 1)
+            if(theEnemyType == enemyType.melee)
             {
                 thisEnemy.GetComponent<scr_MeleeEnemy>().alertEnemy();
             }
-            if(enemyType == 3)
+            if(theEnemyType == enemyType.boss)
             {
                 thisEnemy.GetComponent<scr_meleeBoss>().alertEnemy();
             }

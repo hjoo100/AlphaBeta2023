@@ -6,7 +6,7 @@ public class scr_EnemySkillHolder : MonoBehaviour
 {
     public Skill skill;
     public float cooldownTime, activeTime;
-
+    public GameObject enemyObj;
     public enum SkillState
     {
         ready,
@@ -16,9 +16,21 @@ public class scr_EnemySkillHolder : MonoBehaviour
 
    public SkillState state = SkillState.cooldown;
 
+    private void Start()
+    {
+        enemyObj = gameObject;
+        
+    }
     // Update is called once per frame
     void Update()
     {
+        if(enemyObj.GetComponent<scr_enemyBase>().theEnemyType== scr_enemyBase.enemyType.boss) // is boss
+        {
+            if(enemyObj.GetComponent<scr_meleeBoss>().getAwake() == false)
+            {
+                return;
+            }
+        }
         if(state == SkillState.ready)
         {
             skill.ActivateSkill(gameObject);

@@ -39,7 +39,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public float ComboEndMeleeCd = 0.6f;
     public float meleeDmg = 10f;
 
-    public bool isWalking = false, isAir = false, isAttacking = false, isHited = false;
+    public bool isWalking = false, isAir = false, isAttacking = false, isHited = false,isAirAttacked = false;
     public bool isGrounded = false;
     //animation
     Animator playerAnimator;
@@ -50,7 +50,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
     //melee combo
     public int comboNo = 0;
     public bool isFirstMelee = false, isSecondMelee = false, isThirdMelee = false;
-    public float meleeMaxInputTimer = 0.3f,meleeTimer = 0;
+    public float meleeMaxInputTimer = 0.45f,meleeTimer = 0;
     public Image hpBar;
     
     scr_GManager Gamemanager;
@@ -107,6 +107,14 @@ public class Scr_PlayerCtrl : MonoBehaviour
     {
         //check for ground 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, jumpCheckRaidus, GroundObj);
+        if(isGrounded == true)
+        {
+            if(isAirAttacked)
+            {
+                resetAttack();
+                isAirAttacked = false;
+            }
+        }
         if (!gettingKnocked)
         {
             if (isGrounded)
@@ -216,11 +224,15 @@ public class Scr_PlayerCtrl : MonoBehaviour
         {
             print("Melee Pressed");
             //do melee attack
-            attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg);
+            //attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg);
            // playerAnimator.Play("Attack");
             meleeComboFunc();
             isAttacking = true;
-            Invoke(nameof(resetAttack), 0.12f);
+            if(isGrounded)
+            {
+                Invoke(nameof(resetAttack), 0.12f);
+            }
+            
             //CurrMeleeCD = meleeCD;
         }
     }
@@ -263,6 +275,8 @@ public class Scr_PlayerCtrl : MonoBehaviour
     void resetAttack()
     {
         isAttacking = false;
+        animationSwitch("Idle");
+
 
     }
 
@@ -275,11 +289,25 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
     public void meleeComboFunc()
     {
+        if (isGrounded == false && isAirAttacked == false)
+        {
+            animationSwitch("AirMelee");
+            attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg);
+            meleeTimer = 0;
+            CurrMeleeCD = meleeCD;
+            isAirAttacked = true;
+            return;
+        }else if(isGrounded == false && isAirAttacked == true)
+        {
+            return;
+        }
+
         //call func when pressed melee key
-        if(comboNo == 0)
+        if (comboNo == 0)
         {
             //First melee anim
             animationSwitch("Melee1");
+            attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg);
             comboNo += 1;
             isFirstMelee = true;
             meleeTimer = 0;
@@ -291,6 +319,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
             if(isFirstMelee == true)
             {
                 animationSwitch("Melee2");
+                attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg);
                 comboNo += 1;
                 isFirstMelee =false;
                 isSecondMelee = true;
@@ -303,6 +332,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
             if(isSecondMelee == true)
             {
                 animationSwitch("Melee3");
+                attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg);
                 comboNo += 1;
                 isSecondMelee = false;
                 isThirdMelee = true;
@@ -310,6 +340,8 @@ public class Scr_PlayerCtrl : MonoBehaviour
                 CurrMeleeCD = ComboEndMeleeCd;
             }
         }
+
+       
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -346,6 +378,12 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
         //improve skills
         
+    }
+
+    public void resetVelocity()
+    {
+        Vector2 zeroVel = Vector2.zero;
+        rb.velocity = zeroVel;
     }
 }
 
