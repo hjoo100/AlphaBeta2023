@@ -23,7 +23,7 @@ public class scr_enemyBullet : MonoBehaviour
         rb.velocity = new Vector2(direction.x, direction.y).normalized * bulletSpd;
 
         float rot = Mathf.Atan2(-direction.y,-direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, rot);
+        transform.rotation = Quaternion.Euler(0, 0, rot - 90);
     }
 
     // Update is called once per frame
@@ -36,12 +36,22 @@ public class scr_enemyBullet : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             //do impact scr here
 
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            //do impact scr here
+            player.GetComponent<Scr_PlayerCtrl>().takeDmg(dmg);
             Destroy(gameObject);
         }
     }

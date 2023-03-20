@@ -12,11 +12,15 @@ public class scr_turretEnemy : MonoBehaviour
     public bool isdead = false;
 
     public GameObject player;
+
+    [SerializeField]
+    Animator turretAnimator;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         bullet.GetComponent<scr_enemyBullet>().dmg = dmg;
+        turretAnimator = GetComponent<Animator>();
 
     }
 
@@ -32,24 +36,34 @@ public class scr_turretEnemy : MonoBehaviour
             {
                 Vector3 direction = player.transform.position - transform.position;
                 float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.Euler(0, 0, rot - 30);
+                transform.rotation = Quaternion.Euler(0, 0, rot - 90);
 
                 if (timer > maxTime)
                 {
                     timer = 0;
-                    fireBullet();
+
+                    bowFireFunc();
                 }
             }
         }
 
 
     }
-
+    void bowFireFunc()
+    {
+        turretAnimator.Play("Firing");
+        Invoke(nameof(fireBullet), 0.15f);
+        Invoke(nameof(ResetAnimation), 0.3f);
+    }
     void fireBullet()
     {
         Instantiate(bullet, bulletPos.position,Quaternion.identity);
     }
 
+    private void ResetAnimation()
+    {
+        turretAnimator.Play("Idle");
+    }
     public void deadFunc()
     {
         isdead = true;
