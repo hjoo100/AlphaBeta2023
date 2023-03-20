@@ -262,12 +262,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitpoints: 50
+  MaxHitpoints: 50
   thisEnemy: {fileID: 5403734313131498138}
   isDead: 0
   animator: {fileID: 2425761115619724699}
   enemyAudioSrc: {fileID: 0}
   fallAudio: {fileID: 8300000, guid: e55bc9c0bd446db40a259ba589f61b93, type: 3}
-  enemyType: 1
+  theEnemyType: 1
+  exp: 40
 --- !u!114 &8577214885032793299
 MonoBehaviour:
   m_ObjectHideFlags: 0

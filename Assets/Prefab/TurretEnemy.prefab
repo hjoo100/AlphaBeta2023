@@ -149,7 +149,7 @@ MonoBehaviour:
   enemyAudioSrc: {fileID: 0}
   fallAudio: {fileID: 0}
   theEnemyType: 2
-  exp: 20
+  exp: 30
 --- !u!95 &6988984137132151604
 Animator:
   serializedVersion: 5

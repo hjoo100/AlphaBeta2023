@@ -364,7 +364,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
     public void levelUP(int level)
     {
-        meleeDmg += 10;
+        meleeDmg += 3;
 
         if(hitpoints < maxHp)
         {
