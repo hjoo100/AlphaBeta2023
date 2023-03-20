@@ -15,6 +15,8 @@ public class scr_meleeBossMove : MonoBehaviour
 
     public bool isAlerted = false;
 
+    public bool isStomping = false;
+
     Rigidbody2D rb;
     BoxCollider2D boxCollider;
 
@@ -29,6 +31,7 @@ public class scr_meleeBossMove : MonoBehaviour
     Vector3 baseScale;
 
     public Animator animator;
+   
     public bool isKnockedBack = false;
     public float knockBackMaxTime = 1.2f;
     public float knockbackTime = 0f;
@@ -66,6 +69,23 @@ public class scr_meleeBossMove : MonoBehaviour
 
         if(bossEnemy.isCharging)
         {
+            var clipInfo = animator.GetCurrentAnimatorClipInfo(0);
+            if (clipInfo[0].clip.name != "Charging")
+            {
+                animator.Play("Charging");
+            }
+            
+            return;
+        }
+
+        if(bossEnemy.isStomping)
+        {
+            var clipInfo = animator.GetCurrentAnimatorClipInfo(0);
+            if (clipInfo[0].clip.name != "Stomping")
+            {
+                animator.Play("Stomping");
+            }
+
             return;
         }
 

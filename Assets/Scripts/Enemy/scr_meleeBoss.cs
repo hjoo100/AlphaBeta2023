@@ -24,7 +24,7 @@ public class scr_meleeBoss : MonoBehaviour
     public bool attacking = false;
 
     [SerializeField]
-    public bool isCharging = false, isDashing = false, isDefending = false,isResting = false;
+    public bool isCharging = false, isDashing = false, isDefending = false,isResting = false,isStomping = false;
     public float restTime = 0;
     public float maxRestTime = 2f;
     public float defendRate = 0;
@@ -52,7 +52,7 @@ public class scr_meleeBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isCharging || !isAwake)
+        if(isCharging || !isAwake || isStomping)
         {
             return;
         }
@@ -168,6 +168,8 @@ public class scr_meleeBoss : MonoBehaviour
         //Play stomp audio
         enemyAudio.clip = stompAudio;
         playAudio();
+        moveSys.isStomping = true;
+        isStomping = true;
         attackPlayer();
         
 
@@ -175,12 +177,20 @@ public class scr_meleeBoss : MonoBehaviour
         attackArrow.disableStompCollider();
 
         //start resting to avoid player die too quick
-        isResting = true;
-        restTime = maxRestTime;
+        Invoke(nameof(stompComplete), 0.15f);
+        
     }
 
     public bool getAwake()
     {
         return isAwake;
+    }
+
+    public void stompComplete()
+    {
+        isStomping = false;
+        moveSys.isStomping = false;
+        isResting = true;
+        restTime = maxRestTime;
     }
 }
