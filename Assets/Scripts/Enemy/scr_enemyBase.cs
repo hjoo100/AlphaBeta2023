@@ -14,6 +14,13 @@ public class scr_enemyBase : MonoBehaviour
 
     public AudioSource enemyAudioSrc;
     public AudioClip fallAudio;
+    [SerializeField]
+    private SpriteRenderer enemySprRenderer;
+    [SerializeField]
+    private Color defaultColor;
+
+    [SerializeField]
+    private ParticleSystem hitParticle;
     //-1: dummy  1:melee 2:turret 3: boss 
     // public int enemyType = 1;
     public enum enemyType
@@ -50,6 +57,8 @@ public class scr_enemyBase : MonoBehaviour
         }
         MaxHitpoints = hitpoints;
         enemyAudioSrc = gameObject.GetComponent<AudioSource>();
+
+        defaultColor = enemySprRenderer.color;
     }
 
     // Update is called once per frame
@@ -66,14 +75,23 @@ public class scr_enemyBase : MonoBehaviour
             if(bossScr.isDefending)
             {
                 hitpoints -=((1 - bossScr.defendRate) * dmg);
+                HitChangeColor();
+                
+                
             }else
             {
                 hitpoints -= dmg;
+                HitChangeColor();
+                showHitParticle();
+                Invoke(nameof(disableHitParticle), 0.45f);
             }
         }
         else
         {
             hitpoints -= dmg;
+            HitChangeColor();
+            showHitParticle();
+            Invoke(nameof(disableHitParticle), 0.45f);
         }
        
         
@@ -121,5 +139,38 @@ public class scr_enemyBase : MonoBehaviour
         var playerLv = GameObject.FindGameObjectWithTag("Player").GetComponent<scr_playerLevel>();
         playerLv.gainExp(exp);
         Destroy(thisEnemy);
+    }
+
+    void HitChangeColor()
+    {
+        enemySprRenderer.color = Color.green;
+        Invoke(nameof(resumeColor), 0.2f);
+    }
+
+    void resumeColor()
+    {
+        enemySprRenderer.color = defaultColor;
+    }
+
+    void showHitParticle()
+    {
+        if(hitParticle.gameObject.activeSelf == false)
+        {
+            hitParticle.gameObject.SetActive(true);
+            hitParticle.Play();
+        }
+        
+
+    }
+
+    void disableHitParticle()
+    {
+        if (hitParticle.gameObject.activeSelf)
+        {
+            hitParticle.Stop();
+            hitParticle.gameObject.SetActive(false);
+        }
+        
+        
     }
 }

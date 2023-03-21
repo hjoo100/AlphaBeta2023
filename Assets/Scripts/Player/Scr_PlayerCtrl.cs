@@ -84,11 +84,21 @@ public class Scr_PlayerCtrl : MonoBehaviour
         {
             ReceiveInputFunc();
             //attack();
-
-            if (Input.GetKeyDown(KeyCode.Z) && MeleeStatemachine.CurrentState.GetType() == typeof(Scr_IdleComboState))
+            if(isGrounded)
             {
-                MeleeStatemachine.SetNextState(new Scr_GroundEntryState());
+                if (Input.GetKeyDown(KeyCode.Z) && MeleeStatemachine.CurrentState.GetType() == typeof(Scr_IdleComboState))
+                {
+                    MeleeStatemachine.SetNextState(new Scr_GroundEntryState());
+                }
             }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.Z) && MeleeStatemachine.CurrentState.GetType() == typeof(Scr_IdleComboState) && isAirAttacked == false)
+                {
+                    MeleeStatemachine.SetNextState(new Scr_AirEntryState());
+                }
+            }
+            
         }
         else
         {
