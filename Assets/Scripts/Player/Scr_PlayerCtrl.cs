@@ -39,6 +39,9 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public float ComboEndMeleeCd = 0.6f;
     public float meleeDmg = 10f;
 
+    [SerializeField]
+    private StateMachine MeleeStatemachine;
+
     public bool isWalking = false, isAir = false, isAttacking = false, isHited = false,isAirAttacked = false;
     public bool isGrounded = false;
     //animation
@@ -64,6 +67,9 @@ public class Scr_PlayerCtrl : MonoBehaviour
         hitpoints = maxHp;
         Gamemanager = GameObject.FindGameObjectWithTag("GManager").GetComponent<scr_GManager>();
         hpBar = GameObject.FindGameObjectWithTag("UI.Hud.Hp").GetComponent<Image>();
+
+        MeleeStatemachine = GetComponent<StateMachine>();
+        
     }
     // Start is called before the first frame update
     void Start()
@@ -77,8 +83,14 @@ public class Scr_PlayerCtrl : MonoBehaviour
         if (!gettingKnocked)
         {
             ReceiveInputFunc();
-            attack();
-        }else
+            //attack();
+
+            if (Input.GetKeyDown(KeyCode.Z) && MeleeStatemachine.CurrentState.GetType() == typeof(Scr_IdleComboState))
+            {
+                MeleeStatemachine.SetNextState(new Scr_GroundEntryState());
+            }
+        }
+        else
         {
             if (knockedTime > 0)
             {
@@ -287,6 +299,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
         hpBar.fillAmount = hpPercent;
     }
 
+    //Melee Combo func is replaced by a new combosystem
     public void meleeComboFunc()
     {
         if (isGrounded == false && isAirAttacked == false)
@@ -384,6 +397,11 @@ public class Scr_PlayerCtrl : MonoBehaviour
     {
         Vector2 zeroVel = Vector2.zero;
         rb.velocity = zeroVel;
+    }
+
+    public void applyAttack()
+    {
+        attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg);
     }
 }
 
