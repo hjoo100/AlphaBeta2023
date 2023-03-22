@@ -58,7 +58,12 @@ public class scr_enemyBase : MonoBehaviour
         MaxHitpoints = hitpoints;
         enemyAudioSrc = gameObject.GetComponent<AudioSource>();
 
+        if(enemySprRenderer == null)
+        {
+            Debug.Log(theEnemyType.ToString() + " has sprite that not binded correctly");
+        }
         defaultColor = enemySprRenderer.color;
+
     }
 
     // Update is called once per frame
@@ -82,7 +87,11 @@ public class scr_enemyBase : MonoBehaviour
             {
                 hitpoints -= dmg;
                 HitChangeColor();
-                showHitParticle();
+                if(hitParticle != null)
+                {
+                    showHitParticle();
+                }
+                
                 Invoke(nameof(disableHitParticle), 0.45f);
             }
         }
@@ -90,7 +99,12 @@ public class scr_enemyBase : MonoBehaviour
         {
             hitpoints -= dmg;
             HitChangeColor();
-            showHitParticle();
+            if(hitParticle != null)
+            {
+                showHitParticle();
+            }
+            
+
             Invoke(nameof(disableHitParticle), 0.45f);
         }
        
@@ -154,7 +168,11 @@ public class scr_enemyBase : MonoBehaviour
 
     void showHitParticle()
     {
-        if(hitParticle.gameObject.activeSelf == false)
+        if (hitParticle == null)
+        {
+            return;
+        }
+        if (hitParticle.gameObject.activeSelf == false)
         {
             hitParticle.gameObject.SetActive(true);
             hitParticle.Play();
@@ -165,6 +183,10 @@ public class scr_enemyBase : MonoBehaviour
 
     void disableHitParticle()
     {
+        if(hitParticle == null)
+        {
+            return;
+        }
         if (hitParticle.gameObject.activeSelf)
         {
             hitParticle.Stop();

@@ -76,4 +76,16 @@ public class scr_enemyAttackArrow : MonoBehaviour
         CapsuleCollider2D stompCollider = GetComponent<CapsuleCollider2D>();
         stompCollider.enabled = false;
     }
+
+    public void enableHitGroundCollider()
+    {
+        BoxCollider2D hitGroundCollider = GetComponent<BoxCollider2D>();
+        hitGroundCollider.enabled = true;
+    }
+
+    public void disableHitGroundCollider()
+    {
+        BoxCollider2D hitGroundCollider = GetComponent<BoxCollider2D>();
+        hitGroundCollider.enabled = false;
+    }
 }

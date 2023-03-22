@@ -5101,7 +5101,7 @@ MonoBehaviour:
   enemyAnimator: {fileID: 2425761115619724699}
   player: {fileID: 0}
   moveSys: {fileID: 0}
-  enemyhitpoints: 50
+  enemyhitpoints: 80
   meleeDmg: 10
   attackCD: 1.8
   attackArrow: {fileID: 8206097363797570587}

@@ -56,7 +56,10 @@ public class scr_attackArrow : MonoBehaviour
         foreach (var enemy in enemyInRange)
         {
             
-               
+               if(enemy == null)
+               {
+                continue;
+                }
                 enemy.GetComponent<scr_enemyBase>().receiveDmg(dmg);
                 Vector2 attackForce = new Vector2();
                 attackForce.y = transform.localPosition.y;

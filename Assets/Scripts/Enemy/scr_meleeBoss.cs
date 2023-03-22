@@ -86,17 +86,37 @@ public class scr_meleeBoss : MonoBehaviour
                     
                     //do melee attack 
                     Debug.Log("Enemy attacking (melee)");
-                    enemyAnimator.Play("Attacking");
-                    isAttacked = true;
-                    attacking = true;
-                    enemyAudio.clip = punchAudio;
-                    //cancel defence state if attacking
-                    cancelDefence();
-                    Invoke(nameof(playAudio), 0.5f);
-                    Invoke(nameof(attackPlayer), 0.5f);
-                    Invoke(nameof(stopAttackingAnim), 1.01f);
-                   // Invoke(nameof(cancelDefence), 1.02f);
-                    Invoke(nameof(ResetAttack), attackCD);
+                    int randInt = Random.Range(1, 3);
+                    if (randInt == 1)
+                    {
+                        enemyAnimator.Play("Attacking");
+                        isAttacked = true;
+                        attacking = true;
+                        enemyAudio.clip = punchAudio;
+                        //cancel defence state if attacking
+                        cancelDefence();
+                        Invoke(nameof(playAudio), 0.92f);
+                        Invoke(nameof(attackPlayer), 0.92f);
+                        Invoke(nameof(stopAttackingAnim), 1.01f);
+                        // Invoke(nameof(cancelDefence), 1.02f);
+                        Invoke(nameof(ResetAttack), attackCD);
+                        return;
+                    }else
+                    {
+                        enemyAnimator.Play("hitGroundAttack");
+                        isAttacked = true;
+                        attacking = true;
+                        enemyAudio.clip = punchAudio;
+                        cancelDefence();
+                        Invoke(nameof(playAudio), 0.92f);
+                        Invoke(nameof(hitGroundAttack), 0.92f);
+                        Invoke(nameof(stopAttackingAnim), 1.01f);
+                        // Invoke(nameof(cancelDefence), 1.02f);
+                        Invoke(nameof(ResetAttack), attackCD);
+                        return;
+
+                    }
+                    
                 }
             }
 
@@ -179,6 +199,19 @@ public class scr_meleeBoss : MonoBehaviour
         //start resting to avoid player die too quick
         Invoke(nameof(stompComplete), 0.15f);
         
+    }
+
+    public void hitGroundAttack()
+    {
+
+        attackArrow.enableHitGroundCollider();
+        
+        attackPlayer();
+
+        //then disable the stomp collider
+        attackArrow.disableHitGroundCollider();
+
+      
     }
 
     public bool getAwake()
