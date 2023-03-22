@@ -239,7 +239,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
         playertransform.localScale = new Vector2(-playertransform.localScale.x,playertransform.localScale.y);
     }
 
-    void attack()
+    void attack() //replaced by new system
     {
         //isInMeleeRange = Physics2D.OverlapCircle(attackArrow.position, meleeRange, EnemyLayer);
         if(Input.GetKeyDown(KeyCode.Z) && CurrMeleeCD == 0)
