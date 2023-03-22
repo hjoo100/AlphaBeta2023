@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -75,9 +76,10 @@ public class scr_MeleeEnemy : MonoBehaviour
                     isAttacked = true;
                     attacking = true;
                     enemyAudio.clip = punchAudio;
-                    Invoke(nameof(playAudio), 0.3f);
-                    Invoke(nameof(attackPlayer), 0.3f);
-                    Invoke(nameof(stopAttackingAnim), 0.46f);
+                    
+                    Invoke(nameof(playAudio), 0.92f);
+                    Invoke(nameof(attackPlayer), 0.92f);
+                    Invoke(nameof(stopAttackingAnim), 1.34f);
                     Invoke(nameof(ResetAttack), attackCD);
                 }
             }  

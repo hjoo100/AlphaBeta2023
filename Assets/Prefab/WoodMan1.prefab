@@ -5074,8 +5074,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e640ea6f823733348a4db4cb22e97a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitpoints: 50
-  MaxHitpoints: 50
+  hitpoints: 80
+  MaxHitpoints: 80
   thisEnemy: {fileID: 5403734313131498138}
   isDead: 0
   animator: {fileID: 2425761115619724699}
@@ -5103,7 +5103,7 @@ MonoBehaviour:
   moveSys: {fileID: 0}
   enemyhitpoints: 50
   meleeDmg: 10
-  attackCD: 1.3
+  attackCD: 1.8
   attackArrow: {fileID: 8206097363797570587}
   moveSpd: 2
   isAttacked: 0
