@@ -10,7 +10,7 @@ public class Scr_GroundEntryState : Scr_MeleeBaseState
         base.OnEnter(_stateMachine);
 
         attackIndex = 1;
-        duration = 0.5f;
+        duration = 0.6f;
         animator.Play("Melee1");
         playerCtrl.applyAttack();
         Debug.Log("Player Melee1 pressed!");

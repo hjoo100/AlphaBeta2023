@@ -177,7 +177,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2229056055822478847
 Transform:
   m_ObjectHideFlags: 0
@@ -186,12 +186,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5044742950292762062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.05, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5403734313131498143}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &4362215415563132223
 ParticleSystem:
@@ -4941,7 +4941,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 1
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -5011,6 +5011,7 @@ Transform:
   - {fileID: 1983581632677677992}
   - {fileID: 7494010369638349284}
   - {fileID: 7175863352665802270}
+  - {fileID: 7125702391997867884}
   - {fileID: 2229056055822478847}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -5083,7 +5084,7 @@ MonoBehaviour:
   fallAudio: {fileID: 8300000, guid: e55bc9c0bd446db40a259ba589f61b93, type: 3}
   enemySprRenderer: {fileID: 420459469892759322}
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
-  hitParticle: {fileID: 4362215415563132223}
+  hitParticle: {fileID: 0}
   theEnemyType: 1
   exp: 40
 --- !u!114 &8577214885032793299
@@ -5101,7 +5102,7 @@ MonoBehaviour:
   enemyAnimator: {fileID: 2425761115619724699}
   player: {fileID: 0}
   moveSys: {fileID: 0}
-  enemyhitpoints: 80
+  enemyhitpoints: 95
   meleeDmg: 10
   attackCD: 1.8
   attackArrow: {fileID: 8206097363797570587}
@@ -5132,6 +5133,7 @@ MonoBehaviour:
   inAir: 0
   isAlerted: 0
   castPos: {fileID: 1983581632677677992}
+  castPosHead: {fileID: 7125702391997867884}
   baseCastDist: 0.6
   animator: {fileID: 2425761115619724699}
   isKnockedBack: 0
@@ -5392,3 +5394,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!1 &7631515219938414069
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7125702391997867884}
+  m_Layer: 7
+  m_Name: CastPosHead
+  m_TagString: Untagged
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7125702391997867884
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7631515219938414069}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.49, y: 0.868, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5403734313131498143}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

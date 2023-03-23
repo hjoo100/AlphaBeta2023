@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using UnityEngine.Animations;
+using UnityEngine.InputSystem.Controls;
 
 public class Scr_PlayerCtrl : MonoBehaviour
 {
@@ -12,6 +15,8 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
     private Rigidbody2D rb;
     private Transform playertransform;
+    [SerializeField]
+    private InputAction playerCtrlSystem;
     private float moveDir;
     private bool toRight = true;
     private bool isJumping = false;
@@ -38,6 +43,9 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public float meleeCD = 0.2f;
     public float ComboEndMeleeCd = 0.6f;
     public float meleeDmg = 10f;
+
+    //for combo
+    public bool attackKeyDown = false;
 
     [SerializeField]
     private StateMachine MeleeStatemachine;
@@ -77,6 +85,16 @@ public class Scr_PlayerCtrl : MonoBehaviour
         jumpCount = MaxJumpNum;
     }
 
+    private void OnEnable()
+    {
+        playerCtrlSystem.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerCtrlSystem.Disable();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -84,16 +102,17 @@ public class Scr_PlayerCtrl : MonoBehaviour
         {
             ReceiveInputFunc();
             //attack();
+            //attackKeyFuncOld();
             if(isGrounded)
             {
-                if (Input.GetKeyDown(KeyCode.Z) && MeleeStatemachine.CurrentState.GetType() == typeof(Scr_IdleComboState))
+                if (attackKeyDown && MeleeStatemachine.CurrentState.GetType() == typeof(Scr_IdleComboState) )
                 {
                     MeleeStatemachine.SetNextState(new Scr_GroundEntryState());
                 }
             }
             else
             {
-                if (Input.GetKeyDown(KeyCode.Z) && MeleeStatemachine.CurrentState.GetType() == typeof(Scr_IdleComboState) && isAirAttacked == false)
+                if (attackKeyDown && MeleeStatemachine.CurrentState.GetType() == typeof(Scr_IdleComboState) && isAirAttacked == false)
                 {
                     MeleeStatemachine.SetNextState(new Scr_AirEntryState());
                 }
@@ -122,6 +141,10 @@ public class Scr_PlayerCtrl : MonoBehaviour
         }
 
         hpbarUpdate();
+    }
+    private void LateUpdate()
+    {
+        releaseAttack();
     }
 
     //fixed update for movement
@@ -186,7 +209,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
     void ReceiveInputFunc()
     {
-        moveDir = Input.GetAxis("Horizontal");
+        
 
         //rb.velocity = new Vector2(PlayerSpd * moveDir, rb.velocity.y);
         if(moveDir >0 && toRight == false)
@@ -198,13 +221,72 @@ public class Scr_PlayerCtrl : MonoBehaviour
             flipChara();
         }
 
-        if(Input.GetButtonDown("Jump") && jumpCount >0)
+       // JumpFunc();
+       /* if(Input.GetButtonDown("Jump") && jumpCount >0)
         {
             isJumping = true;
 
+        }*/
+    }
+    public void MoveAxisFunc(InputAction.CallbackContext context)
+    {
+        moveDir = context.ReadValue<float>();
+    }
+    public void JumpFunc(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            if (jumpCount > 0)
+            {
+                isJumping = true;
+
+            }
+        }
+        
+    }
+
+    public void attackKeyFunc(InputAction.CallbackContext context)
+    {
+       /* if(context.started && !attackKeyDown)
+        {
+           // attackKeyDown = true;
+           // comboNo = 1;
+            Debug.Log("Attack enabled by context started");
+        }
+
+        if(context.performed )
+        {
+            attackKeyDown = true;
+            Debug.Log("Attack enabled by context performed");
+        }*/
+        if(context.canceled)
+        {
+            attackKeyDown = true;
+            comboNo = 0;
+        }
+        else
+        {
+            attackKeyDown = false;
         }
     }
 
+    public void releaseAttack()
+    {
+        attackKeyDown = false;
+    }
+
+    public void attackKeyFuncOld()
+    {
+        if(!attackKeyDown && Input.GetKeyDown(KeyCode.Z))
+        {
+            attackKeyDown = true;
+        }
+
+        if (Input.GetKeyUp(KeyCode.Z))
+        {
+            attackKeyDown = false;
+        }
+    }
     void charaMoveFunc()
     {
         rb.velocity = new Vector2(PlayerSpd * moveDir, rb.velocity.y);

@@ -436,6 +436,7 @@ GameObject:
   - component: {fileID: 8817083002762220604}
   - component: {fileID: 3401689054591587825}
   - component: {fileID: 8964010386193435565}
+  - component: {fileID: 6733454528112419265}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -478,12 +479,12 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 6
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: f29a57997bde3d045ae061b819b59c2b, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &6107447076169596600
 BoxCollider2D:
@@ -527,6 +528,15 @@ MonoBehaviour:
   M_left: 97
   M_right: 100
   M_jump: 0
+  playerCtrlSystem:
+    m_Name: Player Ctrl System
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: a3e6db18-f24e-41f6-91b5-4cb7c38039a2
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   jumpCount: 0
   PlayerSpd: 4
   basicSpd: 4
@@ -549,6 +559,8 @@ MonoBehaviour:
   meleeCD: 0.3
   ComboEndMeleeCd: 0.6
   meleeDmg: 10
+  attackKeyDown: 0
+  MeleeStatemachine: {fileID: 0}
   isWalking: 0
   isAir: 0
   isAttacking: 0
@@ -811,7 +823,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6107447076169596606}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -851,6 +863,84 @@ MonoBehaviour:
   _data:
     _json: '{"declarations":{"Kind":"Object","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
     _objectReferences: []
+--- !u!114 &6733454528112419265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6107447076169596606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: b163374fd95b08849b92fadb24e78de0, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6107447076169596605}
+        m_TargetAssemblyTypeName: Scr_PlayerCtrl, Assembly-CSharp
+        m_MethodName: JumpFunc
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b82c1526-3215-4266-baf2-159cce217433
+    m_ActionName: PlayerActionMap/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6107447076169596605}
+        m_TargetAssemblyTypeName: Scr_PlayerCtrl, Assembly-CSharp
+        m_MethodName: MoveAxisFunc
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 947a17a6-eeb5-4448-a5e7-2fb35a6440cf
+    m_ActionName: PlayerActionMap/Move[/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6107447076169596605}
+        m_TargetAssemblyTypeName: Scr_PlayerCtrl, Assembly-CSharp
+        m_MethodName: attackKeyFunc
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0cfd1863-aa6c-4b4e-a510-80f2348aebfd
+    m_ActionName: PlayerActionMap/New action
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: PlayerActionMap
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &6674534377340928847
 GameObject:
   m_ObjectHideFlags: 0

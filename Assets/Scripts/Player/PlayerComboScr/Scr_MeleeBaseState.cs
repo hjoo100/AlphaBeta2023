@@ -25,9 +25,10 @@ public class Scr_MeleeBaseState : State
     {
         base.OnUpdate();
 
-        if(Input.GetKeyDown(KeyCode.Z))
+        if(playerCtrl.attackKeyDown && playerCtrl.comboNo == 0)
         {
             shouldCombo = true;
+            
         }
     }
 

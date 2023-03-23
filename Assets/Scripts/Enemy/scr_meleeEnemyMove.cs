@@ -22,7 +22,8 @@ public class scr_meleeEnemyMove : MonoBehaviour
 
     [SerializeField]
     Transform castPos;
-
+    [SerializeField]
+    Transform castPosHead;
     [SerializeField]
     float baseCastDist;
 
@@ -163,10 +164,13 @@ public class scr_meleeEnemyMove : MonoBehaviour
         Vector3 targetPos = castPos.position;
         targetPos.x += castDist;
 
+        Vector3 targetPosHead = castPosHead.position;
+        targetPosHead.x += castDist;
+
         Debug.DrawLine(castPos.position, targetPos, Color.green);
+        Debug.DrawLine(castPosHead.position, targetPos, Color.green);
 
-
-        if(Physics2D.Linecast(castPos.position,targetPos,1<<LayerMask.NameToLayer("Wall")))
+        if (Physics2D.Linecast(castPos.position, targetPos, 1 << LayerMask.NameToLayer("Wall")) || Physics2D.Linecast(castPosHead.position, targetPosHead, 1 << LayerMask.NameToLayer("Wall")))
         {
             val = true;
         }else
