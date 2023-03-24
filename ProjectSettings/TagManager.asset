@@ -5,6 +5,18 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - GManager
+  - Obstacles
+  - UI
+  - UI.Hud.Hp
+  - UI.Hud.Clear
+  - posObj
+  - Obstacle
+  - PlayerAttackArrow
+  - Skill1
+  - Skill2
+  - UI.Hud.Exp
+  - LvUpObj
   layers:
   - Default
   - TransparentFX
@@ -15,9 +27,9 @@ TagManager:
   - Player
   - Enemy
   - Ground
-  - 
-  - 
-  - 
+  - Wall
+  - PlayerAttackArrow
+  - PlayerSupportingCircle
   - 
   - 
   - 

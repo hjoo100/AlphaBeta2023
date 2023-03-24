@@ -1,0 +1,43 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Scr_MeleeBaseState : State
+{
+    //time for the state being active
+    public float duration;
+
+    protected Animator animator;
+
+    protected bool shouldCombo;
+
+    //No of the combo
+    protected int attackIndex;
+
+    public override void OnEnter(StateMachine _stateMachine)
+    {
+        base.OnEnter(_stateMachine);
+        animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
+        playerCtrl.isAttacking = true;
+    }
+
+    public override void OnUpdate()
+    {
+        base.OnUpdate();
+
+        if(playerCtrl.attackKeyDown && playerCtrl.comboNo == 0)
+        {
+            shouldCombo = true;
+            if(stateMachine.nextState == null)
+            {
+                stateMachine.nextState = new Scr_MeleeEntryState();
+            }
+        }
+    }
+
+    public override void OnExit()
+    {
+        base.OnExit();
+        playerCtrl.isAttacking = false;
+    }
+}
