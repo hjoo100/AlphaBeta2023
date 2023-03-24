@@ -20,6 +20,7 @@ public class scr_GManager : MonoBehaviour
     private int SceneCount = 1;
     public GameObject GameOverImage, GameEndText,RetryText;
     public Animator clearAnim;
+    public bool winned = false;
 
     public GameObject BossObj;
     // Start is called before the first frame update
@@ -191,9 +192,10 @@ public class scr_GManager : MonoBehaviour
 
     void checkBossFunc()
     {
-        if(BossObj == null)
+        if(BossObj == null && winned == false)
         {
             allClear = true;
+            winned = true;
             clearAnim.Play("StageClear");
             Invoke(nameof(resetClearImg), 5f);
             WinFunc();

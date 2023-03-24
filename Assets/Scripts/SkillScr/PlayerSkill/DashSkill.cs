@@ -14,6 +14,11 @@ public class DashSkill : Skill
         playerScr.PlayerSpd = dashVelocity;
 
         player.GetComponent<BoxCollider2D>().isTrigger = true;
+        var circleBoxes = player.GetComponents<CircleCollider2D>();
+        foreach (var circleBox in circleBoxes)
+        {
+            circleBox.isTrigger = true;
+        }
     }
 
     public override void StartSkillCD(GameObject player)
@@ -22,5 +27,10 @@ public class DashSkill : Skill
         playerScr.resetVelocity();
         playerScr.PlayerSpd = playerScr.basicSpd;
         player.GetComponent<BoxCollider2D>().isTrigger = false;
+        var circleBoxes = player.GetComponents<CircleCollider2D>();
+        foreach (var circleBox in circleBoxes)
+        {
+            circleBox.isTrigger = false;
+        }
     }
 }
