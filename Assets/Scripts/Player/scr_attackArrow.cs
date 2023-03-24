@@ -87,8 +87,9 @@ public class scr_attackArrow : MonoBehaviour
 
                 if (enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.turret)
                 {
-
-                }
+                    print("Turret received dmg");
+                    playerAudio.PlayAudio(1);
+            }
 
                 if(enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.boss)
                 {

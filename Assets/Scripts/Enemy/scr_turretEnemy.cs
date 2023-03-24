@@ -15,6 +15,14 @@ public class scr_turretEnemy : MonoBehaviour
 
     [SerializeField]
     Animator turretAnimator;
+    [SerializeField]
+    AudioSource audioSrc;
+    [SerializeField]
+    AudioClip fireSound;
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +66,8 @@ public class scr_turretEnemy : MonoBehaviour
     void fireBullet()
     {
         Instantiate(bullet, bulletPos.position,Quaternion.identity);
+        audioSrc.clip = fireSound;
+        audioSrc.Play();
     }
 
     private void ResetAnimation()

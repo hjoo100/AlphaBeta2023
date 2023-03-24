@@ -129,7 +129,10 @@ public class scr_enemyBase : MonoBehaviour
             }
             if(theEnemyType == enemyType.turret)
             {
+                enemyAudioSrc.clip = fallAudio;
+                enemyAudioSrc.Play();
                 thisEnemy.GetComponent<scr_turretEnemy>().deadFunc();
+                
             }
             Invoke(nameof(deadFunc), 0.25f);
 
