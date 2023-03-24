@@ -28,7 +28,10 @@ public class Scr_MeleeBaseState : State
         if(playerCtrl.attackKeyDown && playerCtrl.comboNo == 0)
         {
             shouldCombo = true;
-            
+            if(stateMachine.nextState == null)
+            {
+                stateMachine.nextState = new Scr_MeleeEntryState();
+            }
         }
     }
 

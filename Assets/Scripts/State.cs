@@ -14,12 +14,21 @@ public abstract class State
     public virtual void OnEnter(StateMachine _stateMachine)
     {
         playerCtrl = GameObject.FindGameObjectWithTag("Player").GetComponent<Scr_PlayerCtrl>();
+        if(playerCtrl == null)
+        {
+            Debug.Log("Failed to find player scr");
+        }
         stateMachine = _stateMachine;
     }
 
 
     public virtual void OnUpdate()
     {
+        playerCtrl = GameObject.FindGameObjectWithTag("Player").GetComponent<Scr_PlayerCtrl>();
+        if (playerCtrl == null)
+        {
+            Debug.Log("Failed to find player scr");
+        }
         time += Time.deltaTime;
     }
 

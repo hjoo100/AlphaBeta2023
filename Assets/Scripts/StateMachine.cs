@@ -6,22 +6,30 @@ public class StateMachine : MonoBehaviour
 {
     public string customName;
 
-    private State mainStateType;
+    public State mainStateType;
 
-    public State CurrentState { get; private set; }
-    private State nextState;
+
+    public State CurrentState { get; set; } //issue laying here
+    
+
+    public State nextState;
 
     [SerializeField]
     public Scr_PlayerCtrl playerscr;
 
 
-    
+   
     // Update is called once per frame
     void Update()
     {
         if (nextState != null)
         {
             SetState(nextState);
+        }
+        else
+        {
+           // nextState = new Scr_IdleComboState();
+            //SetState(nextState);
         }
 
         if (CurrentState != null)
@@ -78,10 +86,9 @@ public class StateMachine : MonoBehaviour
     {
         if (mainStateType == null)
         {
-            if (customName == "PlayerMeleeStatemachine")
-            {
+            
                 mainStateType = new Scr_IdleComboState();
-            }
+            
         }
     }
 }

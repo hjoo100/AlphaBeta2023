@@ -42,6 +42,9 @@ public class scr_attackArrow : MonoBehaviour
     {
         if (c.isTrigger) return;
         if (c.GetType() == typeof(CircleCollider2D)) return;
+        if(!c.gameObject.CompareTag(this.enemyTag)) return;
+        string nameofObk = c.name;
+        Debug.Log(nameofObk + " is out of range!");
         enemyInRange.Remove(c.gameObject);
         print("enemy out of range");
     }

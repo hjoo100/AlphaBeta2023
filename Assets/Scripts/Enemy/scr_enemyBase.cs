@@ -132,6 +132,14 @@ public class scr_enemyBase : MonoBehaviour
                 thisEnemy.GetComponent<scr_turretEnemy>().deadFunc();
             }
             Invoke(nameof(deadFunc), 0.25f);
+
+            if(theEnemyType == enemyType.boss)
+            {
+                animator.Play("Die");
+                enemyAudioSrc.clip = fallAudio;
+                enemyAudioSrc.Play();
+                thisEnemy.GetComponent<scr_meleeBoss>().DeadFunc();
+            }
             // Destroy(thisEnemy);
         }
         else

@@ -81,7 +81,7 @@
                 {
                     "name": "",
                     "id": "8aa7bdb2-07c3-4b7d-b575-f2b9cad676bb",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/z",
                     "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",

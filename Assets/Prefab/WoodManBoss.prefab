@@ -84,10 +84,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 20
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 15
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -111,7 +111,7 @@ MonoBehaviour:
   isDead: 0
   animator: {fileID: 7547427467107113635}
   enemyAudioSrc: {fileID: 0}
-  fallAudio: {fileID: 8300000, guid: e55bc9c0bd446db40a259ba589f61b93, type: 3}
+  fallAudio: {fileID: 8300000, guid: 3226a214bdedb174994bc33d89e55630, type: 3}
   enemySprRenderer: {fileID: 5531005299774863394}
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
   hitParticle: {fileID: 1247815365354089835}
@@ -5282,6 +5282,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5736654721331613374
 GameObject:
   m_ObjectHideFlags: 0

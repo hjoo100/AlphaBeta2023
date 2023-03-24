@@ -60,7 +60,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public float knockedTime = 0;
     //melee combo
     public int comboNo = 0;
-    public bool isFirstMelee = false, isSecondMelee = false, isThirdMelee = false;
+    public bool isFirstMelee = false, isSecondMelee = false, isThirdMelee = false, isFourthMelee = false, isFifthMelee = false;
     public float meleeMaxInputTimer = 0.45f,meleeTimer = 0;
     public Image hpBar;
     
@@ -101,24 +101,56 @@ public class Scr_PlayerCtrl : MonoBehaviour
         if (!gettingKnocked)
         {
             ReceiveInputFunc();
-            //attack();
+            attack();
             //attackKeyFuncOld();
+            /*
             if(isGrounded)
             {
-                if (attackKeyDown && MeleeStatemachine.CurrentState.GetType() == typeof(Scr_IdleComboState) )
+              
+               if (attackKeyDown )
                 {
+                    if(MeleeStatemachine.CurrentState == null)
+                    {
+                        
+                        Debug.Log("statemachine is gone again, ha");
+                        MeleeStatemachine.CurrentState = new Scr_IdleComboState();
+
+                    }else
+                    {
+                        string statemachineName = MeleeStatemachine.CurrentState.GetType().ToString();
+                        Debug.Log("In inspector, the name of current state is: " + statemachineName);
+                    }
+                    if(MeleeStatemachine.CurrentState.GetType() == typeof(Scr_IdleComboState))
                     MeleeStatemachine.SetNextState(new Scr_GroundEntryState());
+                }else
+                {
+                    if(MeleeStatemachine.mainStateType == null)
+                    {
+                        Debug.Log("ha, main state type is missing!");
+                        MeleeStatemachine.mainStateType = new Scr_IdleComboState();
+                    }
+                    
+                   
                 }
             }
             else
             {
-                if (attackKeyDown && MeleeStatemachine.CurrentState.GetType() == typeof(Scr_IdleComboState) && isAirAttacked == false)
+                
+                 if (attackKeyDown && isAirAttacked == false)
                 {
+                    if (MeleeStatemachine.CurrentState == null)
+                    {
+                        Debug.Log("statemachine is gone again, ha");
+                        MeleeStatemachine.CurrentState = new Scr_IdleComboState();
+
+                    }
+                    if (MeleeStatemachine.CurrentState.GetType() == typeof(Scr_IdleComboState))
+                    
                     MeleeStatemachine.SetNextState(new Scr_AirEntryState());
                 }
-            }
+            }*/
             
-        }
+         }
         else
         {
             if (knockedTime > 0)
@@ -202,7 +234,9 @@ public class Scr_PlayerCtrl : MonoBehaviour
             comboNo = 0;
             isThirdMelee = false;
             isSecondMelee = false;
-            isFirstMelee = false;   
+            isFirstMelee = false;
+            isFifthMelee = false;
+            isFourthMelee = false;
             meleeTimer = 0;
         }
     }
@@ -221,12 +255,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
             flipChara();
         }
 
-       // JumpFunc();
-       /* if(Input.GetButtonDown("Jump") && jumpCount >0)
-        {
-            isJumping = true;
-
-        }*/
+      
     }
     public void MoveAxisFunc(InputAction.CallbackContext context)
     {
@@ -262,7 +291,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
         if(context.canceled)
         {
             attackKeyDown = true;
-            comboNo = 0;
+           // comboNo = 0;
         }
         else
         {
@@ -324,7 +353,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
     void attack() //replaced by new system
     {
         //isInMeleeRange = Physics2D.OverlapCircle(attackArrow.position, meleeRange, EnemyLayer);
-        if(Input.GetKeyDown(KeyCode.Z) && CurrMeleeCD == 0)
+        if(Input.GetKeyDown(KeyCode.Mouse0) && CurrMeleeCD == 0)
         {
             print("Melee Pressed");
             //do melee attack
@@ -334,7 +363,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
             isAttacking = true;
             if(isGrounded)
             {
-                Invoke(nameof(resetAttack), 0.12f);
+                Invoke(nameof(resetAttack), 0.45f);
             }
             
             //CurrMeleeCD = meleeCD;
@@ -441,6 +470,33 @@ public class Scr_PlayerCtrl : MonoBehaviour
                 comboNo += 1;
                 isSecondMelee = false;
                 isThirdMelee = true;
+                meleeTimer = 0;
+                CurrMeleeCD = meleeCD;
+            }
+        }else if(comboNo == 3 && meleeTimer <meleeMaxInputTimer)
+
+        {
+
+            if (isThirdMelee == true)
+            {
+                animationSwitch("Melee4");
+                attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg);
+                comboNo += 1;
+                isThirdMelee = false;
+                isFourthMelee = true;
+                meleeTimer = 0;
+                CurrMeleeCD = meleeCD;
+            }
+
+        }else if(comboNo == 4 && meleeTimer < meleeMaxInputTimer)
+        {
+            if (isFourthMelee == true)
+            {
+                animationSwitch("Melee5");
+                attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg);
+                comboNo += 1;
+                isFourthMelee = false;
+                isFifthMelee = true;
                 meleeTimer = 0;
                 CurrMeleeCD = ComboEndMeleeCd;
             }
