@@ -4931,15 +4931,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa08c1252adbdaa469689197de5a60f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitpoints: 30
-  maxhitpoints: 30
-  dmg: 5
+  hitpoints: 20
+  maxhitpoints: 20
+  dmg: 3
   rotateSpd: 3
   detectDist: 20
   bullet: {fileID: 2127047328342548146, guid: 05f48b6b8a43b7b4695886bcd0a50879, type: 3}
   bulletPos: {fileID: 6988984138397417755}
   timer: 0
-  maxTime: 2.4
+  maxTime: 5
   isdead: 0
   player: {fileID: 0}
   turretAnimator: {fileID: 0}

@@ -30,6 +30,8 @@ public class scr_turretEnemy : MonoBehaviour
         bullet.GetComponent<scr_enemyBullet>().dmg = dmg;
         turretAnimator = GetComponent<Animator>();
 
+
+
     }
 
     // Update is called once per frame

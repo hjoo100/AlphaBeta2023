@@ -20,6 +20,8 @@ public class scr_GManager : MonoBehaviour
     private int SceneCount = 1;
     public GameObject GameOverImage, GameEndText,RetryText;
     public Animator clearAnim;
+
+    public GameObject BossObj;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +41,11 @@ public class scr_GManager : MonoBehaviour
 
 
         CheckEnemyNum();
+        if(SceneMode == 3)
+        {
+            //kill boss to win
+            checkBossFunc();
+        }
 
         if(Input.GetKeyDown(KeyCode.Escape))
         {
@@ -180,5 +187,16 @@ public class scr_GManager : MonoBehaviour
 
         }
         return;
+    }
+
+    void checkBossFunc()
+    {
+        if(BossObj == null)
+        {
+            allClear = true;
+            clearAnim.Play("StageClear");
+            Invoke(nameof(resetClearImg), 5f);
+            WinFunc();
+        }
     }
 }

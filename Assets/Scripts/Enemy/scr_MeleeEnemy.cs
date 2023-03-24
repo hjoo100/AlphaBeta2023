@@ -121,7 +121,11 @@ public class scr_MeleeEnemy : MonoBehaviour
 
     public void attackPlayer()
     {
-        attackArrow.attackEnemyInRange(meleeDmg);
+        if(isKnockedBack == false)
+        {
+            attackArrow.attackEnemyInRange(meleeDmg);
+        }
+       
     }
 
     public void playAudio()
