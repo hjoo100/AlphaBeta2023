@@ -18,8 +18,16 @@ public class StateMachine : MonoBehaviour
     public Scr_PlayerCtrl playerscr;
 
 
-   
+
     // Update is called once per frame
+    private void Start()
+    {
+        
+
+        
+
+        
+    }
     void Update()
     {
         if (nextState != null)
@@ -81,14 +89,9 @@ public class StateMachine : MonoBehaviour
 
     }
 
-
     private void OnValidate()
     {
-        if (mainStateType == null)
-        {
-            
-                mainStateType = new Scr_IdleComboState();
-            
-        }
+        mainStateType = new Scr_IdleComboState();
     }
+
 }
