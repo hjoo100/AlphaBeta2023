@@ -101,9 +101,9 @@ public class Scr_PlayerCtrl : MonoBehaviour
         if (!gettingKnocked)
         {
             ReceiveInputFunc();
-            attack();
+           // attack();
             //attackKeyFuncOld();
-            /*
+            
             if(isGrounded)
             {
               
@@ -113,21 +113,27 @@ public class Scr_PlayerCtrl : MonoBehaviour
                     {
                         
                         Debug.Log("statemachine is gone again, ha");
-                        MeleeStatemachine.CurrentState = new Scr_IdleComboState();
+                        //MeleeStatemachine.CurrentState = new Scr_IdleComboState();
+                        return;
 
                     }else
                     {
                         string statemachineName = MeleeStatemachine.CurrentState.GetType().ToString();
                         Debug.Log("In inspector, the name of current state is: " + statemachineName);
                     }
-                    if(MeleeStatemachine.CurrentState.GetType() == typeof(Scr_IdleComboState))
-                    MeleeStatemachine.SetNextState(new Scr_GroundEntryState());
-                }else
+                    if (attackKeyDown&& MeleeStatemachine.CurrentState.GetType() == typeof(Scr_IdleComboState))
+                    {
+                        MeleeStatemachine.SetNextState(new Scr_GroundEntryState());
+                    }
+
+                }
+                else
                 {
                     if(MeleeStatemachine.mainStateType == null)
                     {
                         Debug.Log("ha, main state type is missing!");
-                        MeleeStatemachine.mainStateType = new Scr_IdleComboState();
+                        //MeleeStatemachine.mainStateType = new Scr_IdleComboState();
+                        return;
                     }
                     
                    
@@ -141,14 +147,14 @@ public class Scr_PlayerCtrl : MonoBehaviour
                     if (MeleeStatemachine.CurrentState == null)
                     {
                         Debug.Log("statemachine is gone again, ha");
-                        MeleeStatemachine.CurrentState = new Scr_IdleComboState();
-
+                        // MeleeStatemachine.CurrentState = new Scr_IdleComboState();
+                        return;
                     }
                     if (MeleeStatemachine.CurrentState.GetType() == typeof(Scr_IdleComboState))
                     
                     MeleeStatemachine.SetNextState(new Scr_AirEntryState());
                 }
-            }*/
+            }
             
          }
         else

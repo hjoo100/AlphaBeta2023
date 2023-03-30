@@ -7,29 +7,41 @@ using UnityEngine.Rendering;
 
 public class scr_MeleeEnemy : MonoBehaviour
 {
+    [SerializeField]
     private scr_enemyBase enemyBase;
-    private NavMeshAgent agent;
-    public Animator enemyAnimator;
-    public Scr_PlayerCtrl player;
-    public scr_meleeEnemyMove moveSys;
 
-    public float enemyhitpoints = 50f;
-    public float meleeDmg = 20f;
-    public float attackCD = 1f;
-    public scr_enemyAttackArrow attackArrow;
-    public float moveSpd = 5f;
+    [SerializeField]
+    private Animator enemyAnimator;
+    [SerializeField]
+    private Scr_PlayerCtrl player;
+    [SerializeField]
+    private scr_meleeEnemyMove moveSys;
+    [SerializeField]
+    private float enemyhitpoints = 50f;
+    [SerializeField]
+    private float meleeDmg = 20f;
+    [SerializeField]
+    private float attackCD = 1f;
+    [SerializeField]
+    private scr_enemyAttackArrow attackArrow;
+    [SerializeField]
+    private float moveSpd = 5f;
 
-    public bool isAttacked = false,isinAir = false, isKnockedBack = false, isDead = false,isAlerted = false;
-    public bool attacking = false;
+    [SerializeField]
+    private bool isAttacked = false,isinAir = false, isKnockedBack = false, isDead = false,isAlerted = false;
+    [SerializeField]
+    private bool attacking = false;
 
-    public AudioSource enemyAudio;
-    public AudioClip punchAudio;
+    [SerializeField]
+    private AudioSource enemyAudio;
+    [SerializeField]
+    private AudioClip punchAudio;
     // Start is called before the first frame update
     private void Awake()
     {
         enemyBase = GetComponent<scr_enemyBase>();
         enemyBase.hitpoints = enemyhitpoints;
-        agent = GetComponent<NavMeshAgent>();
+        
         //enemyAnimator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Scr_PlayerCtrl>();
         enemyAudio = GetComponent<AudioSource>();
@@ -131,5 +143,42 @@ public class scr_MeleeEnemy : MonoBehaviour
     public void playAudio()
     {
         enemyAudio.Play();
+    }
+
+    //for getting values
+    public float getHitpoints()
+    {
+        return enemyhitpoints;
+    }
+
+   
+
+    
+
+    public float getMoveSpd()
+    {
+        return moveSpd;
+    }
+
+  
+
+    public bool getIsDead()
+    {
+        return isDead;
+    }
+
+    public bool getInairBool()
+    {
+        return isinAir;
+    }
+
+    public bool getAttackingBool()
+    {
+        return attacking;
+    }
+
+    public bool getAttackedBool()
+    {
+        return isAttacked;
     }
 }

@@ -12,7 +12,7 @@ public class BossStompSkill : Skill
         Debug.Log("stompCharging");
         bossScr = Boss.GetComponent<scr_meleeBoss>();
         //start charging
-        bossScr.isCharging = true;
+        bossScr.setCharging(true);
         //Cancel Defence stance
         bossScr.cancelDefence();
         //when enter coolDown, call stomp attack
@@ -21,17 +21,17 @@ public class BossStompSkill : Skill
     public override void StartSkillCD(GameObject Boss)
     {
         Debug.Log("stomp coming!");
-        if (bossScr.isCharging == true)
+        if (bossScr.getChargingBool() == true)
         {
-            
+
             //increase dmg before attack
-            bossScr.meleeDmg = stompDmg;
+            bossScr.setMeleeDmg(stompDmg);
 
             bossScr.stompAttack();
 
             //resume dmg
-            bossScr.meleeDmg = bossScr.basicDmg;
-            bossScr.isCharging = false;
+            bossScr.resetMeleeDmg();
+            bossScr.setCharging(false);
         }
       
     }

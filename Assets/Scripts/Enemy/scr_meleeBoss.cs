@@ -5,41 +5,55 @@ using UnityEngine.AI;
 
 public class scr_meleeBoss : MonoBehaviour
 {
+    [SerializeField]
     private scr_enemyBase enemyBase;
-    private NavMeshAgent agent;
-    public Animator enemyAnimator;
-    public Scr_PlayerCtrl player;
-    public scr_meleeBossMove moveSys;
+    [SerializeField]
+    private Animator enemyAnimator;
+    [SerializeField]
+    private Scr_PlayerCtrl player;
+    [SerializeField]
+    private scr_meleeBossMove moveSys;
+    [SerializeField]
+    private float enemyhitpoints = 50f;
+    [SerializeField]
+    private float meleeDmg = 30f;
+    [SerializeField]
+    private float basicDmg = 30f;
+    [SerializeField]
+    private float attackCD = 2.5f;
+    [SerializeField]
+    private scr_enemyAttackArrow attackArrow;
+    [SerializeField]
+    private float moveSpd = 5f;
+    [SerializeField]
+    private float basicSpd = 1f;
+    [SerializeField]
+    private bool isAttacked = false, isinAir = false,  isDead = false, isAlerted = false;
+    [SerializeField]
+    private bool attacking = false;
 
-    public float enemyhitpoints = 50f;
-    public float meleeDmg = 30f;
-    public float basicDmg = 30f;
-    public float attackCD = 2.5f;
-    public scr_enemyAttackArrow attackArrow;
-    public float moveSpd = 5f;
-    public float basicSpd = 1f;
     [SerializeField]
-    public bool isAttacked = false, isinAir = false, isKnockedBack = false, isDead = false, isAlerted = false;
+    private bool isCharging = false,  isDefending = false,isResting = false,isStomping = false;
     [SerializeField]
-    public bool attacking = false;
-
+    private float restTime = 0;
     [SerializeField]
-    public bool isCharging = false, isDashing = false, isDefending = false,isResting = false,isStomping = false;
-    public float restTime = 0;
-    public float maxRestTime = 2f;
-    public float defendRate = 0;
+    private float maxRestTime = 2f;
+    [SerializeField]
+    private float defendRate = 0;
     [SerializeField]
     private bool isAwake = false;
-
-    public AudioSource enemyAudio;
-    public AudioClip punchAudio;
-    public AudioClip stompAudio;
+    [SerializeField]
+    private AudioSource enemyAudio;
+    [SerializeField]
+    private AudioClip punchAudio;
+    [SerializeField]
+    private AudioClip stompAudio;
     // Start is called before the first frame update
     private void Awake()
     {
         enemyBase = GetComponent<scr_enemyBase>();
         enemyBase.hitpoints = enemyhitpoints;
-        agent = GetComponent<NavMeshAgent>();
+        
         //enemyAnimator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Scr_PlayerCtrl>();
         enemyAudio = GetComponent<AudioSource>();
@@ -225,5 +239,95 @@ public class scr_meleeBoss : MonoBehaviour
         moveSys.isStomping = false;
         isResting = true;
         restTime = maxRestTime;
+    }
+
+    //get value funcs
+    public float getHitpoints()
+    {
+        return enemyhitpoints;
+    }
+
+    public bool getDefendBool()
+    {
+        return isDefending;
+    }
+
+    public float getDefendRate()
+    {
+        return defendRate;
+    }
+
+    public float getMoveSpd()
+    {
+        return moveSpd;
+    }
+
+    public bool getChargingBool()
+    {
+        return isCharging;
+    }
+
+    public bool getStompingBool()
+    {
+        return isStomping;
+    }
+
+    public bool getIsDead()
+    {
+        return isDead;
+    }
+
+    public bool getInairBool()
+    {
+        return isinAir;
+    }
+
+    public bool getAttackingBool()
+    {
+        return attacking;
+    }
+
+    public bool getAttackedBool()
+    {
+        return isAttacked;
+    }
+
+    public float getMeleeDmg()
+    {
+        return meleeDmg;
+    }
+
+
+
+
+    // set funcs
+    public void setCharging (bool ischargingBool)
+    {
+        isCharging = ischargingBool;
+    }
+
+    public void setMeleeDmg (float meleeDmgVal)
+    {
+        meleeDmg = meleeDmgVal;
+    }
+
+    public void resetMeleeDmg()
+    {
+        meleeDmg = basicDmg;
+    }
+
+    public void setDefending(bool defendBool)
+    {
+        isDefending = defendBool;
+    }
+
+    public void setDefendingRate(float defendrateFloat)
+    {
+        defendRate = defendrateFloat;
+    }
+
+    public void setMoveSpd(float moveSpdFloat)
+    {
+        moveSpd = moveSpdFloat;
     }
 }

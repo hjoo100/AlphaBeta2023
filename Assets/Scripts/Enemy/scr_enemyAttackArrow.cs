@@ -35,7 +35,7 @@ public class scr_enemyAttackArrow : MonoBehaviour
     void OnTriggerExit2D(Collider2D c)
     {
         if (!c.gameObject.CompareTag(this.enemyTag)) return;
-        if (c.isTrigger) return;
+        if (c.isTrigger && c.tag!="Player") return;
 
         enemyInRange.Remove(c.gameObject);
         print("Player out of range");
@@ -74,6 +74,8 @@ public class scr_enemyAttackArrow : MonoBehaviour
     {
 
         CapsuleCollider2D stompCollider = GetComponent<CapsuleCollider2D>();
+        if(GameObject.FindGameObjectWithTag("Player")!= null)
+        enemyInRange.Remove(GameObject.FindGameObjectWithTag("Player"));
         stompCollider.enabled = false;
     }
 
@@ -86,6 +88,8 @@ public class scr_enemyAttackArrow : MonoBehaviour
     public void disableHitGroundCollider()
     {
         BoxCollider2D hitGroundCollider = GetComponent<BoxCollider2D>();
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+            enemyInRange.Remove(GameObject.FindGameObjectWithTag("Player"));
         hitGroundCollider.enabled = false;
     }
 }

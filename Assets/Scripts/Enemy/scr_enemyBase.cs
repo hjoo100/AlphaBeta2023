@@ -43,7 +43,7 @@ public class scr_enemyBase : MonoBehaviour
         //Use enum instead of int
         if(theEnemyType == enemyType.melee)
         {
-            hitpoints = thisEnemy.GetComponent<scr_MeleeEnemy>().enemyhitpoints;
+            hitpoints = thisEnemy.GetComponent<scr_MeleeEnemy>().getHitpoints();
         }
         if(theEnemyType == enemyType.turret)
         {
@@ -53,7 +53,7 @@ public class scr_enemyBase : MonoBehaviour
         if(theEnemyType == enemyType.boss)
         {
             //Boss
-            hitpoints = thisEnemy.GetComponent<scr_meleeBoss>().enemyhitpoints;
+            hitpoints = thisEnemy.GetComponent<scr_meleeBoss>().getHitpoints();
         }
         MaxHitpoints = hitpoints;
         enemyAudioSrc = gameObject.GetComponent<AudioSource>();
@@ -77,9 +77,9 @@ public class scr_enemyBase : MonoBehaviour
         if(theEnemyType == enemyType.boss)
         {
             var bossScr = gameObject.GetComponent<scr_meleeBoss>();
-            if(bossScr.isDefending)
+            if(bossScr.getDefendBool())
             {
-                hitpoints -=((1 - bossScr.defendRate) * dmg);
+                hitpoints -=((1 - bossScr.getDefendRate()) * dmg);
                 HitChangeColor();
                 
                 
