@@ -50,7 +50,7 @@ public class scr_meleeEnemyMove : MonoBehaviour
         baseScale = transform.localScale;
         facingDir = RIGHT;
         enemy = GetComponent<scr_MeleeEnemy>();
-        movespeed = enemy.moveSpd;
+        movespeed = enemy.getMoveSpd();
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         playerobj = GameObject.FindGameObjectWithTag("Player");
@@ -61,19 +61,20 @@ public class scr_meleeEnemyMove : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, airCheckRadius, GroundLayer);
 
-        if (enemy.isDead == false)
+        if (enemy.getIsDead() == false)
         {
             float velocityX = movespeed;
 
-            if(enemy.isinAir == false && enemy.isAttacked == false && isKnockedBack == false)
+            if((enemy.getInairBool() == false )&& (enemy.getAttackedBool() == false) && isKnockedBack == false)
             {
                 if (rb.velocity.x != 0f)
                 {
-                    if(enemy.attacking == false)
+                    if(enemy.getAttackingBool() == false)
                     animator.Play("Walk");
+                    
                 }else
                 {
-                    if (enemy.attacking == false)
+                    if (enemy.getAttackingBool() == false)
                         animator.Play("Idle");
                 }
             }
@@ -94,14 +95,14 @@ public class scr_meleeEnemyMove : MonoBehaviour
 
             {
                 TargetOnPlayer();
-                if(enemy.attacking == false)
+                if(enemy.getAttackingBool() == false)
                 {
                     if (facingDir == LEFT)
                     {
                         velocityX = -movespeed;
                     }
                     //enemy patrol move
-                    if (isGrounded == true && enemy.isAttacked == false)
+                    if (isGrounded == true && enemy.getAttackedBool() == false)
                     {
                         rb.velocity = new Vector2(velocityX, rb.velocity.y);
                     }

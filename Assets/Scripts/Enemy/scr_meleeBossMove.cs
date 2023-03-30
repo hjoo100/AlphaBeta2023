@@ -50,7 +50,7 @@ public class scr_meleeBossMove : MonoBehaviour
         baseScale = transform.localScale;
         facingDir = RIGHT;
         bossEnemy = GetComponent<scr_meleeBoss>();
-        movespeed = bossEnemy.moveSpd;
+        movespeed = bossEnemy.getMoveSpd();
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         playerobj = GameObject.FindGameObjectWithTag("Player");
@@ -58,7 +58,7 @@ public class scr_meleeBossMove : MonoBehaviour
 
     private void Update()
     {
-        movespeed = bossEnemy.moveSpd;
+        movespeed = bossEnemy.getMoveSpd();
     }
 
 
@@ -67,7 +67,7 @@ public class scr_meleeBossMove : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, airCheckRadius, GroundLayer);
 
 
-        if(bossEnemy.isCharging)
+        if(bossEnemy.getChargingBool())
         {  //use this line to get clip info, including clip name
             var clipInfo = animator.GetCurrentAnimatorClipInfo(0);
             if (clipInfo[0].clip.name != "Charging")
@@ -78,7 +78,7 @@ public class scr_meleeBossMove : MonoBehaviour
             return;
         }
 
-        if(bossEnemy.isStomping)
+        if(bossEnemy.getStompingBool())
         {
             var clipInfo = animator.GetCurrentAnimatorClipInfo(0);
             if (clipInfo[0].clip.name != "Stomping")
@@ -93,19 +93,20 @@ public class scr_meleeBossMove : MonoBehaviour
         {
             return;
         }
-        if (bossEnemy.isDead == false)
+        if (bossEnemy.getIsDead() == false)
         {
             float velocityX = movespeed;
 
-            if (bossEnemy.isinAir == false && bossEnemy.attacking == false && isKnockedBack == false )
+            if (bossEnemy.getInairBool() == false && bossEnemy.getAttackingBool() == false && isKnockedBack == false )
             {
                 if (rb.velocity.x != 0f)
                 {
-                    if (bossEnemy.attacking == false && bossEnemy.isDefending == false)
+                    if (bossEnemy.getAttackingBool() == false && bossEnemy.getDefendBool() == false)
                     {
+                        Debug.Log("walk speed is: " + rb.velocity.x);
                         animator.Play("Walk");
                     }
-                    if(bossEnemy.attacking == false && bossEnemy.isDefending )
+                    if(bossEnemy.getAttackingBool() == false && bossEnemy.getDefendBool() )
                     {
                         animator.Play("GuardMoving");
                     }
@@ -113,9 +114,9 @@ public class scr_meleeBossMove : MonoBehaviour
                 }
                 else
                 {
-                   
+
                     
-                       animator.Play("Idle");
+                    animator.Play("Idle");
                     
                         
                 }
@@ -137,14 +138,15 @@ public class scr_meleeBossMove : MonoBehaviour
 
             {
                 TargetOnPlayer();
-                if (bossEnemy.attacking == false)
+                if (bossEnemy.getAttackingBool() == false)
                 {
                     if (facingDir == LEFT)
                     {
                         velocityX = -movespeed;
+                        Debug.Log("velocity direction swapped");
                     }
                     //enemy patrol move
-                    if (isGrounded == true && bossEnemy.isAttacked == false)
+                    if (isGrounded == true && (bossEnemy.getAttackedBool() == false))
                     {
                         rb.velocity = new Vector2(velocityX, rb.velocity.y);
                     }

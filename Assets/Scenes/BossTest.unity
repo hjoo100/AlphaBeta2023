@@ -396,6 +396,10 @@ PrefabInstance:
       value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 282101770216328612, guid: 3c79d0750c109914f8319680f34ff908, type: 3}
+      propertyPath: m_Mass
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 282101770216328612, guid: 3c79d0750c109914f8319680f34ff908, type: 3}
       propertyPath: m_GravityScale
       value: 15
       objectReference: {fileID: 0}
@@ -409,7 +413,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 282101770216328615, guid: 3c79d0750c109914f8319680f34ff908, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.8111682
+      value: -2.51
       objectReference: {fileID: 0}
     - target: {fileID: 282101770216328615, guid: 3c79d0750c109914f8319680f34ff908, type: 3}
       propertyPath: m_LocalPosition.z
@@ -455,6 +459,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 1917504463867940834, guid: 3c79d0750c109914f8319680f34ff908, type: 3}
+      propertyPath: movespeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1964313696992196226, guid: 3c79d0750c109914f8319680f34ff908, type: 3}
       propertyPath: activeTime
       value: 2
@@ -496,12 +504,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7815245526507495189, guid: 3c79d0750c109914f8319680f34ff908, type: 3}
+      propertyPath: basicSpd
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815245526507495189, guid: 3c79d0750c109914f8319680f34ff908, type: 3}
       propertyPath: isCharging
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7815245526507495189, guid: 3c79d0750c109914f8319680f34ff908, type: 3}
       propertyPath: enemyhitpoints
-      value: 10
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 7880218881535001838, guid: 3c79d0750c109914f8319680f34ff908, type: 3}
       propertyPath: m_Enabled
@@ -1586,6 +1598,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 950411553269570097, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+      propertyPath: skill
+      value: 
+      objectReference: {fileID: 11400000, guid: b35a1660cb63d994e9af119ea88bb395, type: 2}
     - target: {fileID: 6107447076169596601, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -1631,8 +1647,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6107447076169596605, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+      propertyPath: maxHp
+      value: 130
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107447076169596605, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
       propertyPath: meleeCD
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107447076169596605, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+      propertyPath: meleeDmg
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107447076169596605, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+      propertyPath: hitpoints
+      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 6107447076169596605, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
       propertyPath: ComboEndMeleeCd

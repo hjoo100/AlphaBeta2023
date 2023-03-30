@@ -22,11 +22,12 @@ public class StateMachine : MonoBehaviour
     // Update is called once per frame
     private void Start()
     {
-        
 
-        
+        mainStateType = new Scr_IdleComboState();
+        CurrentState = new Scr_IdleComboState();
 
-        
+
+
     }
     void Update()
     {
@@ -91,7 +92,7 @@ public class StateMachine : MonoBehaviour
 
     private void OnValidate()
     {
-        mainStateType = new Scr_IdleComboState();
+       
     }
 
 }
