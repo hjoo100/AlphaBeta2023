@@ -45,6 +45,9 @@ public class scr_meleeBossMove : MonoBehaviour
 
 
     public GameObject playerobj;
+
+    Scr_PauseManager pauseManager;
+    
     private void Awake()
     {
         baseScale = transform.localScale;
@@ -54,10 +57,16 @@ public class scr_meleeBossMove : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         playerobj = GameObject.FindGameObjectWithTag("Player");
+
+        pauseManager = FindObjectOfType<Scr_PauseManager>(); 
     }
 
     private void Update()
     {
+        if (pauseManager.IsPaused())
+        {
+            return; // Do not execute the rest of the Update logic if the game is paused
+        }
         movespeed = bossEnemy.getMoveSpd();
     }
 

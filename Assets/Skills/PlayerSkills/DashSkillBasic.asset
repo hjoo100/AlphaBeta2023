@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: DashSkillBasic
   m_EditorClassIdentifier: 
   name: DashSkillBasic
+  skillType: 1
+  Level: 0
+  SkillID: 5
   cooldownTime: 5
   activeTime: 0.25
+  isUsableSkill: 1
   dashVelocity: 35
+  isMaxLvl: 0

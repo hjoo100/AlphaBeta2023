@@ -10,7 +10,13 @@ public class BossDefenceSkill : Skill
     
     scr_meleeBoss bossScr;
 
-    
+    protected BossDefenceSkill(string name, SkillEnum.SkillType skillType, int level) : base(name, skillType, level)
+    {
+        base.name = name;
+        base.skillType = skillType;
+        Level = level;
+    }
+
     public override void ActivateSkill(GameObject Boss)
     {
         bossScr = Boss.GetComponent<scr_meleeBoss>();

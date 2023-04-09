@@ -7,6 +7,15 @@ public class BossStompSkill : Skill
 {
     public float stompDmg = 40f;
     scr_meleeBoss bossScr;
+
+    protected BossStompSkill(string name, SkillEnum.SkillType skillType, int level) : base(name, skillType, level)
+    {
+        base.name = name;
+        base.skillType = skillType;
+        Level = level;
+       
+    }
+
     public override void ActivateSkill(GameObject Boss)
     {
         Debug.Log("stompCharging");

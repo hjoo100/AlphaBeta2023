@@ -44,9 +44,13 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public float ComboEndMeleeCd = 0.6f;
     public float meleeDmg = 10f;
 
+    [SerializeField]
+    private float basicMeleeDmg = 40f;
+
     //for combo
     public bool attackKeyDown = false;
-
+    //for disable and enabling attack
+    private bool canAttack = true;
     [SerializeField]
     private StateMachine MeleeStatemachine;
 
@@ -63,8 +67,27 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public bool isFirstMelee = false, isSecondMelee = false, isThirdMelee = false, isFourthMelee = false, isFifthMelee = false;
     public float meleeMaxInputTimer = 0.45f,meleeTimer = 0;
     public Image hpBar;
-    
+
+    //skill bool
+    [SerializeField]
+    private bool isMoonSlicing = false,isRapidHiting = false;
+
+    [SerializeField]
+    private bool isImmune = false;
+
+    //Buff var
+    [SerializeField]
+    private float BuffMultiPlier = 1;
+    private List<scr_PlayerDmgBuff> activeDamageBuffs = new List<scr_PlayerDmgBuff>();
+    //debug var for buff
+    [SerializeField]
+    private float currentAddedBuff;
     scr_GManager Gamemanager;
+
+    private Scr_PauseManager pauseManager;
+
+    [SerializeField]
+    private scr_SkillHolder[] skillHolders;
     public void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -82,7 +105,19 @@ public class Scr_PlayerCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pauseManager = FindObjectOfType<Scr_PauseManager>();
         jumpCount = MaxJumpNum;
+
+        var skillUpgradeMenu = FindObjectOfType<SkillUpgradeMenu>();
+        if (skillUpgradeMenu != null)
+        {
+            skillUpgradeMenu.OnMenuVisibilityChanged += HandleMenuVisibilityChanged;
+        }
+    }
+
+    private void HandleMenuVisibilityChanged(bool menuVisible)
+    {
+        canAttack = !menuVisible;
     }
 
     private void OnEnable()
@@ -91,6 +126,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
     }
 
     private void OnDisable()
+
     {
         playerCtrlSystem.Disable();
     }
@@ -98,6 +134,10 @@ public class Scr_PlayerCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (pauseManager.IsPaused())
+        {
+            return; // Do not execute the rest of the Update logic if the game is paused
+        }
         if (!gettingKnocked)
         {
             ReceiveInputFunc();
@@ -107,15 +147,22 @@ public class Scr_PlayerCtrl : MonoBehaviour
             if(isGrounded)
             {
               
-               if (attackKeyDown )
+               if (attackKeyDown && canAttack )
                 {
+                    if(CheckSkillActive())
+                    {
+                        //dont attack if using skill
+                        return;
+                    }
+
+                    
                     if(MeleeStatemachine.CurrentState == null)
                     {
                         
                         Debug.Log("statemachine is gone again, ha");
                         //MeleeStatemachine.CurrentState = new Scr_IdleComboState();
                         return;
-
+                        
                     }else
                     {
                         string statemachineName = MeleeStatemachine.CurrentState.GetType().ToString();
@@ -142,8 +189,12 @@ public class Scr_PlayerCtrl : MonoBehaviour
             else
             {
                 
-                 if (attackKeyDown && isAirAttacked == false)
+                 if (attackKeyDown && isAirAttacked == false && canAttack)
                 {
+                    if(CheckSkillActive())
+                    {   //dont attack in air if using skill
+                        return;
+                    }
                     if (MeleeStatemachine.CurrentState == null)
                     {
                         Debug.Log("statemachine is gone again, ha");
@@ -211,6 +262,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
             }
             else
             {
+                if(CheckSkillActive() == false)
                 charaMoveFunc();
             }
            
@@ -265,11 +317,24 @@ public class Scr_PlayerCtrl : MonoBehaviour
     }
     public void MoveAxisFunc(InputAction.CallbackContext context)
     {
+        if(pauseManager.IsPaused())
+        {
+            return;
+        }
+        if(CheckSkillActive() == true)
+        {
+            return;
+        }
         moveDir = context.ReadValue<float>();
     }
     public void JumpFunc(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (pauseManager.IsPaused())
+        {
+            return;
+        }
+
+        if (context.performed)
         {
             if (jumpCount > 0)
             {
@@ -282,21 +347,14 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
     public void attackKeyFunc(InputAction.CallbackContext context)
     {
-       /* if(context.started && !attackKeyDown)
-        {
-           // attackKeyDown = true;
-           // comboNo = 1;
-            Debug.Log("Attack enabled by context started");
-        }
-
-        if(context.performed )
-        {
-            attackKeyDown = true;
-            Debug.Log("Attack enabled by context performed");
-        }*/
+       
         if(context.canceled)
         {
-            attackKeyDown = true;
+            if(!isImmune)
+            {
+                attackKeyDown = true;
+            }
+            
            // comboNo = 0;
         }
         else
@@ -393,10 +451,18 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
     public void takeDmg(float dmg)
     {
+        if(isImmune)
+        {
+            return;
+        }
         hitpoints -= dmg;
         if(hitpoints < 0)
         {
             isDead = true;
+            return;
+        }
+        if(CheckSkillActive())
+        {
             return;
         }
         if(gettingKnocked == false)
@@ -555,7 +621,112 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
     public void applyAttack()
     {
-        attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg);
+        attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg*BuffMultiPlier*CalculateBuffMultiplier());
+    }
+
+    public void StartMoonSlicing(float damage)
+    {
+        isMoonSlicing = true;
+        animationSwitch("MoonSlicingSkill");
+        meleeDmg = damage;
+        Invoke(nameof(applyAttack), 0.35f);
+
+    }
+
+    public void EndMoonSlicingEntryPoint()
+    {
+        Invoke(nameof(EndMoonSlicing),0.4f);
+    }
+    public void EndMoonSlicing()
+    {
+        isMoonSlicing = false;
+        meleeDmg = basicMeleeDmg;
+    }
+
+    public IEnumerator RapidHitComboAttack(int comboCount,float comboDmg,float powerAttackDmg, float knockBackVal, bool isMaxLvl)
+    {
+        float timePerAttack = 1f / comboCount; // calculate time per attack
+        Debug.Log("time between rapid hit: " + timePerAttack + " s");
+        for (int i = 0; i < comboCount; i++)
+        {
+            PoweredKnockHit(comboDmg, 0.08f); // execute Dmg function
+            Debug.Log("rapid " + i + " hit");
+            yield return new WaitForSeconds(timePerAttack); // wait for timePerAttack seconds
+        }
+       /*
+        if (isMaxLvl)
+        {
+            yield return new WaitForSeconds(2.5f); // wait for 2.5 seconds
+            PoweredKnockHit(powerAttackDmg, knockBackVal);// execute PoweredKnockBack 
+        }
+       */
+
+
+    }
+    public void StartRapidHitCombo()
+    {
+        isRapidHiting = true;
+        animationSwitch("RapidHitSkill");
+
+    }
+
+    public void EndRapidHitCombo()
+    {
+        isRapidHiting = false;
+        StopAllCoroutines();
+    }
+    public bool CheckSkillActive()
+    {
+        return (isMoonSlicing || isRapidHiting);
+    }
+
+    public void PoweredKnockHit(float dmg , float forceval)
+    {
+        attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRangeWithForce(dmg, forceval);
+    }
+
+    public void TriggerImmune()
+    {
+        isImmune = true;
+    }
+
+    public void StopImmune()
+    {
+        isImmune = false;
+    }
+
+
+    private float CalculateBuffMultiplier()
+    {
+        float multiplier = 1.0f;
+        foreach (var buff in activeDamageBuffs)
+        {
+            multiplier *= buff.Multiplier;
+        }
+
+        currentAddedBuff = multiplier;
+        return multiplier;
+
+    }
+
+
+    public void AddDamageBuff(float multiplier, float duration)
+    {
+        var buff = new scr_PlayerDmgBuff();
+        buff.DamageBuff(multiplier, duration);
+        activeDamageBuffs.Add(buff);
+        StartCoroutine(RemoveDamageBuffAfterDuration(buff));
+    }
+
+    private IEnumerator RemoveDamageBuffAfterDuration(scr_PlayerDmgBuff buff)
+    {
+        yield return new WaitForSeconds(buff.Duration);
+        activeDamageBuffs.Remove(buff);
+    }
+
+    public scr_SkillHolder[] getSkillHolders()
+    {
+        return skillHolders;
     }
 }
 

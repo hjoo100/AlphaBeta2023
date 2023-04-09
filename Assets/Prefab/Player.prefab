@@ -138,6 +138,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3792401385151612076
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,6 +431,7 @@ GameObject:
   - component: {fileID: 5621309686752513453}
   - component: {fileID: 950411553269570097}
   - component: {fileID: 3876972230361124329}
+  - component: {fileID: 7543899927338066159}
   - component: {fileID: 5421937124824210371}
   - component: {fileID: 4700046312934845008}
   - component: {fileID: 5678989580217754979}
@@ -437,6 +439,7 @@ GameObject:
   - component: {fileID: 3401689054591587825}
   - component: {fileID: 8964010386193435565}
   - component: {fileID: 6733454528112419265}
+  - component: {fileID: 1139421089144728171}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -559,6 +562,7 @@ MonoBehaviour:
   meleeCD: 0.3
   ComboEndMeleeCd: 0.6
   meleeDmg: 10
+  basicMeleeDmg: 40
   attackKeyDown: 0
   MeleeStatemachine: {fileID: 0}
   isWalking: 0
@@ -574,9 +578,20 @@ MonoBehaviour:
   isFirstMelee: 0
   isSecondMelee: 0
   isThirdMelee: 0
+  isFourthMelee: 0
+  isFifthMelee: 0
   meleeMaxInputTimer: 0.3
   meleeTimer: 0
   hpBar: {fileID: 0}
+  isMoonSlicing: 0
+  isRapidHiting: 0
+  isImmune: 0
+  BuffMultiPlier: 1
+  currentAddedBuff: 0
+  skillHolders:
+  - {fileID: 950411553269570097}
+  - {fileID: 3876972230361124329}
+  - {fileID: 7543899927338066159}
 --- !u!95 &8473302939333591654
 Animator:
   serializedVersion: 5
@@ -597,6 +612,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1294813057170782725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -751,9 +767,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillNo: 1
-  skill: {fileID: 11400000, guid: e49168eb035dd944f8ad91588d13fe16, type: 2}
+  skills: []
+  currentSkill: {fileID: 0}
   SkillImage: {fileID: 0}
-  key: 99
+  isUsableSkill: 1
+  key: 113
 --- !u!114 &3876972230361124329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -767,9 +785,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillNo: 2
-  skill: {fileID: 11400000, guid: 447f0b303752c1d45a9a4b86ea46ca9e, type: 2}
+  skills: []
+  currentSkill: {fileID: 0}
   SkillImage: {fileID: 0}
-  key: 120
+  isUsableSkill: 1
+  key: 101
+--- !u!114 &7543899927338066159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6107447076169596606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70853f93d6034694db8b6868fdac4ee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillNo: 3
+  skills: []
+  currentSkill: {fileID: 0}
+  SkillImage: {fileID: 0}
+  isUsableSkill: 1
+  key: 114
 --- !u!114 &5421937124824210371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -941,6 +979,30 @@ MonoBehaviour:
   m_DefaultActionMap: PlayerActionMap
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1139421089144728171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6107447076169596606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6933a2e3f98b01f4282977541b6fa945, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AllSkills:
+  - {fileID: 11400000, guid: 447f0b303752c1d45a9a4b86ea46ca9e, type: 2}
+  - {fileID: 11400000, guid: c500f4ad3978c774a843f3e8225eabb6, type: 2}
+  - {fileID: 11400000, guid: f431a92c1eea27d4cb8ceaae912562bd, type: 2}
+  - {fileID: 11400000, guid: 6e0836439c5dcc14998de819e929016a, type: 2}
+  - {fileID: 11400000, guid: a20cde1516b2d094284f5c10fcd3a8aa, type: 2}
+  - {fileID: 11400000, guid: 15892eba57cd23f4892468881b7454b5, type: 2}
+  - {fileID: 11400000, guid: d855a2946833cd845ba1e125fa19aba1, type: 2}
+  - {fileID: 11400000, guid: 8085986c8a26cb5448a57c2d1b63738e, type: 2}
+  - {fileID: 11400000, guid: 793dad3b0d452e34692a28eebbdd77af, type: 2}
+  - {fileID: 11400000, guid: b35a1660cb63d994e9af119ea88bb395, type: 2}
+  - {fileID: 11400000, guid: e49168eb035dd944f8ad91588d13fe16, type: 2}
 --- !u!1 &6674534377340928847
 GameObject:
   m_ObjectHideFlags: 0

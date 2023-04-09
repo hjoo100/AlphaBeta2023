@@ -21,6 +21,8 @@ public class scr_enemyBase : MonoBehaviour
 
     [SerializeField]
     private ParticleSystem hitParticle;
+
+    private Scr_PauseManager pauseManager;
     //-1: dummy  1:melee 2:turret 3: boss 
     // public int enemyType = 1;
     public enum enemyType
@@ -38,6 +40,7 @@ public class scr_enemyBase : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pauseManager = FindObjectOfType<Scr_PauseManager>();
         thisEnemy = gameObject;
         //animator = GetComponent<Animator>();
         //Use enum instead of int
@@ -107,6 +110,11 @@ public class scr_enemyBase : MonoBehaviour
 
             Invoke(nameof(disableHitParticle), 0.45f);
         }
+       if(theEnemyType == enemyType.melee)
+        {
+            gameObject.GetComponent<scr_MeleeEnemy>().CancelAttack();
+        }
+
        
         
         if(hitpoints <=0)

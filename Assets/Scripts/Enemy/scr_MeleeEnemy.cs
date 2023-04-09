@@ -181,4 +181,10 @@ public class scr_MeleeEnemy : MonoBehaviour
     {
         return isAttacked;
     }
+
+    public void CancelAttack()
+    {
+        CancelInvoke(nameof(attackPlayer));
+        CancelInvoke(nameof(playAudio));
+    }
 }

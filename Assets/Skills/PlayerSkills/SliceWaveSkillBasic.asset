@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: SliceWaveSkillBasic
   m_EditorClassIdentifier: 
   name: SliceWaveSkillBasic
+  skillType: 0
+  Level: 0
+  SkillID: 2
   cooldownTime: 2
   activeTime: 0.3
+  isUsableSkill: 1
   damage: 20
   isShot: 0
   AttackPos: {fileID: 0}

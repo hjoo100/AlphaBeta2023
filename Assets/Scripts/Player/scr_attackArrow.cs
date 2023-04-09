@@ -107,8 +107,75 @@ public class scr_attackArrow : MonoBehaviour
         }
     }
 
+    public void attackEnemyInRangeWithForce(float dmg,float forceVal)
+    {
+        foreach (var enemy in enemyInRange)
+        {
+
+            if (enemy == null)
+            {
+                continue;
+            }
+            enemy.GetComponent<scr_enemyBase>().receiveDmg(dmg);
+           
+            if (enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.dummy)
+            {
+                playerAudio.PlayAudio(1);
+            }
+            if (enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.melee)
+            {
+                enemy.GetComponent<scr_meleeEnemyMove>().tempFreeze();
+                enemy.GetComponent<scr_meleeEnemyMove>().PoweredKnockBack(forceVal);
+                print("enemy received dmg");
+                playerAudio.PlayAudio(1);
+
+            }
+
+            if (enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.turret)
+            {
+                print("Turret received dmg");
+                playerAudio.PlayAudio(1);
+            }
+
+            if (enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.boss)
+            {
+
+                print("boss received dmg");
+                playerAudio.PlayAudio(1);
+            }
+
+
+        }
+        if (enemyInRange.Count <= 0)
+        {//Melee Not hit
+            print("melee not hit");
+            playerAudio.PlayAudio(0);
+        }
+    }
     public void removeEnemy(GameObject ene)
     {
         enemyInRange.Remove(ene);
+    }
+
+    public void PoweredKnockHit(float forceVal)
+    {
+        foreach (var enemy in enemyInRange)
+        {
+            if (enemy == null)
+            {
+                continue;
+            }
+
+            if (enemy != null)
+            {
+                enemy.GetComponentInParent<scr_meleeEnemyMove>().PoweredKnockBack(forceVal);
+            }
+        }
+
+        if (enemyInRange.Count <= 0)
+        {//Melee Not hit
+            print("melee not hit");
+            playerAudio.PlayAudio(0);
+        }
     }
 }

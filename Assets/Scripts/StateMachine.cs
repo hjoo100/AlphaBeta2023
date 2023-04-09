@@ -8,6 +8,7 @@ public class StateMachine : MonoBehaviour
 
     public State mainStateType;
 
+    private Scr_PauseManager pauseManager;
 
     public State CurrentState { get; set; } //issue laying here
     
@@ -17,12 +18,12 @@ public class StateMachine : MonoBehaviour
     [SerializeField]
     public Scr_PlayerCtrl playerscr;
 
-
+    
 
     // Update is called once per frame
     private void Start()
     {
-
+        pauseManager = FindObjectOfType<Scr_PauseManager>();
         mainStateType = new Scr_IdleComboState();
         CurrentState = new Scr_IdleComboState();
 
@@ -31,6 +32,11 @@ public class StateMachine : MonoBehaviour
     }
     void Update()
     {
+        if (pauseManager.IsPaused())
+        {
+            return; // Do not execute the rest of the Update logic if the game is paused
+        }
+
         if (nextState != null)
         {
             SetState(nextState);

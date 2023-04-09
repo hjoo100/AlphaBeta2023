@@ -11,11 +11,15 @@ public class scr_swordWaveObj : MonoBehaviour
     public GameObject launcherObj;
     private Rigidbody2D rb;
 
+    Scr_PauseManager pauseManager;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         launcherObj = player.transform.Find("Arrow").gameObject;
+
+        pauseManager = FindObjectOfType<Scr_PauseManager>();
     }
     // Start is called before the first frame update
     void Start()
@@ -30,6 +34,11 @@ public class scr_swordWaveObj : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (pauseManager.IsPaused())
+        {
+            return; // Do not execute the rest of the Update logic if the game is paused
+        }
+
         lifeTime = Time.deltaTime;
         if (lifeTime > maxLife)
         {

@@ -6,6 +6,14 @@ using UnityEngine;
 public class DashSkill : Skill
 {
     public float dashVelocity;
+    public bool isMaxLvl;
+
+    protected DashSkill(string name, SkillEnum.SkillType skillType, int level) : base(name, skillType, level)
+    {
+        base.name = name;
+        base.skillType = skillType;
+        Level = level;
+    }
 
     public override void ActivateSkill(GameObject player)
     {
@@ -13,12 +21,8 @@ public class DashSkill : Skill
 
         playerScr.PlayerSpd = dashVelocity;
 
-        player.GetComponent<BoxCollider2D>().isTrigger = true;
-        var circleBoxes = player.GetComponents<CircleCollider2D>();
-        foreach (var circleBox in circleBoxes)
-        {
-            circleBox.isTrigger = true;
-        }
+        player.layer = LayerMask.NameToLayer("PlayerNoClip");
+       
     }
 
     public override void StartSkillCD(GameObject player)
@@ -26,11 +30,12 @@ public class DashSkill : Skill
         Scr_PlayerCtrl playerScr = player.GetComponent<Scr_PlayerCtrl>();
         playerScr.resetVelocity();
         playerScr.PlayerSpd = playerScr.basicSpd;
-        player.GetComponent<BoxCollider2D>().isTrigger = false;
-        var circleBoxes = player.GetComponents<CircleCollider2D>();
-        foreach (var circleBox in circleBoxes)
+        player.layer = LayerMask.NameToLayer("Player");
+
+        if(isMaxLvl)
         {
-            circleBox.isTrigger = false;
+            playerScr.AddDamageBuff(1.15f, 5f);
         }
+
     }
 }

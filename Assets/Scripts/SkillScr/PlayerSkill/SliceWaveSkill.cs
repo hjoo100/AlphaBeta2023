@@ -10,7 +10,14 @@ public class SliceWaveSkill : Skill
     public bool isShot = false;
     public Transform AttackPos;
     public scr_swordWaveObj swordWave;
-   
+
+    protected SliceWaveSkill(string name, SkillEnum.SkillType skillType, int level) : base(name, skillType, level)
+    {
+        base.name = name;
+        base.skillType = skillType;
+        Level = level;
+    }
+
     public override void ActivateSkill(GameObject player)
     {
         Scr_PlayerCtrl playerScr = player.GetComponent<Scr_PlayerCtrl>();

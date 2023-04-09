@@ -7,10 +7,12 @@ public class scr_enemyAttackArrow : MonoBehaviour
     public string enemyTag;
     public HashSet<GameObject> enemyInRange = new HashSet<GameObject>();
     // Start is called before the first frame update
-
+    private Scr_PauseManager pauseManager;
     private void Awake()
     {
         enemyTag = "Player";
+
+        pauseManager = FindObjectOfType<Scr_PauseManager>();
     }
     void Start()
     {
@@ -20,7 +22,10 @@ public class scr_enemyAttackArrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (pauseManager.IsPaused())
+        {
+            return; // Do not execute the rest of the Update logic if the game is paused
+        }
     }
 
     void OnTriggerEnter2D(Collider2D c)

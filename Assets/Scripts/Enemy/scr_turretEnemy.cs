@@ -20,7 +20,7 @@ public class scr_turretEnemy : MonoBehaviour
     [SerializeField]
     AudioClip fireSound;
 
-
+    Scr_PauseManager pauseManager;
 
 
     // Start is called before the first frame update
@@ -30,6 +30,7 @@ public class scr_turretEnemy : MonoBehaviour
         bullet.GetComponent<scr_enemyBullet>().dmg = dmg;
         turretAnimator = GetComponent<Animator>();
 
+        pauseManager = FindObjectOfType<Scr_PauseManager>();
 
 
     }
@@ -37,6 +38,12 @@ public class scr_turretEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (pauseManager.IsPaused())
+        {
+            return; // Do not execute the rest of the Update logic if the game is paused
+        }
+
         if (isdead == false)
         {
             timer += Time.deltaTime;

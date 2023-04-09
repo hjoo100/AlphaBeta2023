@@ -45,6 +45,9 @@ public class scr_meleeEnemyMove : MonoBehaviour
 
 
     public GameObject playerobj;
+
+    Scr_PauseManager pauseManager;
+
     private void Awake()
     {
         baseScale = transform.localScale;
@@ -54,11 +57,18 @@ public class scr_meleeEnemyMove : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         playerobj = GameObject.FindGameObjectWithTag("Player");
+
+        pauseManager = FindObjectOfType<Scr_PauseManager>();
     }
 
     
     private void FixedUpdate()
     {
+        if (pauseManager.IsPaused())
+        {
+            return; // Do not execute the rest of the Update logic if the game is paused
+        }
+
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, airCheckRadius, GroundLayer);
 
         if (enemy.getIsDead() == false)
@@ -220,6 +230,15 @@ public class scr_meleeEnemyMove : MonoBehaviour
         Transform attackerTrans = playerobj.transform;
         Vector2 knockBackDir = new Vector2(transform.position.x - attackerTrans.transform.position.x, 0);
         rb.velocity = new Vector2(knockBackDir.x, 0.2f) * 0.8f;
+    }
+
+    public void PoweredKnockBack(float forceVal)
+    {
+        isKnockedBack = true;
+        knockbackTime = knockBackMaxTime;
+        Transform attackerTrans = playerobj.transform;
+        Vector2 knockBackDir = new Vector2(transform.position.x - attackerTrans.transform.position.x, 0);
+        rb.velocity = new Vector2(knockBackDir.x, 0.2f) * forceVal;
     }
 
     public void TargetOnPlayer()

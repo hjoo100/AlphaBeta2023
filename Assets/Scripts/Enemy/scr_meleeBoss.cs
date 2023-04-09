@@ -49,8 +49,12 @@ public class scr_meleeBoss : MonoBehaviour
     [SerializeField]
     private AudioClip stompAudio;
     // Start is called before the first frame update
+
+    private Scr_PauseManager pauseManager;
     private void Awake()
     {
+        pauseManager = FindObjectOfType<Scr_PauseManager>();
+
         enemyBase = GetComponent<scr_enemyBase>();
         enemyBase.hitpoints = enemyhitpoints;
         
@@ -66,7 +70,12 @@ public class scr_meleeBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isCharging || !isAwake || isStomping)
+        if (pauseManager.IsPaused())
+        {
+            return; // Do not execute the rest of the Update logic if the game is paused
+        }
+
+        if (isCharging || !isAwake || isStomping)
         {
             return;
         }
