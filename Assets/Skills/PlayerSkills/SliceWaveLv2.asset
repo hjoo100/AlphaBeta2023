@@ -9,20 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3f0b13c5c5822145a0004ba6da5b1a4, type: 3}
-  m_Name: RapidHitSkillLv2
+  m_Script: {fileID: 11500000, guid: 84f423215b403274aae603044618c385, type: 3}
+  m_Name: SliceWaveLv2
   m_EditorClassIdentifier: 
-  name: RapidHitSkillLv2
+  name: SliceWaveLv2
   skillType: 0
   Level: 2
-  SkillID: 1
-  cooldownTime: 10
-  activeTime: 1
+  SkillID: 2
+  cooldownTime: 2
+  activeTime: 0.3
   isUsableSkill: 1
   skillIcon: {fileID: 0}
-  damage: 10
-  knockBackVal: 10
-  powerattackDmg: 130
-  comboStarted: 0
-  rapidComboCount: 20
-  isMaxLvl: 1
+  damage: 45
+  isShot: 0
+  AttackPos: {fileID: 0}
+  swordWave: {fileID: 707897313938900447, guid: c01913ada96ad3b49a2be1a80667f461, type: 3}

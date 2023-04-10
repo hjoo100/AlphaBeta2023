@@ -7,8 +7,7 @@ using UnityEngine.UI;
 public class scr_SkillHolder : MonoBehaviour
 {
     public int skillNo = 0;
-    [SerializeField]
-    public List<Skill> skills;
+   
     [SerializeField]
     private Skill currentSkill;
     float cooldownTime, activeTime;
@@ -54,7 +53,7 @@ public class scr_SkillHolder : MonoBehaviour
         {
             return; // Do not execute the rest of the Update logic if the game is paused
         }
-        if (skills.Count == 0 || isUsableSkill != true)
+        if (currentSkill == null || isUsableSkill != true)
         {
             return;
         }
@@ -104,7 +103,7 @@ public class scr_SkillHolder : MonoBehaviour
 
     public void GainSkill(Skill skillToGet)
     {
-        skills.Add(skillToGet);
+        //skills.Add(skillToGet);
         currentSkill = skillToGet;
 
         if (skillToGet.GetSkillType() == true)
@@ -125,9 +124,24 @@ public class scr_SkillHolder : MonoBehaviour
 
     public void UpgradeSkill()
     {
-        if (currentSkill.Level < skills.Count - 1)
+        // get current skillID and next level
+        int skillId = currentSkill.SkillID;
+        int nextLevel = currentSkill.Level + 1;
+
+        // use skillId and level to find next level of the skill
+        scr_PlayerSkillManager skillManager = FindObjectOfType<scr_PlayerSkillManager>();
+        Skill nextLevelSkill = skillManager.GetSkillByIdAndLevel(skillId, nextLevel);
+
+        // bind skill
+        if (nextLevelSkill != null)
         {
-            currentSkill.Level++;
+            currentSkill = nextLevelSkill;
+
+            // update skillIcon
+            if (nextLevelSkill.GetSkillType() == true)
+            {
+                SkillImage.sprite = nextLevelSkill.skillIcon;
+            }
         }
     }
 

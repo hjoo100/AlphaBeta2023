@@ -15,6 +15,8 @@ public class Skill : ScriptableObject
 
     [SerializeField]
     private bool isUsableSkill = true;
+    [SerializeField]
+    internal Sprite skillIcon;
 
     protected Skill(string name, SkillEnum.SkillType skillType, int level)
     {

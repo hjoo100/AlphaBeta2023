@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf64d2a7540e41b4695df3891a7699a7, type: 3}
-  m_Name: DashSkillLv2
+  m_Script: {fileID: 11500000, guid: 9a38213a6d58dae4390b99c92d28c0dd, type: 3}
+  m_Name: MoonSliceLv2
   m_EditorClassIdentifier: 
-  name: DashSkillLv2
-  skillType: 1
+  name: MoonSliceLv2
+  skillType: 0
   Level: 2
-  SkillID: 5
-  cooldownTime: 4
-  activeTime: 0.5
+  SkillID: 3
+  cooldownTime: 2
+  activeTime: 0.42
   isUsableSkill: 1
-  dashVelocity: 42
-  isMaxLvl: 1
+  damage: 120
+  sliceStarted: 0

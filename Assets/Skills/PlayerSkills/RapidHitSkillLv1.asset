@@ -9,15 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf64d2a7540e41b4695df3891a7699a7, type: 3}
-  m_Name: DashSkillLv1
+  m_Script: {fileID: 11500000, guid: f3f0b13c5c5822145a0004ba6da5b1a4, type: 3}
+  m_Name: RapidHitSkillLv1
   m_EditorClassIdentifier: 
-  name: DashSkillLv1
-  skillType: 1
+  name: RapidHitSkillLv1
+  skillType: 0
   Level: 1
-  SkillID: 5
-  cooldownTime: 5
-  activeTime: 0.4
+  SkillID: 1
+  cooldownTime: 12
+  activeTime: 1
   isUsableSkill: 1
-  dashVelocity: 40
+  skillIcon: {fileID: 0}
+  damage: 5
+  knockBackVal: 0
+  powerattackDmg: 0
+  comboStarted: 0
+  rapidComboCount: 20
   isMaxLvl: 0

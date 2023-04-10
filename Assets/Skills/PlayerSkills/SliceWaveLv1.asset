@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: SliceWaveLv1
   skillType: 0
-  Level: 0
+  Level: 1
   SkillID: 2
   cooldownTime: 2
   activeTime: 0.3
   isUsableSkill: 1
+  skillIcon: {fileID: 0}
   damage: 30
   isShot: 0
   AttackPos: {fileID: 0}

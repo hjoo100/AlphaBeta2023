@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: ImmuneLv2
   skillType: 1
-  Level: 0
+  Level: 2
   SkillID: 4
   cooldownTime: 10
   activeTime: 6

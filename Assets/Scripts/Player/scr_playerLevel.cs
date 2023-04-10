@@ -154,10 +154,13 @@ public class scr_playerLevel : MonoBehaviour
         int emptySkillHolders = playerSkillHolders.Count(s => s.GetCurrentSkill() == null);
 
         // Generate random skills based on the number of empty skill holders
-        skillManager.SelectSkills(emptySkillHolders, true);
+        bool fixedSlots = emptySkillHolders < playerSkillHolders.Length;
+        skillManager.SelectSkills(emptySkillHolders, fixedSlots);
 
-        // Get the list of current skills to choose from
-        List<Skill> skillsToChooseFrom = skillManager.GetCurrentSkills();
+
+
+        // Get the list of  skills to choose from
+        List<Skill> skillsToChooseFrom = skillManager.GetInitialSkills();
 
         // Show the skill selection UI to the player and wait for their input
         SkillUpgradeMenu skillUpgradeMenu = FindObjectOfType<SkillUpgradeMenu>();

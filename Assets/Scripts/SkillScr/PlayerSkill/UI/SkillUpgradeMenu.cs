@@ -58,6 +58,7 @@ public class SkillUpgradeMenu : MonoBehaviour
     private void SelectSkill(Button skillButton)
     {
         int numOfSkillSlot = Array.IndexOf(skillButtons, skillButton);
+        Debug.Log("Selected skill index: " + numOfSkillSlot);
         OnSkillSelected?.Invoke(numOfSkillSlot);
         HideMenu();
     }
@@ -80,5 +81,47 @@ public class SkillUpgradeMenu : MonoBehaviour
         }
 
         HideMenu(); 
+    }
+
+    public void UpdateSkillSelectionUI()
+    {
+        scr_PlayerSkillManager skillManager = FindObjectOfType<scr_PlayerSkillManager>();
+        Scr_PlayerCtrl playerCtrl = FindObjectOfType<Scr_PlayerCtrl>();
+
+
+        // Loop through skill holders
+        for (int i = 0; i < playerCtrl.getSkillHolders().Length; i++)
+        {
+            scr_SkillHolder skillHolder = playerCtrl.getSkillHolders()[i];
+            Skill currentSkill = skillHolder.GetCurrentSkill();
+            Button skillButton = skillButtons[i];
+
+            if (currentSkill != null)
+            {
+                // check if skill can be upgraded
+                Skill nextLevelSkill = skillManager.GetNextLevelSkill(currentSkill);
+                if (nextLevelSkill != null)
+                {
+                    // Update the button's UI to display the next level skill
+                    // (e.g., skillButton.GetComponent<Image>().sprite = nextLevelSkill.skillIcon;)
+
+                    // Enable the button
+                    skillButton.interactable = true;
+                }
+                else
+                {
+                    // Skill is at the highest level, disable the button
+                    skillButton.interactable = false;
+                }
+            }
+            else
+            {
+                // No skill in the holder, update the button's UI to display an empty slot or default icon
+                // (e.g., skillButton.GetComponent<Image>().sprite = emptySlotIcon;)
+
+                // Enable the button
+                skillButton.interactable = true;
+            }
+        }
     }
 }
