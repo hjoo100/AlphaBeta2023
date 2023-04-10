@@ -19,4 +19,5 @@ MonoBehaviour:
   cooldownTime: 15
   activeTime: 5
   isUsableSkill: 1
+  skillIcon: {fileID: 21300000, guid: b77318a7c6b16754a8dcf1d1a78ea127, type: 3}
   _playerCtrl: {fileID: 0}

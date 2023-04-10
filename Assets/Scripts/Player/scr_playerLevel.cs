@@ -97,6 +97,7 @@ public class scr_playerLevel : MonoBehaviour
             StartCoroutine(ChooseSkill(level));
         }
 
+        FindObjectOfType<SkillUpgradeMenu>().UpdateSkillSelectionUI();
 
     }
 
@@ -171,6 +172,8 @@ public class scr_playerLevel : MonoBehaviour
         // Unsubscribe scr_PlayerSkillManager.HandleSelectedSkill from the OnSkillSelected event
         skillUpgradeMenu.OnSkillSelected -= skillManager.HandleSelectedSkill;
 
+        FindObjectOfType<SkillUpgradeMenu>().UpdateSkillSelectionUI();
+
         skillUpgradeMenu.ShowMenu();
 
         yield return new WaitUntil(() => chosenSkillIndex.HasValue);
@@ -213,7 +216,10 @@ public class scr_playerLevel : MonoBehaviour
                     Invoke(nameof(disableSkillGainImg), 2f);
                 }
             }
+
         }
+
+        
     }
 
     private void OnSkillButtonClicked(int skillIndex)

@@ -18,6 +18,7 @@ TagManager:
   - UI.Hud.Exp
   - LvUpObj
   - Skill3
+  - SkillBorder1
   layers:
   - Default
   - TransparentFX

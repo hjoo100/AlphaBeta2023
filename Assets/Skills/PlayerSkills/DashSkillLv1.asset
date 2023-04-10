@@ -19,5 +19,6 @@ MonoBehaviour:
   cooldownTime: 5
   activeTime: 0.4
   isUsableSkill: 1
+  skillIcon: {fileID: 21300000, guid: ead21a1bb10a9bf4a8589ee1fcabadcf, type: 3}
   dashVelocity: 40
   isMaxLvl: 0

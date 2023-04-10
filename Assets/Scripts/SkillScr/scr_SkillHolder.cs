@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Serialization;
+using Unity.VisualScripting;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -109,7 +110,18 @@ public class scr_SkillHolder : MonoBehaviour
             scr_PlayerSkillManager skillManager = FindObjectOfType<scr_PlayerSkillManager>();
             Skill correctSkill = skillManager.GetSkillByIdAndLevel(skillToGet.SkillID, 0);
             currentSkill = correctSkill;
-          
+            if(SkillImage.sprite == null)
+            {
+                Debug.Log("SkillImage spirte missing!");
+            }
+
+            if(currentSkill.skillIcon == null)
+            {
+                Debug.Log("currentSkill spirte missing!");
+            }
+            SkillImage.sprite = currentSkill.skillIcon;
+
+            SkillImage.color = Color.white;
         }
         else
         {
@@ -160,5 +172,23 @@ public class scr_SkillHolder : MonoBehaviour
     public Skill GetCurrentSkill()
     {
         return currentSkill;
+    }
+
+    public void ResetSkillImage()
+    {
+        if (skillNo == 1)
+        {
+            SkillImage = GameObject.FindGameObjectWithTag("Skill1").GetComponent<Image>();
+        }
+
+        if (skillNo == 2)
+        {
+            SkillImage = GameObject.FindGameObjectWithTag("Skill2").GetComponent<Image>();
+        }
+
+        if (skillNo == 3)
+        {
+            SkillImage = GameObject.FindGameObjectWithTag("Skill3").GetComponent<Image>();
+        }
     }
 }

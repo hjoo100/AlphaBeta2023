@@ -9,6 +9,8 @@ public class Scr_PauseManager : MonoBehaviour
     public void PauseGame()
     {
         isPaused = true;
+        Scr_PlayerCtrl playerCtrl = FindObjectOfType<Scr_PlayerCtrl>();
+        playerCtrl.resetVelocity();
     }
 
     public void ResumeGame()

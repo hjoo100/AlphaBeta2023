@@ -18,10 +18,11 @@ public class ImmuneSkill : Skill
     public override void ActivateSkill(GameObject playerObj)
     {
         _playerCtrl = playerObj.GetComponent<Scr_PlayerCtrl>();
+        _playerCtrl.TriggerImmune();
     }
 
     public override void StartSkillCD(GameObject playerObj)
     {
-        
+        _playerCtrl.StopImmune();
     }
 }

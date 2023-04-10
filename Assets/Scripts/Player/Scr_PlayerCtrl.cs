@@ -239,6 +239,10 @@ public class Scr_PlayerCtrl : MonoBehaviour
     //fixed update for movement
     private void FixedUpdate()
     {
+        if (pauseManager.IsPaused())
+        {
+            return; // Do not execute the rest of the Update logic if the game is paused
+        }
         //check for ground 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, jumpCheckRaidus, GroundObj);
         if(isGrounded == true)
@@ -317,10 +321,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
     }
     public void MoveAxisFunc(InputAction.CallbackContext context)
     {
-        if(pauseManager.IsPaused())
-        {
-            return;
-        }
+       
         if(CheckSkillActive() == true)
         {
             return;
@@ -617,6 +618,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
     {
         Vector2 zeroVel = Vector2.zero;
         rb.velocity = zeroVel;
+        moveDir = 0;
     }
 
     public void applyAttack()
@@ -627,6 +629,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public void StartMoonSlicing(float damage)
     {
         isMoonSlicing = true;
+        resetVelocity();
         animationSwitch("MoonSlicingSkill");
         meleeDmg = damage;
         Invoke(nameof(applyAttack), 0.35f);
@@ -647,6 +650,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
     {
         float timePerAttack = 1f / comboCount; // calculate time per attack
         Debug.Log("time between rapid hit: " + timePerAttack + " s");
+        resetVelocity();
         for (int i = 0; i < comboCount; i++)
         {
             PoweredKnockHit(comboDmg, 0.08f); // execute Dmg function
@@ -727,6 +731,11 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public scr_SkillHolder[] getSkillHolders()
     {
         return skillHolders;
+    }
+
+    public void ResetVelocity()
+    {
+        rb.velocity = Vector2.zero;
     }
 }
 

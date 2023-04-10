@@ -19,5 +19,6 @@ MonoBehaviour:
   cooldownTime: 2
   activeTime: 0.42
   isUsableSkill: 1
+  skillIcon: {fileID: 21300000, guid: 799a70353dd1901438cfb020ec8e5f61, type: 3}
   damage: 120
   sliceStarted: 0

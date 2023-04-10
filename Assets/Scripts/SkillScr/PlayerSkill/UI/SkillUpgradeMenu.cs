@@ -14,6 +14,8 @@ public class SkillUpgradeMenu : MonoBehaviour
 
     private List<Skill> skillsToChooseFrom;
     private Action<int> onSkillChosen;
+    [SerializeField]
+    public Sprite[] SkillBorderImages;
 
     public event Action<bool> OnMenuVisibilityChanged;
     private void Awake()
@@ -37,6 +39,13 @@ public class SkillUpgradeMenu : MonoBehaviour
         this.onSkillChosen = onSkillChosen;
 
         // Set the skill icons in the menu
+
+        for (int i = 0; i < skillsToChooseFrom.Count && i < skillButtons.Length; i++)
+        {
+            skillButtons[i].GetComponent<Image>().sprite = skillsToChooseFrom[i].skillIcon;
+            Image BorderImage = skillButtons[i].transform.Find("SkillBorder1").GetComponent<Image>();
+            BorderImage.sprite = SkillBorderImages[skillsToChooseFrom[i].Level];
+        }
     }
 
     public void ShowMenu()
@@ -103,8 +112,26 @@ public class SkillUpgradeMenu : MonoBehaviour
                 if (nextLevelSkill != null)
                 {
                     // Update the button's UI to display the next level skill
-                    // (e.g., skillButton.GetComponent<Image>().sprite = nextLevelSkill.skillIcon;)
+                    Debug.Log("Updating skill Icons for button " + i + " ");
+                    skillButton.GetComponent<Image>().sprite = nextLevelSkill.skillIcon;
+                    Image BorderImage = skillButton.transform.Find("SkillBorder1").GetComponent<Image>();
+                    if (nextLevelSkill.Level == 0)
+                    {
+                        BorderImage.sprite = SkillBorderImages[0];
 
+                    }
+
+                    if (nextLevelSkill.Level == 1)
+                    {
+                        BorderImage.sprite = SkillBorderImages[1];
+
+                    }
+
+                    if (nextLevelSkill.Level == 2)
+                    {
+                        BorderImage.sprite = SkillBorderImages[2];
+
+                    }
                     // Enable the button
                     skillButton.interactable = true;
                 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,29 @@ public class scr_PlayerSkillManager : MonoBehaviour
     [SerializeField]
     private List<Skill> currentSkills = new List<Skill>();
 
+    private void Start()
+    {
+        List<Skill> presetSkills = PlayerPreset.Instance.PresetSkills;
+        if (presetSkills != null && presetSkills.Count > 0)
+        {
+            scr_SkillHolder[] playerSkillHolders = FindObjectsOfType<scr_SkillHolder>();
+            Debug.Log("Found " + playerSkillHolders.Length + " skill holders");
+            // Sort the playerSkillHolders array by skillNo
+            Array.Sort(playerSkillHolders, (a, b) => a.skillNo.CompareTo(b.skillNo));
+            
+            for (int i = 0; i < playerSkillHolders.Length; i++)
+            {
+                Debug.Log("Skill holder " + playerSkillHolders[i].name + " with skillNo " + playerSkillHolders[i].skillNo);
+
+                if (i < presetSkills.Count && presetSkills[i] != null)
+                {
+                    Debug.Log("Assigning skill " + presetSkills[i].name + " to skill holder " + playerSkillHolders[i].name);
+                    playerSkillHolders[i].ResetSkillImage();
+                    playerSkillHolders[i].GainSkill(presetSkills[i]);
+                }
+            }
+        }
+    }
     public List<Skill> GetCurrentSkills()
     {
         return currentSkills;
@@ -91,7 +115,7 @@ public class scr_PlayerSkillManager : MonoBehaviour
         scr_SkillHolder[] skillHolders = playerScr.getSkillHolders();
 
         // Choose a random skill type from the list
-        int randomTypeIndex = Random.Range(0, types.Count);
+        int randomTypeIndex = UnityEngine.Random.Range(0, types.Count);
         SkillType chosenType = types[randomTypeIndex];
 
         List<Skill> availableSkills = new List<Skill>();
@@ -130,7 +154,7 @@ public class scr_PlayerSkillManager : MonoBehaviour
 
         if (availableSkills.Count > 0)
         {
-            int randomIndex = Random.Range(0, availableSkills.Count);
+            int randomIndex = UnityEngine.Random.Range(0, availableSkills.Count);
             Skill chosenSkill = availableSkills[randomIndex];
             return chosenSkill;
         }
@@ -176,6 +200,7 @@ public class scr_PlayerSkillManager : MonoBehaviour
     */
     public void HandleSelectedSkill(int skillIndex)
     {
+        Debug.Log("Handling selected skill");
         if (skillIndex < 0 || skillIndex >= currentSkills.Count)
         {
             Debug.LogError("Invalid skill index");
