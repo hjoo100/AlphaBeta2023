@@ -143,7 +143,7 @@ public class scr_playerLevel : MonoBehaviour
         skillGainObjActive=false;
     }
 
-    
+
 
     public IEnumerator ChooseSkill(int level)
     {
@@ -154,10 +154,8 @@ public class scr_playerLevel : MonoBehaviour
         int emptySkillHolders = playerSkillHolders.Count(s => s.GetCurrentSkill() == null);
 
         // Generate random skills based on the number of empty skill holders
-        bool fixedSlots = emptySkillHolders < playerSkillHolders.Length;
+        bool fixedSlots = emptySkillHolders < playerSkillHolders.Length && playerSkillHolders.Any(s => s.GetCurrentSkill() != null);
         skillManager.SelectSkills(emptySkillHolders, fixedSlots);
-
-
 
         // Get the list of  skills to choose from
         List<Skill> skillsToChooseFrom = skillManager.GetInitialSkills();
@@ -169,6 +167,10 @@ public class scr_playerLevel : MonoBehaviour
         {
             chosenSkillIndex = skillIndex;
         });
+
+        // Unsubscribe scr_PlayerSkillManager.HandleSelectedSkill from the OnSkillSelected event
+        skillUpgradeMenu.OnSkillSelected -= skillManager.HandleSelectedSkill;
+
         skillUpgradeMenu.ShowMenu();
 
         yield return new WaitUntil(() => chosenSkillIndex.HasValue);

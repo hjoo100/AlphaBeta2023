@@ -16,6 +16,7 @@ public class scr_PlayerSkillManager : MonoBehaviour
     public void SelectSkills(int numSkillsPerType, bool fixedSlots)
     {
         currentSkills.Clear();
+        HashSet<int> selectedSkillIds = new HashSet<int>();
 
         Scr_PlayerCtrl playerScr = FindObjectOfType<Scr_PlayerCtrl>();
         int numSkillHolders = playerScr.getSkillHolders().Length;
@@ -29,9 +30,10 @@ public class scr_PlayerSkillManager : MonoBehaviour
                 if (currentSkill != null)
                 {
                     Skill nextLevelSkill = GetNextLevelSkill(currentSkill);
-                    if (nextLevelSkill != null)
+                    if (nextLevelSkill != null && !selectedSkillIds.Contains(nextLevelSkill.SkillID))
                     {
                         currentSkills.Add(nextLevelSkill);
+                        selectedSkillIds.Add(nextLevelSkill.SkillID);
                     }
                     else
                     {
@@ -40,14 +42,18 @@ public class scr_PlayerSkillManager : MonoBehaviour
                 }
                 else
                 {
-                    // Create a list of all skill types
                     List<SkillType> skillList = new List<SkillType>(System.Enum.GetValues(typeof(SkillType)) as SkillType[]);
 
-                    // Select a random skill from the list of skill types
-                    Skill selectedSkill = GetRandomOrUpgradableSkill(skillList, fixedSlots);
+                    Skill selectedSkill = null;
+                    while (selectedSkill == null || selectedSkillIds.Contains(selectedSkill.SkillID))
+                    {
+                        selectedSkill = GetRandomOrUpgradableSkill(skillList, fixedSlots);
+                    }
+
                     if (selectedSkill != null)
                     {
                         currentSkills.Add(selectedSkill);
+                        selectedSkillIds.Add(selectedSkill.SkillID);
                     }
                 }
             }
@@ -55,7 +61,7 @@ public class scr_PlayerSkillManager : MonoBehaviour
         else
         {
             // use a HashSet to store the skill ids that have already been selected
-            HashSet<int> selectedSkillIds = new HashSet<int>();
+            selectedSkillIds = new HashSet<int>();
 
             for (int i = 0; i < numSkillHolders; i++)
             {
@@ -132,7 +138,7 @@ public class scr_PlayerSkillManager : MonoBehaviour
         return null;
     }
 
-    private bool ShouldUpgradeSkill(Skill newSkill)
+    /*private bool ShouldUpgradeSkill(Skill newSkill)
     {
         if (newSkill == null)
         {
@@ -148,9 +154,9 @@ public class scr_PlayerSkillManager : MonoBehaviour
         }
 
         return false;
-    }
+    }*/
 
-    private void UpgradeSkill(Skill skillToUpgrade)
+    /*private void UpgradeSkill(Skill skillToUpgrade)
     {
         scr_SkillHolder skillHolder = null;
         foreach (scr_SkillHolder holder in FindObjectsOfType<scr_SkillHolder>())
@@ -167,7 +173,7 @@ public class scr_PlayerSkillManager : MonoBehaviour
             skillHolder.UpgradeSkill();
         }
     }
-
+    */
     public void HandleSelectedSkill(int skillIndex)
     {
         if (skillIndex < 0 || skillIndex >= currentSkills.Count)
@@ -213,8 +219,10 @@ public class scr_PlayerSkillManager : MonoBehaviour
     {
         foreach (Skill skill in AllSkills)
         {
+           
             if (skill.SkillID == skillId && skill.Level == level)
             {
+                Debug.Log("choosed current skill level: " + level);
                 return skill;
             }
         }

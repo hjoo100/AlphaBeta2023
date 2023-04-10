@@ -103,8 +103,20 @@ public class scr_SkillHolder : MonoBehaviour
 
     public void GainSkill(Skill skillToGet)
     {
+        if(currentSkill == null)
+        {
+            Debug.Log("No skill in this slot, getting new 0 level skill");
+            scr_PlayerSkillManager skillManager = FindObjectOfType<scr_PlayerSkillManager>();
+            Skill correctSkill = skillManager.GetSkillByIdAndLevel(skillToGet.SkillID, 0);
+            currentSkill = correctSkill;
+          
+        }
+        else
+        {
+            currentSkill = skillToGet;
+        }
         //skills.Add(skillToGet);
-        currentSkill = skillToGet;
+        
 
         if (skillToGet.GetSkillType() == true)
         {
