@@ -12,6 +12,18 @@ public class scr_PlayerSkillManager : MonoBehaviour
 
     private void Start()
     {
+        if(PlayerPreset.Instance == null)
+        {
+            //preset skills sync(no menu)
+            scr_SkillHolder[] skillHolders = FindObjectsOfType<scr_SkillHolder>();
+            foreach(scr_SkillHolder skillHolder in skillHolders)
+            {
+                skillHolder.ResetSkillImage();
+                skillHolder.SyncSkillImage();
+            }
+
+            return;
+        }
         List<Skill> presetSkills = PlayerPreset.Instance.PresetSkills;
         if (presetSkills != null && presetSkills.Count > 0)
         {

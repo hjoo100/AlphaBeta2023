@@ -191,4 +191,17 @@ public class scr_SkillHolder : MonoBehaviour
             SkillImage = GameObject.FindGameObjectWithTag("Skill3").GetComponent<Image>();
         }
     }
+
+    public void SyncSkillImage()
+    {
+       
+        if(currentSkill.skillIcon != null)
+        {
+            SkillImage.sprite = currentSkill.skillIcon;
+            SkillImage.color = Color.white;
+        }
+       
+        
+
+    }
 }
