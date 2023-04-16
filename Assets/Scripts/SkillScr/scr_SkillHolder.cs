@@ -64,6 +64,12 @@ public class scr_SkillHolder : MonoBehaviour
             case SkillState.ready:
                if(Input.GetKeyDown(key))
                 {
+                    //guard
+                    if (currentSkill.SkillID == 6 && !GetComponent<Scr_PlayerCtrl>().CanGuard())
+                    {
+                        return;
+                    }
+
                     //use skill
                     currentSkill.ActivateSkill(gameObject);
                     state = SkillState.active;
@@ -133,12 +139,13 @@ public class scr_SkillHolder : MonoBehaviour
         if (skillToGet.GetSkillType() == true)
         {
             //active skill
-
+           
         }
         else
         {
             //passive skill
             skillToGet.PassiveSkillBind(gameObject);
+            
 
         }
 

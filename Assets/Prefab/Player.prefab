@@ -767,7 +767,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillNo: 1
-  skills: []
   currentSkill: {fileID: 0}
   SkillImage: {fileID: 0}
   isUsableSkill: 1
@@ -785,7 +784,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillNo: 2
-  skills: []
   currentSkill: {fileID: 0}
   SkillImage: {fileID: 0}
   isUsableSkill: 1
@@ -803,7 +801,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillNo: 3
-  skills: []
   currentSkill: {fileID: 0}
   SkillImage: {fileID: 0}
   isUsableSkill: 1
@@ -1008,6 +1005,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e49168eb035dd944f8ad91588d13fe16, type: 2}
   - {fileID: 11400000, guid: b35a1660cb63d994e9af119ea88bb395, type: 2}
   - {fileID: 11400000, guid: 0960c4d0da365d54e97144d8271876ad, type: 2}
+  currentSkills: []
 --- !u!1 &6674534377340928847
 GameObject:
   m_ObjectHideFlags: 0

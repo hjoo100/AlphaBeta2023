@@ -88,6 +88,9 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
     [SerializeField]
     private scr_SkillHolder[] skillHolders;
+
+    [SerializeField]
+    private bool canDefend = false, isDefending = false;
     public void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -386,11 +389,11 @@ public class Scr_PlayerCtrl : MonoBehaviour
         rb.velocity = new Vector2(PlayerSpd * moveDir, rb.velocity.y);
         charaJumpFunc();
         isJumping = false;
-        if(moveDir == 0 && isGrounded && !isAttacking)
+        if(moveDir == 0 && isGrounded && !isAttacking && !isDefending)
         {
             animationSwitch("Idle");
         }
-        else if(isGrounded && !isAttacking)
+        else if(isGrounded && !isAttacking && !isDefending)
         {
             animationSwitch("Walk");
         }
@@ -454,6 +457,12 @@ public class Scr_PlayerCtrl : MonoBehaviour
     {
         if(isImmune)
         {
+            return;
+        }
+
+        if(isDefending)
+        {
+            Debug.Log("successfully blocked attack!");
             return;
         }
         hitpoints -= dmg;
@@ -736,6 +745,22 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public void ResetVelocity()
     {
         rb.velocity = Vector2.zero;
+    }
+
+    public void SetDefend(bool defendBool)
+    {
+        isDefending = defendBool;
+    }
+
+    public bool CanGuard()
+    {
+        return isGrounded && !isAttacking;
+    
+    }
+
+    public StateMachine getStateMachine()
+    {
+        return MeleeStatemachine;
     }
 }
 

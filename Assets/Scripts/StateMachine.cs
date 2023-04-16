@@ -96,6 +96,11 @@ public class StateMachine : MonoBehaviour
 
     }
 
+    public void SetToGuardState()
+    {
+        nextState = new Scr_GuardState();
+    }
+
     private void OnValidate()
     {
        

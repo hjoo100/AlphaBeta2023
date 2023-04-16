@@ -46,7 +46,7 @@ public abstract class State
 
     }
 
-  
+    
 
  
     protected static void Destroy(UnityEngine.Object obj)
