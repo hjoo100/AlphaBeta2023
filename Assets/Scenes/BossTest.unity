@@ -848,7 +848,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 282101770216328611, guid: 3c79d0750c109914f8319680f34ff908, type: 3}
       propertyPath: exp
-      value: 12000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 282101770216328611, guid: 3c79d0750c109914f8319680f34ff908, type: 3}
       propertyPath: hitpoints
@@ -1845,7 +1845,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 282101770216328611, guid: 3c79d0750c109914f8319680f34ff908, type: 3}
       propertyPath: exp
-      value: 12000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 282101770216328611, guid: 3c79d0750c109914f8319680f34ff908, type: 3}
       propertyPath: hitpoints
@@ -2274,7 +2274,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1830368375
 Transform:
   m_ObjectHideFlags: 0
@@ -2319,6 +2319,34 @@ PrefabInstance:
       propertyPath: currentSkill
       value: 
       objectReference: {fileID: 11400000, guid: 33de1f3c5a34049469f74003c2313dcc, type: 2}
+    - target: {fileID: 1139421089144728171, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+      propertyPath: AllSkills.Array.size
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139421089144728171, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+      propertyPath: AllSkills.Array.data[9]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4ee89ce9953ada4449b9f738261329e4, type: 2}
+    - target: {fileID: 1139421089144728171, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+      propertyPath: AllSkills.Array.data[16]
+      value: 
+      objectReference: {fileID: 11400000, guid: e59bd0474a485fd419b059a648387564, type: 2}
+    - target: {fileID: 1139421089144728171, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+      propertyPath: AllSkills.Array.data[17]
+      value: 
+      objectReference: {fileID: 11400000, guid: 548dc63a308819846bfb0d9f5851c8e1, type: 2}
+    - target: {fileID: 1139421089144728171, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+      propertyPath: AllSkills.Array.data[18]
+      value: 
+      objectReference: {fileID: 11400000, guid: f277284cbffcd8747b9d549edaf3ca10, type: 2}
+    - target: {fileID: 1139421089144728171, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+      propertyPath: AllSkills.Array.data[19]
+      value: 
+      objectReference: {fileID: 11400000, guid: 024b03697f8f84d448f799fc262c1826, type: 2}
+    - target: {fileID: 1139421089144728171, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+      propertyPath: AllSkills.Array.data[20]
+      value: 
+      objectReference: {fileID: 11400000, guid: 483025c633367f345b2e33ac80440381, type: 2}
     - target: {fileID: 3876972230361124329, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
       propertyPath: key
       value: 101
@@ -2389,7 +2417,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6107447076169596605, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
       propertyPath: hitpoints
-      value: 130
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 6107447076169596605, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
       propertyPath: ComboEndMeleeCd
@@ -2414,7 +2442,7 @@ PrefabInstance:
     - target: {fileID: 7543899927338066159, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
       propertyPath: currentSkill
       value: 
-      objectReference: {fileID: 11400000, guid: e0024b5924732bf4fa9b750591803ff8, type: 2}
+      objectReference: {fileID: 11400000, guid: 4ee89ce9953ada4449b9f738261329e4, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
 --- !u!1 &1888502420
@@ -2484,7 +2512,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 282101770216328611, guid: 3c79d0750c109914f8319680f34ff908, type: 3}
       propertyPath: exp
-      value: 12000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 282101770216328611, guid: 3c79d0750c109914f8319680f34ff908, type: 3}
       propertyPath: hitpoints
@@ -2784,7 +2812,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5403734313131498138, guid: 4bb58f3c74412054abddad9bf3a53311, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5403734313131498143, guid: 4bb58f3c74412054abddad9bf3a53311, type: 3}
       propertyPath: m_RootOrder

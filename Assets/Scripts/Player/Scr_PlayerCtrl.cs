@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.Animations;
 using UnityEngine.InputSystem.Controls;
+using System;
 
 public class Scr_PlayerCtrl : MonoBehaviour
 {
@@ -761,6 +762,14 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public StateMachine getStateMachine()
     {
         return MeleeStatemachine;
+    }
+
+    public event Action EnemyDefeated;
+
+    public void NotifyEnemyDefeated()
+    {
+        Debug.Log("OnEnemyDefeated called");
+        EnemyDefeated?.Invoke();
     }
 }
 

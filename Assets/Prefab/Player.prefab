@@ -592,6 +592,8 @@ MonoBehaviour:
   - {fileID: 950411553269570097}
   - {fileID: 3876972230361124329}
   - {fileID: 7543899927338066159}
+  canDefend: 0
+  isDefending: 0
 --- !u!95 &8473302939333591654
 Animator:
   serializedVersion: 5
@@ -998,13 +1000,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d855a2946833cd845ba1e125fa19aba1, type: 2}
   - {fileID: 11400000, guid: 2bcde6a44971b5b4dbe4d64511024287, type: 2}
   - {fileID: 11400000, guid: 33de1f3c5a34049469f74003c2313dcc, type: 2}
-  - {fileID: 11400000, guid: b35a1660cb63d994e9af119ea88bb395, type: 2}
+  - {fileID: 11400000, guid: f277284cbffcd8747b9d549edaf3ca10, type: 2}
   - {fileID: 11400000, guid: 8085986c8a26cb5448a57c2d1b63738e, type: 2}
   - {fileID: 11400000, guid: c57d6d2cecd010b43a1a58042106a9a5, type: 2}
   - {fileID: 11400000, guid: 793dad3b0d452e34692a28eebbdd77af, type: 2}
   - {fileID: 11400000, guid: e49168eb035dd944f8ad91588d13fe16, type: 2}
   - {fileID: 11400000, guid: b35a1660cb63d994e9af119ea88bb395, type: 2}
   - {fileID: 11400000, guid: 0960c4d0da365d54e97144d8271876ad, type: 2}
+  - {fileID: 11400000, guid: 024b03697f8f84d448f799fc262c1826, type: 2}
+  - {fileID: 11400000, guid: 483025c633367f345b2e33ac80440381, type: 2}
+  - {fileID: 11400000, guid: 4ee89ce9953ada4449b9f738261329e4, type: 2}
+  - {fileID: 11400000, guid: e59bd0474a485fd419b059a648387564, type: 2}
+  - {fileID: 11400000, guid: 548dc63a308819846bfb0d9f5851c8e1, type: 2}
   currentSkills: []
 --- !u!1 &6674534377340928847
 GameObject:

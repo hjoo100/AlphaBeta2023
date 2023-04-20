@@ -13,6 +13,7 @@ public class GuardSkill : Skill
         name = "Guard";
         skillType = SkillEnum.SkillType.NonOffensive;
         level = this.Level;
+        
     }
 
     public override void ActivateSkill(GameObject playerObj)

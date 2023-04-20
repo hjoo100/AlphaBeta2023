@@ -26,6 +26,11 @@ public class Skill : ScriptableObject
        
     }
 
+    public virtual void Initialize(string name, SkillEnum.SkillType skillType, int level)
+    {
+        
+    }
+
     public virtual void ActivateSkill(GameObject obj) { }
     public virtual void StartSkillCD(GameObject obj) { }
 
@@ -35,4 +40,15 @@ public class Skill : ScriptableObject
     }
 
     public virtual void PassiveSkillBind(GameObject obj) { }
+
+    public virtual void OnEnemyDefeated() { }
+
+    public virtual void UnbindSkill(GameObject obj)
+    {
+    }
+    public void SetLevel(int level)
+    {
+        Level = level;
+    }
+
 }

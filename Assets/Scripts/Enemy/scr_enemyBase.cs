@@ -22,6 +22,8 @@ public class scr_enemyBase : MonoBehaviour
     [SerializeField]
     private ParticleSystem hitParticle;
 
+    private Passive_Frenzy FrenzySkill;
+
     private Scr_PauseManager pauseManager;
     //-1: dummy  1:melee 2:turret 3: boss 
     // public int enemyType = 1;
@@ -66,6 +68,8 @@ public class scr_enemyBase : MonoBehaviour
             Debug.Log(theEnemyType.ToString() + " has sprite that not binded correctly");
         }
         defaultColor = enemySprRenderer.color;
+
+        
 
     }
 
@@ -121,7 +125,7 @@ public class scr_enemyBase : MonoBehaviour
         {
             hitpoints = 0;
             GameObject playerArrow = GameObject.FindGameObjectWithTag("PlayerAttackArrow");
-            playerArrow.GetComponent<scr_attackArrow>().removeEnemy(gameObject);
+            isDead = true;
             if(theEnemyType == enemyType.dummy)
             {
                 //Dummy
@@ -171,6 +175,8 @@ public class scr_enemyBase : MonoBehaviour
     {
         var playerLv = GameObject.FindGameObjectWithTag("Player").GetComponent<scr_playerLevel>();
         playerLv.gainExp(exp);
+        isDead = true;
+        FindObjectOfType<Scr_PlayerCtrl>().NotifyEnemyDefeated();
         Destroy(thisEnemy);
     }
 

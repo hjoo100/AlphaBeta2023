@@ -46,6 +46,13 @@ public class scr_SkillHolder : MonoBehaviour
         {
             SkillImage = GameObject.FindGameObjectWithTag("Skill3").GetComponent<Image>();
         }
+
+        if(currentSkill.skillType == SkillEnum.SkillType.Passive)
+        {
+            currentSkill.PassiveSkillBind(gameObject);
+            Debug.Log("Passive skill binded");
+
+        }
     }
     // Update is called once per frame
     void Update()
@@ -54,12 +61,12 @@ public class scr_SkillHolder : MonoBehaviour
         {
             return; // Do not execute the rest of the Update logic if the game is paused
         }
-        if (currentSkill == null || isUsableSkill != true)
+        if (currentSkill == null || isUsableSkill != true )
         {
             return;
         }
 
-        switch(state)
+        switch (state)
         {
             case SkillState.ready:
                if(Input.GetKeyDown(key))
@@ -166,8 +173,13 @@ public class scr_SkillHolder : MonoBehaviour
         // bind skill
         if (nextLevelSkill != null)
         {
+            currentSkill.UnbindSkill(FindObjectOfType<Scr_PlayerCtrl>().gameObject); // Add this line to unbind the old skill
             currentSkill = nextLevelSkill;
+            currentSkill.SetLevel(nextLevel);
 
+            currentSkill.PassiveSkillBind(FindObjectOfType<Scr_PlayerCtrl>().gameObject); // Add this line to bind the new skill
+
+            Debug.Log("Skill: " + currentSkill.name + " upgraded! Level: " + currentSkill.Level);
             // update skillIcon
             if (nextLevelSkill.GetSkillType() == true)
             {
@@ -210,5 +222,20 @@ public class scr_SkillHolder : MonoBehaviour
        
         
 
+    }
+
+    public void ReduceCooldown(float amount)
+    {
+        if (cooldownTime > 0)
+        {
+            cooldownTime -= amount;
+            Debug.Log(currentSkill.SkillID + " skill cooldown reduced by " + amount + " sec.");
+            if (cooldownTime < 0)
+            {
+                cooldownTime = 0;
+                float coolDownPercentage = (currentSkill.cooldownTime - cooldownTime) / currentSkill.cooldownTime;
+                SkillImage.fillAmount = coolDownPercentage;
+            }
+        }
     }
 }

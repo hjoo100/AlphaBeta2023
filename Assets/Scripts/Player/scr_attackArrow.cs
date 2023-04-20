@@ -14,6 +14,7 @@ public class scr_attackArrow : MonoBehaviour
     public Scr_PlayerAudioCtrl playerAudio;
     // Start is called before the first frame update
 
+    
     private void Awake()
     {
         enemyTag = "Enemy";
@@ -54,8 +55,10 @@ public class scr_attackArrow : MonoBehaviour
         return target != null && enemyInRange.Contains(target);
     }
 
+    List<GameObject> enemiesToRemove = new List<GameObject>();
     public void attackEnemyInRange(float dmg)
     {
+        
         foreach (var enemy in enemyInRange)
         {
             
@@ -63,7 +66,14 @@ public class scr_attackArrow : MonoBehaviour
                {
                 continue;
                 }
-                enemy.GetComponent<scr_enemyBase>().receiveDmg(dmg);
+
+            if (enemy.GetComponent<scr_enemyBase>().isDead)
+            {
+                enemiesToRemove.Add(enemy);
+                continue;
+            }
+
+            enemy.GetComponent<scr_enemyBase>().receiveDmg(dmg);
                 Vector2 attackForce = new Vector2();
                 attackForce.y = transform.localPosition.y;
                 attackForce.x = 70f;
@@ -109,11 +119,19 @@ public class scr_attackArrow : MonoBehaviour
 
     public void attackEnemyInRangeWithForce(float dmg,float forceVal)
     {
+        
+
         foreach (var enemy in enemyInRange)
         {
 
             if (enemy == null)
             {
+                continue;
+            }
+
+            if (enemy.GetComponent<scr_enemyBase>().isDead)
+            {
+                enemiesToRemove.Add(enemy);
                 continue;
             }
             enemy.GetComponent<scr_enemyBase>().receiveDmg(dmg);
@@ -152,10 +170,22 @@ public class scr_attackArrow : MonoBehaviour
             playerAudio.PlayAudio(0);
         }
     }
-    public void removeEnemy(GameObject ene)
+
+    private void LateUpdate()
     {
-        enemyInRange.Remove(ene);
+        removeEnemy();
     }
+    public void removeEnemy()
+    {
+        foreach (GameObject enemy in enemiesToRemove)
+        {
+            enemyInRange.Remove(enemy);
+        }
+
+        enemiesToRemove.Clear();
+    }
+
+    
 
     public void PoweredKnockHit(float forceVal)
     {
