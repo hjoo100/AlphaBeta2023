@@ -107,7 +107,8 @@ public class scr_attackArrow : MonoBehaviour
                      print("boss received dmg");
                      playerAudio.PlayAudio(1);
                 }
-          
+
+             FindObjectOfType<Scr_PlayerCtrl>().SuccessfulAttack();
 
         }
         if(enemyInRange.Count <=0)
@@ -161,6 +162,8 @@ public class scr_attackArrow : MonoBehaviour
                 print("boss received dmg");
                 playerAudio.PlayAudio(1);
             }
+
+            FindObjectOfType<Scr_PlayerCtrl>().SuccessfulAttack();
 
 
         }

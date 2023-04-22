@@ -439,6 +439,7 @@ GameObject:
   - component: {fileID: 3401689054591587825}
   - component: {fileID: 8964010386193435565}
   - component: {fileID: 6733454528112419265}
+  - component: {fileID: 3858366609976860876}
   - component: {fileID: 1139421089144728171}
   m_Layer: 6
   m_Name: Player
@@ -594,6 +595,7 @@ MonoBehaviour:
   - {fileID: 7543899927338066159}
   canDefend: 0
   isDefending: 0
+  comboSystem: {fileID: 0}
 --- !u!95 &8473302939333591654
 Animator:
   serializedVersion: 5
@@ -978,6 +980,22 @@ MonoBehaviour:
   m_DefaultActionMap: PlayerActionMap
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &3858366609976860876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6107447076169596606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 465acb0d027dd6c43992b15258d5df1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comboCount: 0
+  comboThreshold: 299
+  comboResetTime: 2
+  UIShown: 0
 --- !u!114 &1139421089144728171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1012,6 +1030,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4ee89ce9953ada4449b9f738261329e4, type: 2}
   - {fileID: 11400000, guid: e59bd0474a485fd419b059a648387564, type: 2}
   - {fileID: 11400000, guid: 548dc63a308819846bfb0d9f5851c8e1, type: 2}
+  - {fileID: 11400000, guid: e5a2c103ea248cd4b84a4b1db404773f, type: 2}
+  - {fileID: 11400000, guid: 0a84e6c5a4b21d048a6ef0f0a2cb74c3, type: 2}
+  - {fileID: 11400000, guid: ca4bce82e28eda94c92a7f36741d22dd, type: 2}
   currentSkills: []
 --- !u!1 &6674534377340928847
 GameObject:

@@ -92,6 +92,11 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
     [SerializeField]
     private bool canDefend = false, isDefending = false;
+
+    public ComboSystem comboSystem;
+    public event Action OnSuccessfulAttack;
+    public event Action<float, bool> OnComboDamage;
+
     public void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -104,7 +109,8 @@ public class Scr_PlayerCtrl : MonoBehaviour
         hpBar = GameObject.FindGameObjectWithTag("UI.Hud.Hp").GetComponent<Image>();
 
         MeleeStatemachine = GetComponent<StateMachine>();
-        
+
+        comboSystem = GetComponent<ComboSystem>();
     }
     // Start is called before the first frame update
     void Start()
@@ -770,6 +776,17 @@ public class Scr_PlayerCtrl : MonoBehaviour
     {
         Debug.Log("OnEnemyDefeated called");
         EnemyDefeated?.Invoke();
+    }
+
+    public void SuccessfulAttack()
+    {
+        OnSuccessfulAttack?.Invoke();
+        comboSystem.IncrementCombo();
+    }
+
+    public void ApplyComboDamage(float damageAmount, bool shouldPierceArmor)
+    {
+        OnComboDamage?.Invoke(damageAmount, shouldPierceArmor);
     }
 }
 

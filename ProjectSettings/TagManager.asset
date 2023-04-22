@@ -19,6 +19,8 @@ TagManager:
   - LvUpObj
   - Skill3
   - SkillBorder1
+  - ComboObj
+  - ComboCount
   layers:
   - Default
   - TransparentFX
