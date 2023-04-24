@@ -46,7 +46,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public float meleeDmg = 10f;
 
     [SerializeField]
-    private float basicMeleeDmg = 40f;
+    public float basicMeleeDmg = 40f;
 
     //for combo
     public bool attackKeyDown = false;
@@ -96,6 +96,9 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public ComboSystem comboSystem;
     public event Action OnSuccessfulAttack;
     public event Action<float, bool> OnComboDamage;
+
+    public delegate void HealthChangedDelegate(float currentHealth, float maxHealth);
+    public event HealthChangedDelegate OnHealthChanged;
 
     public void Awake()
     {
@@ -473,7 +476,8 @@ public class Scr_PlayerCtrl : MonoBehaviour
             return;
         }
         hitpoints -= dmg;
-        if(hitpoints < 0)
+        OnHealthChanged?.Invoke(hitpoints, maxHp);
+        if (hitpoints < 0)
         {
             isDead = true;
             return;
@@ -616,13 +620,17 @@ public class Scr_PlayerCtrl : MonoBehaviour
     {
         meleeDmg += 3;
 
+        maxHp += 10;
         if(hitpoints < maxHp)
         {
             hitpoints += 30;
+
             if(hitpoints > maxHp)
             {
                 hitpoints = maxHp;
             }
+
+            OnHealthChanged?.Invoke(hitpoints, maxHp);
         }
         
 
@@ -787,6 +795,16 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public void ApplyComboDamage(float damageAmount, bool shouldPierceArmor)
     {
         OnComboDamage?.Invoke(damageAmount, shouldPierceArmor);
+    }
+
+    public void RestoreHp(float hpIncrement)
+    {
+        hitpoints += hpIncrement;
+        if(hitpoints > maxHp)
+        {
+            hitpoints = maxHp;
+        }
+        OnHealthChanged?.Invoke(hitpoints, maxHp);
     }
 }
 

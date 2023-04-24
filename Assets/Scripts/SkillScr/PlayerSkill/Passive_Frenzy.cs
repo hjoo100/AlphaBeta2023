@@ -50,8 +50,9 @@ public class Passive_Frenzy : Skill
             }
         }
 
-        
-        FindObjectOfType<Scr_PlayerCtrl>().hitpoints += healthRecoveryAmount;
+
+        // FindObjectOfType<Scr_PlayerCtrl>().hitpoints += healthRecoveryAmount;
+        FindObjectOfType<Scr_PlayerCtrl>().RestoreHp(healthRecoveryAmount);
     }
 
     public override void Initialize(string name, SkillType skillType, int level)

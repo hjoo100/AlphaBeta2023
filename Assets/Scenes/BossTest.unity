@@ -856,7 +856,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &906475786
 Transform:
   m_ObjectHideFlags: 0
@@ -2804,7 +2804,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1830368375
 Transform:
   m_ObjectHideFlags: 0
@@ -2974,6 +2974,10 @@ PrefabInstance:
       value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 6107447076169596605, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+      propertyPath: basicMeleeDmg
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107447076169596605, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
       propertyPath: ComboEndMeleeCd
       value: 1
       objectReference: {fileID: 0}
@@ -2996,7 +3000,7 @@ PrefabInstance:
     - target: {fileID: 7543899927338066159, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
       propertyPath: currentSkill
       value: 
-      objectReference: {fileID: 11400000, guid: e5a2c103ea248cd4b84a4b1db404773f, type: 2}
+      objectReference: {fileID: 11400000, guid: 3e0a972c4978bc14fab88a0d6455e78c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
 --- !u!1 &1888502420
@@ -3515,7 +3519,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5403734313131498138, guid: 4bb58f3c74412054abddad9bf3a53311, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5403734313131498143, guid: 4bb58f3c74412054abddad9bf3a53311, type: 3}
       propertyPath: m_RootOrder
@@ -3575,7 +3579,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8577214885032793299, guid: 4bb58f3c74412054abddad9bf3a53311, type: 3}
       propertyPath: meleeDmg
-      value: 2
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8577214885032793299, guid: 4bb58f3c74412054abddad9bf3a53311, type: 3}
       propertyPath: enemyhitpoints
