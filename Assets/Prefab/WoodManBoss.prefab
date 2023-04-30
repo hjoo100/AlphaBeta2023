@@ -115,7 +115,8 @@ MonoBehaviour:
   enemySprRenderer: {fileID: 5531005299774863394}
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
   hitParticle: {fileID: 1247815365354089835}
-  theEnemyType: 3
+  detectDist: 5
+  theEnemyType: 5
   exp: 400
 --- !u!114 &7815245526507495189
 MonoBehaviour:
@@ -129,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc4988b7b1eeb9a4d89061e9bcec0959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyBase: {fileID: 0}
   enemyAnimator: {fileID: 7547427467107113635}
   player: {fileID: 0}
   moveSys: {fileID: 0}
@@ -141,12 +143,10 @@ MonoBehaviour:
   basicSpd: 1
   isAttacked: 0
   isinAir: 0
-  isKnockedBack: 0
   isDead: 0
   isAlerted: 0
   attacking: 0
   isCharging: 0
-  isDashing: 0
   isDefending: 0
   isResting: 0
   isStomping: 0

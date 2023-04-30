@@ -101,7 +101,7 @@ public class scr_attackArrow : MonoBehaviour
                     playerAudio.PlayAudio(1);
             }
 
-                if(enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.boss)
+                if(enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.UnstoppableBoss)
                 {
                      
                      print("boss received dmg");
@@ -156,7 +156,7 @@ public class scr_attackArrow : MonoBehaviour
                 playerAudio.PlayAudio(1);
             }
 
-            if (enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.boss)
+            if (enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.UnstoppableBoss)
             {
 
                 print("boss received dmg");

@@ -26,6 +26,12 @@ public class scr_enemyBase : MonoBehaviour
 
     private Scr_PauseManager pauseManager;
 
+    [SerializeField]
+    private float shieldVal = 0;
+
+    [SerializeField]
+    private bool shieldEnabled = false;
+
     public float detectDist = 5;
     //-1: dummy  1:melee 2:turret 3: boss 
     // public int enemyType = 1;
@@ -35,7 +41,9 @@ public class scr_enemyBase : MonoBehaviour
         melee,
         turret,
         ranged,
-        boss
+        shielded,
+        UnstoppableBoss,
+        shieldedBoss
     }
     public enemyType theEnemyType = enemyType.melee;
 
@@ -63,10 +71,17 @@ public class scr_enemyBase : MonoBehaviour
             hitpoints = thisEnemy.GetComponent<scr_movingRangedEnemy>().GetHitpoints();
         }
 
-        if(theEnemyType == enemyType.boss)
+        if(theEnemyType == enemyType.UnstoppableBoss)
         {
             //Boss
             hitpoints = thisEnemy.GetComponent<scr_meleeBoss>().getHitpoints();
+        }
+
+        if(theEnemyType == enemyType.shielded)
+        {
+            hitpoints = thisEnemy.GetComponent<scr_shieldEnemy>().getHitpoints();
+            shieldEnabled = true;
+            shieldVal = thisEnemy.GetComponent<scr_shieldEnemy>().getShieldVal();
         }
         MaxHitpoints = hitpoints;
         enemyAudioSrc = gameObject.GetComponent<AudioSource>();
@@ -89,7 +104,7 @@ public class scr_enemyBase : MonoBehaviour
 
     public void receiveDmg(float dmg)
     {
-        if(theEnemyType == enemyType.boss)
+        if(theEnemyType == enemyType.UnstoppableBoss)
         {
             var bossScr = gameObject.GetComponent<scr_meleeBoss>();
             if(bossScr.getDefendBool())
@@ -110,8 +125,26 @@ public class scr_enemyBase : MonoBehaviour
                 Invoke(nameof(disableHitParticle), 0.45f);
             }
         }
+
+       if(shieldEnabled)
+        {
+            if(shieldVal > 0)
+            {
+                shieldVal -= dmg;
+                if(shieldVal <0)
+                {
+                    shieldVal = 0;
+                    shieldEnabled = false;
+                    return;
+                }
+            }
+
+
+        }
+
         else
         {
+           
             hitpoints -= dmg;
             HitChangeColor();
             if(hitParticle != null)
@@ -156,7 +189,7 @@ public class scr_enemyBase : MonoBehaviour
             }
             Invoke(nameof(deadFunc), 0.25f);
 
-            if(theEnemyType == enemyType.boss)
+            if(theEnemyType == enemyType.UnstoppableBoss)
             {
                 animator.Play("Die");
                 enemyAudioSrc.clip = fallAudio;
@@ -179,7 +212,7 @@ public class scr_enemyBase : MonoBehaviour
             {
                 thisEnemy.GetComponent<scr_MeleeEnemy>().alertEnemy();
             }
-            if(theEnemyType == enemyType.boss)
+            if(theEnemyType == enemyType.UnstoppableBoss)
             {
                 thisEnemy.GetComponent<scr_meleeBoss>().alertEnemy();
             }

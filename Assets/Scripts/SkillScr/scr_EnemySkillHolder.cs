@@ -24,7 +24,7 @@ public class scr_EnemySkillHolder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(enemyObj.GetComponent<scr_enemyBase>().theEnemyType== scr_enemyBase.enemyType.boss) // is boss
+        if(enemyObj.GetComponent<scr_enemyBase>().theEnemyType== scr_enemyBase.enemyType.UnstoppableBoss) // is boss
         {
             if(enemyObj.GetComponent<scr_meleeBoss>().getAwake() == false)
             {

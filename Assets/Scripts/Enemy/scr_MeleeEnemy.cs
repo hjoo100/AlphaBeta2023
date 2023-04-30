@@ -113,7 +113,7 @@ public class scr_MeleeEnemy : MonoBehaviour
     private void ResetAttack()
     {
         isAttacked = false;
-        print("boss attack reset");
+        
     }
 
     public void DeadFunc()
