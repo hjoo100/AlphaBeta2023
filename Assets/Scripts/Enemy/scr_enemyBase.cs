@@ -25,6 +25,8 @@ public class scr_enemyBase : MonoBehaviour
     private Passive_Frenzy FrenzySkill;
 
     private Scr_PauseManager pauseManager;
+
+    public float detectDist = 5;
     //-1: dummy  1:melee 2:turret 3: boss 
     // public int enemyType = 1;
     public enum enemyType
@@ -32,6 +34,7 @@ public class scr_enemyBase : MonoBehaviour
         dummy,
         melee,
         turret,
+        ranged,
         boss
     }
     public enemyType theEnemyType = enemyType.melee;
@@ -53,6 +56,11 @@ public class scr_enemyBase : MonoBehaviour
         if(theEnemyType == enemyType.turret)
         {
             hitpoints = thisEnemy.GetComponent<scr_turretEnemy>().hitpoints;
+        }
+
+        if(theEnemyType == enemyType.ranged)
+        {
+            hitpoints = thisEnemy.GetComponent<scr_movingRangedEnemy>().GetHitpoints();
         }
 
         if(theEnemyType == enemyType.boss)
@@ -154,6 +162,14 @@ public class scr_enemyBase : MonoBehaviour
                 enemyAudioSrc.clip = fallAudio;
                 enemyAudioSrc.Play();
                 thisEnemy.GetComponent<scr_meleeBoss>().DeadFunc();
+            }
+
+            if (theEnemyType == enemyType.ranged)
+            {
+                animator.Play("Die");
+                enemyAudioSrc.clip = fallAudio;
+                enemyAudioSrc.Play();
+                thisEnemy.GetComponent<scr_movingRangedEnemy>().DeadFunc();
             }
             // Destroy(thisEnemy);
         }
