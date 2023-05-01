@@ -14,7 +14,7 @@ public class Scr_GroundComboState : Scr_MeleeBaseState
         attackIndex = 2;
         duration = 0.5f;
         animator.Play("Melee2");
-        playerCtrl.applyAttack();
+        playerCtrl.InvokeAttack(0.25f);
         Debug.Log("Player melee2 pressed!");
 
     }
