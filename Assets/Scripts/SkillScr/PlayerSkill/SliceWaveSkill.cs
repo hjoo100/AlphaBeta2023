@@ -27,6 +27,7 @@ public class SliceWaveSkill : Skill
         {
             swordWave.dmg = playerScr.meleeDmg + damage;
             //launch sword wave
+            swordWave.level = Level;
             Instantiate(swordWave, AttackPos.position, Quaternion.identity);
             isShot = true;
             Scr_PlayerAudioCtrl playeraudio = player.GetComponent<Scr_PlayerAudioCtrl>();

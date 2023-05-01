@@ -101,14 +101,32 @@ public class scr_attackArrow : MonoBehaviour
                     playerAudio.PlayAudio(1);
             }
 
-                if(enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.boss)
+                if(enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.UnstoppableBoss)
                 {
                      
                      print("boss received dmg");
                      playerAudio.PlayAudio(1);
                 }
 
-             FindObjectOfType<Scr_PlayerCtrl>().SuccessfulAttack();
+             if (enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.shielded)
+             {
+                if(enemy.GetComponent<scr_enemyBase>().shieldVal == 0)
+                {
+                    enemy.GetComponent<scr_shieldEnemyMove>().tempFreeze();
+                    enemy.GetComponent<scr_shieldEnemyMove>().knockBack();
+                    print("shield enemy received dmg");
+                    playerAudio.PlayAudio(1);
+                }else
+                {
+                    playerAudio.PlayAudio(0);
+                }
+                
+
+              }
+
+
+
+            FindObjectOfType<Scr_PlayerCtrl>().SuccessfulAttack();
 
         }
         if(enemyInRange.Count <=0)
@@ -150,13 +168,22 @@ public class scr_attackArrow : MonoBehaviour
 
             }
 
+            if (enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.melee)
+            {
+                enemy.GetComponent<scr_meleeEnemyMove>().tempFreeze();
+                enemy.GetComponent<scr_meleeEnemyMove>().PoweredKnockBack(forceVal);
+                print("enemy received dmg");
+                playerAudio.PlayAudio(1);
+
+            }
+
             if (enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.turret)
             {
                 print("Turret received dmg");
                 playerAudio.PlayAudio(1);
             }
 
-            if (enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.boss)
+            if (enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.UnstoppableBoss)
             {
 
                 print("boss received dmg");

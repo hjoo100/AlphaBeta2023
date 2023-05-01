@@ -11,6 +11,8 @@ public class scr_swordWaveObj : MonoBehaviour
     public GameObject launcherObj;
     private Rigidbody2D rb;
 
+    public int level = 0;
+
     Scr_PauseManager pauseManager;
 
     private void Awake()
@@ -51,10 +53,34 @@ public class scr_swordWaveObj : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             //do impact scr here
-            collision.gameObject.GetComponent<scr_enemyBase>().receiveDmg(dmg);
+            if(level == 2)
+            {
+                collision.gameObject.GetComponent<scr_enemyBase>().receiveDmg(dmg,true);
+            }else
+            {
+                collision.gameObject.GetComponent<scr_enemyBase>().receiveDmg(dmg);
+            }
+            
             if(collision.gameObject.GetComponent<scr_MeleeEnemy>() != null)
             {
                 collision.gameObject.GetComponent<scr_meleeEnemyMove>().knockBack();
+            }
+
+            if(collision.gameObject.GetComponent<scr_shieldEnemy>()!= null)
+            {
+                if(level==2)
+                {
+                    //shield percing
+                    collision.gameObject.GetComponent<scr_shieldEnemyMove>().PoweredKnockBack(2f);
+                }
+                else
+                {
+                    //detect shield up or not
+                    if(collision.gameObject.GetComponent<scr_enemyBase>().shieldVal <= 0)
+                    {
+                        collision.gameObject.GetComponent<scr_shieldEnemyMove>().PoweredKnockBack(2f);
+                    }
+                }
             }
             
             Destroy(gameObject);
