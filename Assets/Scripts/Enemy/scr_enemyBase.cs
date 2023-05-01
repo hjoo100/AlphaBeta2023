@@ -165,6 +165,10 @@ public class scr_enemyBase : MonoBehaviour
             gameObject.GetComponent<scr_MeleeEnemy>().CancelAttack();
         }
 
+       if(theEnemyType == enemyType.shielded)
+        {
+            gameObject.GetComponent<scr_shieldEnemy>().CancelAttack();
+        }
        
         
         if(hitpoints <=0)

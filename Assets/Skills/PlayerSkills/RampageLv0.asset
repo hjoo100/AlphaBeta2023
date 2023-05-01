@@ -19,7 +19,7 @@ MonoBehaviour:
   cooldownTime: 0
   activeTime: 0
   isUsableSkill: 0
-  skillIcon: {fileID: 0}
+  skillIcon: {fileID: 21300000, guid: a28ad760cf5b22945b0ec7adf70bd053, type: 3}
   damageBoost: 1.2
   healthThresholdLevel1: 0.3
   healthThresholdLevel2: 0.5

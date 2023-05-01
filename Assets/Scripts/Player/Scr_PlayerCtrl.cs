@@ -430,7 +430,8 @@ public class Scr_PlayerCtrl : MonoBehaviour
             rb.velocity = Vector2.zero;
             rb.AddForce(new Vector2(0f, jumpForce));
             print("jumped");
-            animationSwitch("Jump");
+            animationSwitch("Jump",true);
+            
             jumpCount--;
         }
     }
@@ -477,6 +478,13 @@ public class Scr_PlayerCtrl : MonoBehaviour
         playerAnimator.Play(animState);
     }
 
+    void animationSwitch(string animState, bool Replay)
+    {
+        if(Replay == true)
+        {
+            playerAnimator.Play(animState,-1,0f);
+        }
+    }
     public void takeDmg(float dmg)
     {
         if(isImmune)
