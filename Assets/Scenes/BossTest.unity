@@ -9203,6 +9203,10 @@ PrefabInstance:
       propertyPath: TextObj
       value: 
       objectReference: {fileID: 301697181}
+    - target: {fileID: 3048450125411959859, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
+      propertyPath: currentSkill
+      value: 
+      objectReference: {fileID: 11400000, guid: 0960c4d0da365d54e97144d8271876ad, type: 2}
     - target: {fileID: 8339766802895970491, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -15254,7 +15258,7 @@ MonoBehaviour:
   enemyAnimator: {fileID: 4169915673643623920}
   player: {fileID: 0}
   moveSys: {fileID: 8913014076719009195}
-  enemyhitpoints: 50
+  enemyhitpoints: 250
   meleeDmg: 20
   attackCD: 1
   attackArrow: {fileID: 7608100140628892784}
