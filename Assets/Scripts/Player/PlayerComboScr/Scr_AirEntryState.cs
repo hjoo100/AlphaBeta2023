@@ -11,7 +11,8 @@ public class Scr_AirEntryState : Scr_MeleeBaseState
         attackIndex = 1;
         duration = 0.5f;
         animator.Play("AirMelee");
-        playerCtrl.applyAttack();
+        
+        playerCtrl.InvokeAttack(0.25f);
         playerCtrl.isAirAttacked = true;
         Debug.Log("Player Melee air pressed!");
 

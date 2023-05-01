@@ -20,6 +20,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
     private InputAction playerCtrlSystem;
     private float moveDir;
     private bool toRight = true;
+    [SerializeField]
     private bool isJumping = false;
     
     private bool isInMeleeRange;
@@ -99,6 +100,8 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
     public delegate void HealthChangedDelegate(float currentHealth, float maxHealth);
     public event HealthChangedDelegate OnHealthChanged;
+
+    public bool cancelGroundCheck = false;
 
     public void Awake()
     {
@@ -264,6 +267,13 @@ public class Scr_PlayerCtrl : MonoBehaviour
             {
                 resetAttack();
                 isAirAttacked = false;
+                
+                    
+            }
+
+            if (isJumping == true && !cancelGroundCheck)
+            {
+                isJumping = false;
             }
         }
         if (!gettingKnocked)
@@ -273,10 +283,10 @@ public class Scr_PlayerCtrl : MonoBehaviour
                 jumpCount = MaxJumpNum;
             }
             if ((isHittingWall && !isGrounded))
-            {
-                charaJumpFunc();
-                isJumping = false;
-            }
+           {
+                //charaJumpFunc();
+                //isJumping = false;
+           }
             else
             {
                 if(CheckSkillActive() == false)
@@ -353,6 +363,9 @@ public class Scr_PlayerCtrl : MonoBehaviour
             if (jumpCount > 0)
             {
                 isJumping = true;
+                charaJumpFunc();
+                cancelGroundCheck = true;
+                Invoke(nameof(resumeGroundCheck), 0.2f);
 
             }
         }
@@ -374,6 +387,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
         else
         {
             attackKeyDown = false;
+            
         }
     }
 
@@ -397,13 +411,13 @@ public class Scr_PlayerCtrl : MonoBehaviour
     void charaMoveFunc()
     {
         rb.velocity = new Vector2(PlayerSpd * moveDir, rb.velocity.y);
-        charaJumpFunc();
-        isJumping = false;
-        if(moveDir == 0 && isGrounded && !isAttacking && !isDefending)
+        //charaJumpFunc();
+        //isJumping = false;
+        if(moveDir == 0 && isGrounded && !isAttacking && !isDefending && !isJumping)
         {
             animationSwitch("Idle");
         }
-        else if(isGrounded && !isAttacking && !isDefending)
+        else if(isGrounded && !isAttacking && !isDefending && !isJumping)
         {
             animationSwitch("Walk");
         }
@@ -650,6 +664,10 @@ public class Scr_PlayerCtrl : MonoBehaviour
         attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg*BuffMultiPlier*CalculateBuffMultiplier());
     }
 
+    public void InvokeAttack(float time)
+    {
+        Invoke(nameof(applyAttack), time);
+    }
     public void StartMoonSlicing(float damage)
     {
         isMoonSlicing = true;
@@ -723,7 +741,10 @@ public class Scr_PlayerCtrl : MonoBehaviour
         isImmune = false;
     }
 
-
+    public void resumeGroundCheck()
+    {
+        cancelGroundCheck = false;
+    }
     private float CalculateBuffMultiplier()
     {
         float multiplier = 1.0f;

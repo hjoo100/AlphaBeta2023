@@ -11,7 +11,7 @@ public class Scr_GroundFinishState : Scr_MeleeBaseState
         attackIndex = 5;
         duration = 0.8f;
         animator.Play("Melee5");
-        playerCtrl.applyAttack();
+        playerCtrl.InvokeAttack(0.25f);
         Debug.Log("Player melee5 pressed!");
     }
 

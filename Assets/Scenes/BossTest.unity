@@ -9204,9 +9204,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 301697181}
     - target: {fileID: 3048450125411959859, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
+      propertyPath: SkillImage
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3048450125411959859, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: currentSkill
       value: 
-      objectReference: {fileID: 11400000, guid: 0960c4d0da365d54e97144d8271876ad, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8339766802895970491, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -9254,6 +9258,10 @@ PrefabInstance:
     - target: {fileID: 8339766802895970492, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: m_Name
       value: Player (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8339766802895970495, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
+      propertyPath: MaxJumpNum
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}

@@ -11,7 +11,7 @@ public class Scr_GroundFourthHitState: Scr_MeleeBaseState
         attackIndex = 4;
         duration = 0.5f;
         animator.Play("Melee4");
-        playerCtrl.applyAttack();
+        playerCtrl.InvokeAttack(0.25f);
         Debug.Log("Player melee4 pressed!");
 
     }
