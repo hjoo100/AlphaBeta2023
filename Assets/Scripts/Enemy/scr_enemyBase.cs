@@ -27,7 +27,10 @@ public class scr_enemyBase : MonoBehaviour
     private Scr_PauseManager pauseManager;
 
     [SerializeField]
-    private float shieldVal = 0;
+    public float shieldVal = 0;
+
+    [SerializeField]
+    public float shieldMaxVal = 0;
 
     [SerializeField]
     private bool shieldEnabled = false;
@@ -82,6 +85,7 @@ public class scr_enemyBase : MonoBehaviour
             hitpoints = thisEnemy.GetComponent<scr_shieldEnemy>().getHitpoints();
             shieldEnabled = true;
             shieldVal = thisEnemy.GetComponent<scr_shieldEnemy>().getShieldVal();
+            shieldMaxVal = shieldVal;
         }
         MaxHitpoints = hitpoints;
         enemyAudioSrc = gameObject.GetComponent<AudioSource>();
@@ -137,6 +141,7 @@ public class scr_enemyBase : MonoBehaviour
                     shieldEnabled = false;
                     return;
                 }
+                return;
             }
 
 
@@ -220,6 +225,117 @@ public class scr_enemyBase : MonoBehaviour
         }
     }
 
+    public void receiveDmg(float dmg,bool shieldPen)
+    {
+        if (shieldEnabled && !shieldPen)
+        {
+            //not penning shield
+            shieldVal -= dmg;
+            if(shieldVal <0)
+            {
+                shieldVal = 0;
+                shieldEnabled = false;
+            }
+        }
+        else
+        {
+            if(shieldEnabled && shieldVal > 0)
+            {
+                shieldVal -= dmg;
+                if (shieldVal < 0)
+                {
+                    shieldVal = 0;
+                    shieldEnabled = false;
+                }
+            }
+
+            
+                hitpoints -= dmg;
+                HitChangeColor();
+                if (hitParticle != null)
+                {
+                    showHitParticle();
+                }
+
+
+                Invoke(nameof(disableHitParticle), 0.45f);
+            }
+            if (theEnemyType == enemyType.melee)
+            {
+                gameObject.GetComponent<scr_MeleeEnemy>().CancelAttack();
+            }
+        if (theEnemyType == enemyType.shielded)
+        {
+            gameObject.GetComponent<scr_shieldEnemy>().CancelAttack();
+        }
+
+
+            if (hitpoints <= 0)
+            {
+                hitpoints = 0;
+                GameObject playerArrow = GameObject.FindGameObjectWithTag("PlayerAttackArrow");
+                isDead = true;
+                if (theEnemyType == enemyType.dummy)
+                {
+                    //Dummy
+                    deadFunc();
+
+                }
+                if (theEnemyType == enemyType.melee)
+                {
+                    animator.Play("Die");
+                    enemyAudioSrc.clip = fallAudio;
+                    enemyAudioSrc.Play();
+                    thisEnemy.GetComponent<scr_MeleeEnemy>().DeadFunc();
+                }
+                if (theEnemyType == enemyType.turret)
+                {
+                    enemyAudioSrc.clip = fallAudio;
+                    enemyAudioSrc.Play();
+                    thisEnemy.GetComponent<scr_turretEnemy>().deadFunc();
+
+                }
+                Invoke(nameof(deadFunc), 0.25f);
+
+                if (theEnemyType == enemyType.UnstoppableBoss)
+                {
+                    animator.Play("Die");
+                    enemyAudioSrc.clip = fallAudio;
+                    enemyAudioSrc.Play();
+                    thisEnemy.GetComponent<scr_meleeBoss>().DeadFunc();
+                }
+
+                if (theEnemyType == enemyType.ranged)
+                {
+                    animator.Play("Die");
+                    enemyAudioSrc.clip = fallAudio;
+                    enemyAudioSrc.Play();
+                    thisEnemy.GetComponent<scr_movingRangedEnemy>().DeadFunc();
+                }
+                // Destroy(thisEnemy);
+            }
+            else
+            {
+                if (theEnemyType == enemyType.melee)
+                {
+                    thisEnemy.GetComponent<scr_MeleeEnemy>().alertEnemy();
+                }
+                if (theEnemyType == enemyType.UnstoppableBoss)
+                {
+                    thisEnemy.GetComponent<scr_meleeBoss>().alertEnemy();
+                }
+
+                if(theEnemyType == enemyType.shielded)
+            {
+                thisEnemy.GetComponent<scr_shieldEnemy>().alertEnemy();
+            }
+
+            
+
+            
+
+             }
+    }
     void deadFunc()
     {
         var playerLv = GameObject.FindGameObjectWithTag("Player").GetComponent<scr_playerLevel>();

@@ -12,7 +12,7 @@ public class scr_shieldEnemy : MonoBehaviour
     [SerializeField]
     private Scr_PlayerCtrl player;
     [SerializeField]
-    private scr_meleeEnemyMove moveSys;
+    private scr_shieldEnemyMove moveSys;
     [SerializeField]
     private float enemyhitpoints = 50f;
     [SerializeField]
@@ -50,7 +50,7 @@ public class scr_shieldEnemy : MonoBehaviour
     }
     void Start()
     {
-        moveSys = GetComponent<scr_meleeEnemyMove>();
+        moveSys = GetComponent<scr_shieldEnemyMove>();
     }
 
     // Update is called once per frame
