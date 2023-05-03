@@ -83,7 +83,7 @@ public class scr_ShieldBossEnemy : MonoBehaviour
             return; // Do not execute the rest of the Update logic if the game is paused
         }
 
-        if (isCharging || !isAwake || isStomping)
+        if (isCharging || !isAwake)
         {
             return;
         }
