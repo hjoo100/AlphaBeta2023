@@ -31,6 +31,14 @@ public class scr_EnemySkillHolder : MonoBehaviour
                 return;
             }
         }
+
+        if(enemyObj.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.shieldedBoss)
+        {
+            if(enemyObj.GetComponent<scr_ShieldBossEnemy>().getAwake() == false)
+            { 
+                return;
+            }
+        }
         if(state == SkillState.ready)
         {
             skill.ActivateSkill(gameObject);
@@ -64,43 +72,7 @@ public class scr_EnemySkillHolder : MonoBehaviour
                 state = SkillState.ready;
             }
         }
-      /*  switch (state)
-        {
-            case SkillState.ready:
-             //use skill
-             skill.ActivateSkill(gameObject);
-             state = SkillState.active;
-             Debug.Log("state changed to active");
-             activeTime = skill.activeTime;
-             break;
-
-            case SkillState.active:
-                {
-                    if (activeTime > 0)
-                    {
-                        activeTime -= Time.deltaTime;
-                    }
-                    else
-                    {
-                        skill.StartSkillCD(gameObject);
-                        state = SkillState.cooldown;
-                        cooldownTime = skill.cooldownTime;
-                    }
-                }
-                break;
-            case SkillState.cooldown:
-                if (cooldownTime > 0)
-                {
-                    cooldownTime -= Time.deltaTime;
-                }
-                else
-                {
-                    state = SkillState.ready;
-                }
-                break;
-
-
-        }*/
+     
 
     }
 }
