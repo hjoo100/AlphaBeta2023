@@ -12,7 +12,7 @@ public class scr_ShieldBossEnemy : MonoBehaviour
     [SerializeField]
     private Scr_PlayerCtrl player;
     [SerializeField]
-    private scr_meleeBossMove moveSys;
+    private scr_ShieldBossMove moveSys;
     [SerializeField]
     private float enemyhitpoints = 50f;
     [SerializeField]
@@ -46,7 +46,9 @@ public class scr_ShieldBossEnemy : MonoBehaviour
     private AudioSource enemyAudio;
     [SerializeField]
     private AudioClip punchAudio;
-    
+
+    [SerializeField]
+    private float shieldVal = 85f, maxShieldVal = 85f;
 
     [SerializeField]
     private EnemySlamSkill slamSkill;
@@ -67,7 +69,7 @@ public class scr_ShieldBossEnemy : MonoBehaviour
     }
     void Start()
     {
-        moveSys = GetComponent<scr_meleeBossMove>();
+        moveSys = GetComponent<scr_ShieldBossMove>();
 
         if (slamSkill != null)
         {
@@ -97,7 +99,10 @@ public class scr_ShieldBossEnemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        if (slamSkill != null)
+        {
+            slamSkill.FixedUpdateSkill(gameObject);
+        }
     }
 
     public void Attacking()
@@ -232,13 +237,7 @@ public class scr_ShieldBossEnemy : MonoBehaviour
         return isAwake;
     }
 
-    public void stompComplete()
-    {
-        isStomping = false;
-        moveSys.isStomping = false;
-        isResting = true;
-        restTime = maxRestTime;
-    }
+    
 
     //get value funcs
     public float getHitpoints()
@@ -328,5 +327,18 @@ public class scr_ShieldBossEnemy : MonoBehaviour
     public void setMoveSpd(float moveSpdFloat)
     {
         moveSpd = moveSpdFloat;
+    }
+
+    public float GetShieldVal()
+    {
+        return shieldVal;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (slamSkill != null && slamSkill.IsSkillActive)
+        {
+            slamSkill.HandleCollision(gameObject, collision);
+        }
     }
 }

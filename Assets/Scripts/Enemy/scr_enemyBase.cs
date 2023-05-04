@@ -87,6 +87,15 @@ public class scr_enemyBase : MonoBehaviour
             shieldVal = thisEnemy.GetComponent<scr_shieldEnemy>().getShieldVal();
             shieldMaxVal = shieldVal;
         }
+
+        if (theEnemyType == enemyType.shieldedBoss)
+        {
+            hitpoints = thisEnemy.GetComponent<scr_ShieldBossEnemy>().getHitpoints();
+            shieldEnabled = true;
+            shieldVal = thisEnemy.GetComponent<scr_ShieldBossEnemy>().GetShieldVal();
+            shieldMaxVal = shieldVal;
+        }
+
         MaxHitpoints = hitpoints;
         enemyAudioSrc = gameObject.GetComponent<AudioSource>();
 
@@ -135,6 +144,10 @@ public class scr_enemyBase : MonoBehaviour
             if(shieldVal > 0)
             {
                 shieldVal -= dmg;
+                if(theEnemyType == enemyType.shieldedBoss)
+                {
+                    thisEnemy.GetComponent<scr_ShieldBossEnemy>().alertEnemy();
+                }
                 if(shieldVal <0)
                 {
                     shieldVal = 0;
