@@ -267,8 +267,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   center: {fileID: 1222392791}
-  speed: 5
-  radius: 3
+  speed: 10
+  radius: 4
   initialAngle: 270
 --- !u!61 &78807170
 BoxCollider2D:
@@ -1020,8 +1020,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   center: {fileID: 1222392791}
-  speed: 5
-  radius: 3
+  speed: 10
+  radius: 4
   initialAngle: 180
 --- !u!61 &338568276
 BoxCollider2D:
@@ -1465,8 +1465,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   center: {fileID: 1222392791}
-  speed: 5
-  radius: 3
+  speed: 10
+  radius: 4
   initialAngle: 90
 --- !u!61 &756625768
 BoxCollider2D:
@@ -1615,8 +1615,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   center: {fileID: 1222392791}
-  speed: 5
-  radius: 3
+  speed: 10
+  radius: 4
   initialAngle: 0
 --- !u!61 &760854373
 BoxCollider2D:

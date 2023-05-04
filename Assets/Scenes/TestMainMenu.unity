@@ -2866,6 +2866,7 @@ GameObject:
   - component: {fileID: 1154247306}
   - component: {fileID: 1154247308}
   - component: {fileID: 1154247307}
+  - component: {fileID: 1154247309}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -2931,6 +2932,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1154247305}
   m_CullTransparentMesh: 1
+--- !u!114 &1154247309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154247305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 601861cb23f3ac941be957f7d021fea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipPrefab: {fileID: 4107604610569738093, guid: cbdf731d123df5c49b8df8802ca945b2, type: 3}
+  skillDescription: MoonSlice, test text here
 --- !u!1 &1172223353
 GameObject:
   m_ObjectHideFlags: 0
@@ -4186,7 +4201,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1685452651
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5292,7 +5307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2087861918
 RectTransform:
   m_ObjectHideFlags: 0
