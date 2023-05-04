@@ -41,6 +41,7 @@ public class scr_PlayerSkillManager : MonoBehaviour
                     Debug.Log("Assigning skill " + presetSkills[i].name + " to skill holder " + playerSkillHolders[i].name);
                     playerSkillHolders[i].ResetSkillImage();
                     playerSkillHolders[i].GainSkill(presetSkills[i]);
+                    playerSkillHolders[i].SyncSkillImage();
                 }
             }
         }
@@ -174,42 +175,7 @@ public class scr_PlayerSkillManager : MonoBehaviour
         return null;
     }
 
-    /*private bool ShouldUpgradeSkill(Skill newSkill)
-    {
-        if (newSkill == null)
-        {
-            return false;
-        }
-        foreach (Skill currentSkill in currentSkills)
-        {
-            
-            if (currentSkill.name == newSkill.name )
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }*/
-
-    /*private void UpgradeSkill(Skill skillToUpgrade)
-    {
-        scr_SkillHolder skillHolder = null;
-        foreach (scr_SkillHolder holder in FindObjectsOfType<scr_SkillHolder>())
-        {
-            if (holder.GetCurrentSkill() == skillToUpgrade)
-            {
-                skillHolder = holder;
-                break;
-            }
-        }
-
-        if (skillHolder != null)
-        {
-            skillHolder.UpgradeSkill();
-        }
-    }
-    */
+   
     public void HandleSelectedSkill(int skillIndex)
     {
         Debug.Log("Handling selected skill");

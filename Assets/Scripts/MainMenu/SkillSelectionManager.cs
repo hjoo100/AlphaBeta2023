@@ -92,7 +92,7 @@ public class SkillSelectionManager : MonoBehaviour
 
             SkillsPage.SetActive(false);
 
-            Invoke(nameof(LoadNextLevel), 3f);
+            Invoke(nameof(LoadNextLevel), 1.2f);
             
         }
         
