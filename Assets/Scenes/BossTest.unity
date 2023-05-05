@@ -6857,7 +6857,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1325924091
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9510,6 +9510,10 @@ PrefabInstance:
       propertyPath: maxTime
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6834247593924784272, guid: 809120049fd3f7a4c88d81cd20b57f27, type: 3}
+      propertyPath: arrowAngleOffset
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 809120049fd3f7a4c88d81cd20b57f27, type: 3}
 --- !u!1001 &5118383131453005709
@@ -9566,6 +9570,10 @@ PrefabInstance:
     - target: {fileID: 1549591468802698620, guid: fdd5943964988b243b6d2e5c5d599a70, type: 3}
       propertyPath: m_Name
       value: WoodManShield
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549591468802698620, guid: fdd5943964988b243b6d2e5c5d599a70, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdd5943964988b243b6d2e5c5d599a70, type: 3}

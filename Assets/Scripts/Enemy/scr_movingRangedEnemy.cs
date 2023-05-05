@@ -33,7 +33,8 @@ public class scr_movingRangedEnemy : MonoBehaviour
 
     [SerializeField]
     GameObject FireObj;
-
+    //for multiple arrows
+    public float arrowAngleOffset = 15f;
     void Start()
     {
         moveSys = GetComponent<scr_rangeEnemyMove>();
@@ -87,10 +88,28 @@ public class scr_movingRangedEnemy : MonoBehaviour
 
     void fireBullet()
     {
-        Instantiate(bullet, bulletPos.position, Quaternion.identity);
+        float[] angles = { -arrowAngleOffset, 0f, arrowAngleOffset };
+        float initialForce = 5f;
+
+        foreach (float angle in angles)
+        {
+            GameObject arrowInstance = Instantiate(bullet, bulletPos.position, Quaternion.Euler(0, 0, 0));
+            Quaternion arrowRotation = FireObj.transform.rotation * Quaternion.Euler(0, 0, angle + 135f);
+            arrowInstance.transform.rotation = arrowRotation * Quaternion.Euler(0, 0, 22.5f);
+
+            Vector3 adjustedRight = Quaternion.Euler(0, 180, 0) * arrowInstance.transform.right;
+            arrowInstance.transform.right = adjustedRight;
+
+            Rigidbody2D arrowRb = arrowInstance.GetComponent<Rigidbody2D>();
+            arrowRb.AddForce(arrowInstance.transform.up * initialForce, ForceMode2D.Impulse);
+        }
+
         audioSrc.clip = fireSound;
         audioSrc.Play();
+
+        
     }
+
 
     private void ResetAnimation()
     {

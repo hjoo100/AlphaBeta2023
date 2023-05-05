@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+
+
 public class SkillSelectionManager : MonoBehaviour
 {
     public Toggle[] skillToggles;
     public int maxSelectedSkills = 3;
-    [SerializeField]
-    private int currentSelectedSkills;
     public Skill[] AllSkills;
     [SerializeField]
     private Skill[] skillsChosen;
@@ -18,9 +18,12 @@ public class SkillSelectionManager : MonoBehaviour
     private List<Skill> SkillsChosenList;
 
     public GameObject SkillsPage;
+
+    private HashSet<Toggle> selectedToggles;
+
     private void Start()
     {
-        currentSelectedSkills = 0;
+        selectedToggles = new HashSet<Toggle>();
 
         foreach (Toggle skillToggle in skillToggles)
         {
@@ -34,71 +37,67 @@ public class SkillSelectionManager : MonoBehaviour
     {
         if (isSelected)
         {
-            if (currentSelectedSkills < maxSelectedSkills)
+            if (selectedToggles.Count < maxSelectedSkills)
             {
-                currentSelectedSkills++;
+                selectedToggles.Add(skillToggle);
             }
             else
             {
-                
                 skillToggle.isOn = false;
             }
         }
         else
         {
-            currentSelectedSkills--;
+            selectedToggles.Remove(skillToggle);
         }
     }
-
     public void ConfirmSkillSelection()
     {
-        if (currentSelectedSkills > 0 && currentSelectedSkills <= maxSelectedSkills)
+        if (selectedToggles.Count > 0 && selectedToggles.Count <= maxSelectedSkills)
         {
             int skillsAdded = 0;
 
-            for (int i = 0; i < skillToggles.Length && skillsAdded < currentSelectedSkills; i++)
+            foreach (Toggle skillToggle in selectedToggles)
             {
-                Toggle skillToggle = skillToggles[i];
-                if (skillToggle.isOn)
+                for (int i = 0; i < skillToggles.Length; i++)
                 {
-                    for (int j = 0; j < skillsChosen.Length; j++)
+                    if (skillToggle == skillToggles[i])
                     {
-                        if (skillsChosen[j] == null)
+                        for (int j = 0; j < skillsChosen.Length; j++)
                         {
-                            skillsChosen[j] = AllSkills[i];
-                            skillsAdded++;
-                            break;
+                            if (skillsChosen[j] == null)
+                            {
+                                skillsChosen[j] = AllSkills[i];
+                                skillsAdded++;
+                                break;
+                            }
                         }
                     }
                 }
-
-                
             }
 
-            //save the skills and hide panel
-            for(int i = 0; i < skillsAdded; i++)
+            // Save the skills and hide the panel
+            for (int i = 0; i < skillsAdded; i++)
             {
                 SkillsChosenList.Add(skillsChosen[i]);
             }
 
             PlayerPreset.Instance.SetPresetSkills(SkillsChosenList);
 
-            //debug
-            for(int i=0;i<PlayerPreset.Instance.PresetSkills.Count;i++)
+            // Debug
+            for (int i = 0; i < PlayerPreset.Instance.PresetSkills.Count; i++)
             {
-
                 Debug.Log("Player skills no." + i + " is" + PlayerPreset.Instance.PresetSkills[i].name);
             }
 
             SkillsPage.SetActive(false);
 
             Invoke(nameof(LoadNextLevel), 1.2f);
-            
         }
-        
-        if(currentSelectedSkills == 0)
+
+        if (selectedToggles.Count == 0)
         {
-            //no skills chosen
+            // No skills chosen
             return;
         }
 

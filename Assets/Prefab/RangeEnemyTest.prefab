@@ -200,6 +200,7 @@ MonoBehaviour:
   audioSrc: {fileID: 3469714155094660405}
   fireSound: {fileID: 8300000, guid: 53667ad6a5357734ca46abaf98dd4432, type: 3}
   FireObj: {fileID: 1767034161852763054}
+  arrowAngleOffset: 15
 --- !u!58 &6834247593924784271
 CircleCollider2D:
   m_ObjectHideFlags: 0
