@@ -36,8 +36,11 @@ public class scr_enemyBase : MonoBehaviour
     private bool shieldEnabled = false;
 
     public float detectDist = 5;
-    //-1: dummy  1:melee 2:turret 3: boss 
-    // public int enemyType = 1;
+
+    private float sortingOrderOffset;
+    private float yPosOffset;
+    private Vector3 positionOffset;
+
     public enum enemyType
     {
         dummy,
@@ -105,16 +108,22 @@ public class scr_enemyBase : MonoBehaviour
         }
         defaultColor = enemySprRenderer.color;
 
-        
 
+        positionOffset = new Vector3(0, Random.Range(-0.1f, 0.1f), 0);
+        transform.position += positionOffset;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateSortingOrder();
     }
 
+    void UpdateSortingOrder()
+    {
+        float yPos = transform.position.y;
+        enemySprRenderer.sortingOrder = (int)(yPos * -300);
+    }
     public void receiveDmg(float dmg)
     {
         if(theEnemyType == enemyType.UnstoppableBoss)

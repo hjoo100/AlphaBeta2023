@@ -8,20 +8,25 @@ public class scr_enemyHpBarScr : MonoBehaviour
     [SerializeField]
     scr_enemyBase enemyStats;
     [SerializeField]
-    GameObject hpBar;
+    GameObject hpBar, hpObj;
     [SerializeField]
     float hpMax, hpCurr;
+
+    [SerializeField]
+    float yOffset;
 
     void Start()
     {
         hpMax = enemyStats.MaxHitpoints;
+        yOffset = Random.Range(-0.2f, 0.2f);
+        hpBar.transform.localPosition += new Vector3(0, yOffset, 0);
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         hpMax = enemyStats.MaxHitpoints;
         hpCurr = enemyStats.hitpoints;
-        hpBar.transform.localScale = new Vector3(hpCurr / hpMax, 1f);
+        hpObj.transform.localScale = new Vector3(hpCurr / hpMax, 1f);
     }
 }
