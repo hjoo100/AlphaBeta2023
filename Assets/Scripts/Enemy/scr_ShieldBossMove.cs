@@ -119,16 +119,26 @@ public class scr_ShieldBossMove : MonoBehaviour
 
                     if ((isHittingWall() || isNearEdge()) && isGrounded == true)
                     {
+                        if(isHittingWall())
+                        {
+                            Debug.Log("changing direction because of hitting wall");
+                        }
+
+                        if(isNearEdge())
+                        {
+                            Debug.Log("changing direction because of Edge");
+                        }
                         if (facingDir == LEFT)
                         {
                             changeFaceDir(RIGHT);
+
                             
                         }
                         else if (facingDir == RIGHT)
                         {
                             changeFaceDir(LEFT);
                         }
-                        Debug.Log("changing direction because of environment");
+                       
                     }
                 }
 

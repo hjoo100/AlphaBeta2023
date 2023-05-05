@@ -52,10 +52,12 @@ public class scr_ShieldBossEnemy : MonoBehaviour
 
     [SerializeField]
     private EnemySlamSkill slamSkill;
+    public float lastSlamTime = 0;
 
-    // Start is called before the first frame update
+   
 
     private Scr_PauseManager pauseManager;
+
     private void Awake()
     {
         pauseManager = FindObjectOfType<Scr_PauseManager>();
@@ -110,6 +112,13 @@ public class scr_ShieldBossEnemy : MonoBehaviour
         //agent.SetDestination(transform.position);
 
         //transform.LookAt(PlayerTransform);
+
+        // Check if enough time has passed since the last slam
+        if (Time.time < lastSlamTime + attackCD)
+        {
+            return; // Do not attempt to attack if the cooldown has not passed
+        }
+
 
         if (!isAttacked && !isDead && !moveSys.isKnockedBack)
         {
@@ -340,5 +349,67 @@ public class scr_ShieldBossEnemy : MonoBehaviour
         {
             slamSkill.HandleCollision(gameObject, collision);
         }
+    }
+
+    private void CheckPlayerInLandingZone()
+    {
+        // Define a radius for the landing zone
+        float landingZoneRadius = 1.5f;
+
+        // Get the player's Rigidbody2D component
+        Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
+
+        // Calculate the distance between the enemy and the player
+        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+
+        // Check if the player is in the landing zone
+        if (distanceToPlayer <= landingZoneRadius)
+        {
+            // Calculate the knockback force
+            Vector2 knockbackForce = (player.transform.position - transform.position).normalized * 5f;
+
+            // Apply the knockback force to the player
+            playerRb.AddForce(knockbackForce, ForceMode2D.Impulse);
+        }
+    }
+
+    public IEnumerator DisableCollisionWithPlayer(float duration)
+    {
+        // Get all the colliders attached to the enemy
+        Collider2D[] enemyColliders = GetComponents<Collider2D>();
+        Collider2D[] playerColliders = player.GetComponents<Collider2D>();
+
+        // Disable the collision between each enemy collider and the player collider
+        foreach (Collider2D enemyCollider in enemyColliders)
+        {
+
+            foreach (Collider2D playercollider in playerColliders)
+            {
+                Physics2D.IgnoreCollision(enemyCollider, playercollider, true);
+            }
+        }
+
+        // Wait for the specified duration
+        yield return new WaitForSeconds(duration);
+
+        // Enable the collision between each enemy collider and the player collider
+        foreach (Collider2D enemyCollider in enemyColliders)
+        {
+            foreach (Collider2D playercollider in playerColliders)
+            {
+                Physics2D.IgnoreCollision(enemyCollider, playercollider, false);
+            }
+            
+        }
+    }
+
+    public void invokeCheckLandingZone(float time)
+    {
+        Invoke(nameof(CheckPlayerInLandingZone), time);
+    }
+
+    public void StartDisableCollisionCoroutine(float duration)
+    {
+        StartCoroutine(DisableCollisionWithPlayer(duration));
     }
 }

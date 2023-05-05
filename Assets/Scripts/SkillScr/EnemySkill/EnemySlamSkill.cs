@@ -12,7 +12,7 @@ public class EnemySlamSkill : Skill
     [SerializeField] private float slamDamage;
 
     public float knockbackRadius = 5f; 
-    public float knockbackForce = 5f;
+    public float knockbackForce = 12f;
 
     private Rigidbody2D enemyRigidbody;
     private Transform player;
@@ -45,6 +45,8 @@ public class EnemySlamSkill : Skill
         enemyRigidbody.velocity = new Vector2(0, jumpForce);
 
         IsSkillActive = true;
+
+        obj.GetComponent<scr_ShieldBossEnemy>().lastSlamTime = Time.time;
     }
 
     public override void StartSkillCD(GameObject obj)
@@ -89,6 +91,7 @@ public class EnemySlamSkill : Skill
             case 2:
                 // Enemy falls straight down
                 enemyRigidbody.velocity = new Vector2(0, -slamSpeed);
+                //obj.GetComponent<scr_ShieldBossEnemy>().invokeCheckLandingZone(0.25f);
                 break;
         }
     }
@@ -118,7 +121,7 @@ public class EnemySlamSkill : Skill
 
     private void ApplyKnockbackToNearbyPlayer(GameObject user)
     {
-        // find player near location
+        // Find the player near the location
         Collider2D playerInRange = Physics2D.OverlapCircle(user.transform.position, knockbackRadius, LayerMask.GetMask("Player"));
 
         if (playerInRange != null)
@@ -130,9 +133,14 @@ public class EnemySlamSkill : Skill
                 playerInRange.GetComponent<Scr_PlayerCtrl>().takeDmg(slamDamage);
                 Debug.Log($"Player takes {slamDamage} damage from enemy slam.");
 
-                // calculate knock back direction
-                Vector2 knockbackDirection = (playerRigidbody.position - (Vector2)user.transform.position).normalized;
-                // applyforce
+                // Calculate the horizontal knockback direction based on the player's position relative to the enemy
+                float horizontalDirection = playerRigidbody.position.x > user.transform.position.x ? 1 : -1;
+                Vector2 knockbackDirection = new Vector2(horizontalDirection, 0);
+
+                float collisionDisableDuration = 0.4f;
+                user.GetComponent<scr_ShieldBossEnemy>().StartDisableCollisionCoroutine(collisionDisableDuration);
+
+                // Apply the force
                 playerRigidbody.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
             }
         }
