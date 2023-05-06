@@ -433,6 +433,7 @@ GameObject:
   - component: {fileID: 302818949}
   - component: {fileID: 302818951}
   - component: {fileID: 302818950}
+  - component: {fileID: 302818952}
   m_Layer: 5
   m_Name: Image (7)
   m_TagString: Untagged
@@ -498,6 +499,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 302818948}
   m_CullTransparentMesh: 1
+--- !u!114 &302818952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302818948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 601861cb23f3ac941be957f7d021fea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipPrefab: {fileID: 4107604610569738093, guid: cbdf731d123df5c49b8df8802ca945b2, type: 3}
+  skillDescription: Restore health point when defeat enemies. Decrease skill cooldown
+    on other active skills when reach skill level 3.
 --- !u!1 &357870867
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,6 +525,7 @@ GameObject:
   - component: {fileID: 357870868}
   - component: {fileID: 357870870}
   - component: {fileID: 357870869}
+  - component: {fileID: 357870871}
   m_Layer: 5
   m_Name: Image (2)
   m_TagString: Untagged
@@ -574,6 +591,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357870867}
   m_CullTransparentMesh: 1
+--- !u!114 &357870871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357870867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 601861cb23f3ac941be957f7d021fea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipPrefab: {fileID: 4107604610569738093, guid: cbdf731d123df5c49b8df8802ca945b2, type: 3}
+  skillDescription: Tear the air and create a sword wave projectile that deal damage
+    to enemies. Gain shield percing effect on this skill when reach skill level 3.
 --- !u!1 &380093498
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,6 +798,7 @@ GameObject:
   - component: {fileID: 425133720}
   - component: {fileID: 425133722}
   - component: {fileID: 425133721}
+  - component: {fileID: 425133723}
   m_Layer: 5
   m_Name: Image (6)
   m_TagString: Untagged
@@ -831,6 +864,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 425133719}
   m_CullTransparentMesh: 1
+--- !u!114 &425133723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425133719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 601861cb23f3ac941be957f7d021fea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipPrefab: {fileID: 4107604610569738093, guid: cbdf731d123df5c49b8df8802ca945b2, type: 3}
+  skillDescription: Automatically cause a high damage attack to enemies in front
+    of you when reach high combo count. Gain shield percing effect on this attack
+    when reach skill level 3.
 --- !u!1 &461571901
 GameObject:
   m_ObjectHideFlags: 0
@@ -1712,6 +1761,7 @@ GameObject:
   - component: {fileID: 882276009}
   - component: {fileID: 882276011}
   - component: {fileID: 882276010}
+  - component: {fileID: 882276012}
   m_Layer: 5
   m_Name: Image (3)
   m_TagString: Untagged
@@ -1777,6 +1827,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 882276008}
   m_CullTransparentMesh: 1
+--- !u!114 &882276012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882276008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 601861cb23f3ac941be957f7d021fea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipPrefab: {fileID: 4107604610569738093, guid: cbdf731d123df5c49b8df8802ca945b2, type: 3}
+  skillDescription: Gain additional speed in short amount of time.
 --- !u!1 &926013540
 GameObject:
   m_ObjectHideFlags: 0
@@ -2516,6 +2580,7 @@ GameObject:
   - component: {fileID: 1060926792}
   - component: {fileID: 1060926794}
   - component: {fileID: 1060926793}
+  - component: {fileID: 1060926795}
   m_Layer: 5
   m_Name: Image (5)
   m_TagString: Untagged
@@ -2581,6 +2646,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060926791}
   m_CullTransparentMesh: 1
+--- !u!114 &1060926795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060926791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 601861cb23f3ac941be957f7d021fea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipPrefab: {fileID: 4107604610569738093, guid: cbdf731d123df5c49b8df8802ca945b2, type: 3}
+  skillDescription: Parry all incoming damage for a short time. Further decrease
+    the cooldown when reach skill level 3.
 --- !u!1 &1075253271
 GameObject:
   m_ObjectHideFlags: 0
@@ -2745,6 +2825,7 @@ GameObject:
   - component: {fileID: 1129959618}
   - component: {fileID: 1129959620}
   - component: {fileID: 1129959619}
+  - component: {fileID: 1129959621}
   m_Layer: 5
   m_Name: Image (4)
   m_TagString: Untagged
@@ -2810,6 +2891,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1129959617}
   m_CullTransparentMesh: 1
+--- !u!114 &1129959621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129959617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 601861cb23f3ac941be957f7d021fea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipPrefab: {fileID: 4107604610569738093, guid: cbdf731d123df5c49b8df8802ca945b2, type: 3}
+  skillDescription: You become immune to enemies attack for a short period of time,
+    but you can't attack or use offensive skills either during this time.
 --- !u!1 &1130919822
 GameObject:
   m_ObjectHideFlags: 0
@@ -2945,7 +3041,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPrefab: {fileID: 4107604610569738093, guid: cbdf731d123df5c49b8df8802ca945b2, type: 3}
-  skillDescription: MoonSlice, test text here
+  skillDescription: Perform a powerful attack to enemies in front of you. Deal additional
+    damage to shields when reach skill level 3.
 --- !u!1 &1172223353
 GameObject:
   m_ObjectHideFlags: 0
@@ -3119,6 +3216,7 @@ GameObject:
   - component: {fileID: 1226728628}
   - component: {fileID: 1226728630}
   - component: {fileID: 1226728629}
+  - component: {fileID: 1226728631}
   m_Layer: 5
   m_Name: Image (1)
   m_TagString: Untagged
@@ -3184,6 +3282,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1226728627}
   m_CullTransparentMesh: 1
+--- !u!114 &1226728631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226728627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 601861cb23f3ac941be957f7d021fea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipPrefab: {fileID: 4107604610569738093, guid: cbdf731d123df5c49b8df8802ca945b2, type: 3}
+  skillDescription: Rapidly hit enemies in front of you. Gain shield percing effect
+    on the finish attack of this skill when reached skill level 3.
 --- !u!1 &1239793638
 GameObject:
   m_ObjectHideFlags: 0
@@ -4120,6 +4233,7 @@ GameObject:
   - component: {fileID: 1673784155}
   - component: {fileID: 1673784157}
   - component: {fileID: 1673784156}
+  - component: {fileID: 1673784158}
   m_Layer: 5
   m_Name: Image (8)
   m_TagString: Untagged
@@ -4185,6 +4299,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1673784154}
   m_CullTransparentMesh: 1
+--- !u!114 &1673784158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673784154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 601861cb23f3ac941be957f7d021fea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipPrefab: {fileID: 4107604610569738093, guid: cbdf731d123df5c49b8df8802ca945b2, type: 3}
+  skillDescription: Deal more damage as your hit points become low. Increase the
+    percentatge of hit points that triggers this effect when reach skill level 3.
 --- !u!1 &1685452650
 GameObject:
   m_ObjectHideFlags: 0
@@ -4885,7 +5014,6 @@ MonoBehaviour:
   - {fileID: 841776346}
   - {fileID: 1172223354}
   maxSelectedSkills: 3
-  currentSelectedSkills: 0
   AllSkills:
   - {fileID: 11400000, guid: d855a2946833cd845ba1e125fa19aba1, type: 2}
   - {fileID: 11400000, guid: 8085986c8a26cb5448a57c2d1b63738e, type: 2}
