@@ -54,9 +54,13 @@ public class scr_ShieldBossEnemy : MonoBehaviour
     private EnemySlamSkill slamSkill;
     public float lastSlamTime = 0;
 
+    [SerializeField]
+    private bool isShieldBroken = false;
    
 
     private Scr_PauseManager pauseManager;
+
+    public EnemyJavelinBarrageSkill JavelinBarrageSkillObj;
 
     private void Awake()
     {
@@ -95,6 +99,12 @@ public class scr_ShieldBossEnemy : MonoBehaviour
         {
             resting();
             return;
+        }
+
+        if(enemyBase.shieldVal <= 0 && !isShieldBroken)
+        {
+            isShieldBroken = true;
+            AddNewSkillToEnemy();
         }
         Attacking();
     }
@@ -411,5 +421,24 @@ public class scr_ShieldBossEnemy : MonoBehaviour
     public void StartDisableCollisionCoroutine(float duration)
     {
         StartCoroutine(DisableCollisionWithPlayer(duration));
+    }
+
+    private void AddNewSkillToEnemy()
+    {
+        
+
+        // add skill holder component to this enemy
+        scr_EnemySkillHolder NewSkillHolder = gameObject.AddComponent<scr_EnemySkillHolder>();
+
+        
+
+
+        NewSkillHolder.skill = JavelinBarrageSkillObj;
+        NewSkillHolder.cooldownTime = 8f; 
+        NewSkillHolder.activeTime = 1.5f;
+
+        JavelinBarrageSkillObj.BindLaunchers();
+        
+        NewSkillHolder.state = scr_EnemySkillHolder.SkillState.cooldown;
     }
 }

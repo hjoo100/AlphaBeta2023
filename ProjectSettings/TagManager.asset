@@ -21,6 +21,8 @@ TagManager:
   - SkillBorder1
   - ComboObj
   - ComboCount
+  - JavelinLauncher1
+  - JavelinLauncher2
   layers:
   - Default
   - TransparentFX

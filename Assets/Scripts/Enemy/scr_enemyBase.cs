@@ -157,7 +157,7 @@ public class scr_enemyBase : MonoBehaviour
                 {
                     thisEnemy.GetComponent<scr_ShieldBossEnemy>().alertEnemy();
                 }
-                if(shieldVal <0)
+                if(shieldVal <= 0)
                 {
                     shieldVal = 0;
                     shieldEnabled = false;
