@@ -4935,12 +4935,13 @@ MonoBehaviour:
   maxhitpoints: 20
   dmg: 3
   rotateSpd: 3
-  detectDist: 20
-  bullet: {fileID: 2127047328342548146, guid: 05f48b6b8a43b7b4695886bcd0a50879, type: 3}
+  detectDist: 7
+  bullet: {fileID: 2127047328342548146, guid: 3f3639aea44d31342a34c285b2cf0a20, type: 3}
   bulletPos: {fileID: 6988984138397417755}
   timer: 0
   maxTime: 5
   isdead: 0
+  bulletspeed: 7
   player: {fileID: 0}
   turretAnimator: {fileID: 0}
   audioSrc: {fileID: 5214885357650382250}
@@ -4967,6 +4968,10 @@ MonoBehaviour:
   enemySprRenderer: {fileID: 6988984137132151606}
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
   hitParticle: {fileID: 2060419052339499569}
+  shieldVal: 0
+  shieldMaxVal: 0
+  shieldEnabled: 0
+  detectDist: 5
   theEnemyType: 2
   exp: 30
 --- !u!95 &6988984137132151604

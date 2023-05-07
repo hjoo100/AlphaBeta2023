@@ -11,6 +11,7 @@ public class scr_turretEnemy : MonoBehaviour
 
     public bool isdead = false;
 
+    public float bulletspeed = 7f;
     public GameObject player;
 
     [SerializeField]
@@ -74,7 +75,9 @@ public class scr_turretEnemy : MonoBehaviour
     }
     void fireBullet()
     {
-        Instantiate(bullet, bulletPos.position,Quaternion.identity);
+        GameObject firedBullet = Instantiate(bullet, bulletPos.position, transform.rotation);
+        Rigidbody2D bulletRb = firedBullet.GetComponent<Rigidbody2D>();
+        bulletRb.AddForce(-transform.up * bulletspeed, ForceMode2D.Impulse);
         audioSrc.clip = fireSound;
         audioSrc.Play();
     }

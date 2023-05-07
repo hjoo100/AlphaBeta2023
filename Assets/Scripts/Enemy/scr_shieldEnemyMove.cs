@@ -118,7 +118,7 @@ public class scr_shieldEnemyMove : MonoBehaviour
                     }
 
 
-                    if ((isHittingWall() || isNearEdge()) && isGrounded == true)
+                    if ((isHittingWall() || isNearEdge()) && isGrounded == true && !isAlerted)
                     {
                         if (facingDir == LEFT)
                         {
