@@ -21,6 +21,8 @@ public class SkillSelectionManager : MonoBehaviour
 
     private HashSet<Toggle> selectedToggles;
 
+    [SerializeField]
+    private int selectedLevel = 1;
     private void Start()
     {
         selectedToggles = new HashSet<Toggle>();
@@ -106,6 +108,15 @@ public class SkillSelectionManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(selectedLevel);
     }
+    public void SelectLevel(int levelNumber)
+    {
+        if (levelNumber >= 1 && levelNumber <= 3)
+        {
+            selectedLevel = levelNumber;
+        }
+    }
+
+   
 }

@@ -62,7 +62,7 @@ public class scr_ShieldBossMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (pauseManager.IsPaused())
+        if (pauseManager.IsPaused() || gameObject.GetComponent<scr_ShieldBossEnemy>().isUsingBarrageSkill)
         {
             return; // Do not execute the rest of the Update logic if the game is paused
         }

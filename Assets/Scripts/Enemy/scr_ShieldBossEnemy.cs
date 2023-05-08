@@ -66,6 +66,10 @@ public class scr_ShieldBossEnemy : MonoBehaviour
 
     public EnemyJavelinBarrageSkill JavelinBarrageSkillObj;
 
+    [SerializeField]
+    public bool isUsingBarrageSkill = false;
+
+
     private void Awake()
     {
         pauseManager = FindObjectOfType<Scr_PauseManager>();
@@ -138,7 +142,7 @@ public class scr_ShieldBossEnemy : MonoBehaviour
             return; // Do not attempt to attack if the enemy is performing a jumpslash
         }
 
-        if (!isAttacked && !isDead && !moveSys.isKnockedBack)
+        if (!isAttacked && !isDead && !moveSys.isKnockedBack && !isUsingBarrageSkill)
         {
             // attack player
             if (player != null)
@@ -453,7 +457,7 @@ public class scr_ShieldBossEnemy : MonoBehaviour
 
     public void PlayJumpSlashAnimation()
     {
-        if (!isJumpSlashing && !attacking)
+        if (!isJumpSlashing && !attacking && !isUsingBarrageSkill)
         {
             isJumpSlashing = true;
             enemyAnimator.Play("JumpSlash");
@@ -464,5 +468,20 @@ public class scr_ShieldBossEnemy : MonoBehaviour
     private void ResetJumpSlash()
     {
         isJumpSlashing = false;
+    }
+
+    public void JavelinBarrageSkillAnimation()
+    {
+        if (!isUsingBarrageSkill)
+        {
+            isUsingBarrageSkill = true;
+            enemyAnimator.Play("BarrageSkill");
+            Invoke(nameof(ResetBarrageSkill), 1f);
+        }
+    }
+
+    private void ResetBarrageSkill()
+    {
+        isUsingBarrageSkill = false;
     }
 }

@@ -20,12 +20,15 @@ public class SpawnerTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player") == false)
+        Debug.Log("Object " + collision.gameObject.name + " with tag " + collision.gameObject.tag + " touched the trigger.");
+        if (collision.gameObject.CompareTag("Player") == false)
         {
+            Debug.Log("non-player touched the trigger.");
             return;
         }
         if(!spawnerEnabled)
         {
+            Debug.Log("player touched the trigger.");
             spawnerEnabled = true;
             Spawner.StartSpawning();
         }

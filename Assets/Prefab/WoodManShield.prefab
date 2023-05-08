@@ -63,7 +63,7 @@ Transform:
   m_GameObject: {fileID: 1549591468802698620}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.384822, y: -3.371184, z: 10.8}
-  m_LocalScale: {x: 0.7295698, y: 0.7295698, z: 0.7295698}
+  m_LocalScale: {x: 0.365, y: 0.365, z: 0.7295698}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4052493766598340929}
@@ -167,11 +167,11 @@ MonoBehaviour:
   enemyAnimator: {fileID: 9139671029953018493}
   player: {fileID: 0}
   moveSys: {fileID: 4375604665262215718}
-  enemyhitpoints: 250
+  enemyhitpoints: 120
   meleeDmg: 20
   attackCD: 1
   attackArrow: {fileID: 3358911894228517885}
-  moveSpd: 3
+  moveSpd: 2
   isAttacked: 0
   isinAir: 0
   isKnockedBack: 0
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerInRange: 0
   enemy: {fileID: 4375604665262215719}
-  movespeed: 1
+  movespeed: 1.5
   inAir: 0
   isAlerted: 0
   castPos: {fileID: 4970762863951035470}

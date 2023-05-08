@@ -9,7 +9,12 @@ public class scr_camerafollow : MonoBehaviour
     public Vector2 maxPos, minPos; //for camera bound
     [Range(1, 15)]
     public float smoothVal;
-    // Start is called before the first frame update
+
+    [Range(1, 10)]
+    public float cameraZoom = 5f;
+
+
+    
 
     public Vector2 initialMinPos, initialMaxPos;
 
@@ -23,6 +28,7 @@ public class scr_camerafollow : MonoBehaviour
         if(followTarget != null)
         {
             follow();
+            ZoomCamera();
         }
         
     }   
@@ -45,5 +51,12 @@ public class scr_camerafollow : MonoBehaviour
     {
         minPos = initialMinPos;
         maxPos = initialMaxPos;
+    }
+
+    void ZoomCamera()
+    {
+        Camera mainCamera = Camera.main;
+        float targetOrthographicSize = cameraZoom;
+        mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, targetOrthographicSize, smoothVal * Time.fixedDeltaTime);
     }
 }

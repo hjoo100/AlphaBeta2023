@@ -12,7 +12,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
 {
     public GameObject PlayerObj;
     public KeyCode M_left, M_right, M_jump;
-    
+
 
     private Rigidbody2D rb;
     private Transform playertransform;
@@ -22,7 +22,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
     private bool toRight = true;
     [SerializeField]
     private bool isJumping = false;
-    
+
     private bool isInMeleeRange;
     public float jumpCount;
 
@@ -34,7 +34,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public string EnemyTag;
     public float jumpCheckRaidus;
     public float MaxJumpNum;
-    public bool isHittingWall = false  ;
+    public bool isHittingWall = false;
 
     public float hitpoints = 100;
     public float maxHp = 100;
@@ -56,7 +56,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
     [SerializeField]
     private StateMachine MeleeStatemachine;
 
-    public bool isWalking = false, isAir = false, isAttacking = false, isHited = false,isAirAttacked = false;
+    public bool isWalking = false, isAir = false, isAttacking = false, isHited = false, isAirAttacked = false;
     public bool isGrounded = false;
     //animation
     Animator playerAnimator;
@@ -67,12 +67,12 @@ public class Scr_PlayerCtrl : MonoBehaviour
     //melee combo
     public int comboNo = 0;
     public bool isFirstMelee = false, isSecondMelee = false, isThirdMelee = false, isFourthMelee = false, isFifthMelee = false;
-    public float meleeMaxInputTimer = 0.45f,meleeTimer = 0;
+    public float meleeMaxInputTimer = 0.45f, meleeTimer = 0;
     public Image hpBar;
 
     //skill bool
     [SerializeField]
-    private bool isMoonSlicing = false,isRapidHiting = false;
+    private bool isMoonSlicing = false, isRapidHiting = false;
 
     [SerializeField]
     private bool isImmune = false;
@@ -157,34 +157,35 @@ public class Scr_PlayerCtrl : MonoBehaviour
         if (!gettingKnocked)
         {
             ReceiveInputFunc();
-           // attack();
+            // attack();
             //attackKeyFuncOld();
-            
-            if(isGrounded)
+
+            if (isGrounded)
             {
-              
-               if (attackKeyDown && canAttack )
+
+                if (attackKeyDown && canAttack)
                 {
-                    if(CheckSkillActive())
+                    if (CheckSkillActive())
                     {
                         //dont attack if using skill
                         return;
                     }
 
-                    
-                    if(MeleeStatemachine.CurrentState == null)
+
+                    if (MeleeStatemachine.CurrentState == null)
                     {
-                        
+
                         Debug.Log("statemachine is gone again, ha");
                         //MeleeStatemachine.CurrentState = new Scr_IdleComboState();
                         return;
-                        
-                    }else
+
+                    }
+                    else
                     {
                         string statemachineName = MeleeStatemachine.CurrentState.GetType().ToString();
                         Debug.Log("In inspector, the name of current state is: " + statemachineName);
                     }
-                    if (attackKeyDown&& MeleeStatemachine.CurrentState.GetType() == typeof(Scr_IdleComboState))
+                    if (attackKeyDown && MeleeStatemachine.CurrentState.GetType() == typeof(Scr_IdleComboState))
                     {
                         MeleeStatemachine.SetNextState(new Scr_GroundEntryState());
                     }
@@ -192,22 +193,22 @@ public class Scr_PlayerCtrl : MonoBehaviour
                 }
                 else
                 {
-                    if(MeleeStatemachine.mainStateType == null)
+                    if (MeleeStatemachine.mainStateType == null)
                     {
                         Debug.Log("ha, main state type is missing!");
                         //MeleeStatemachine.mainStateType = new Scr_IdleComboState();
                         return;
                     }
-                    
-                   
+
+
                 }
             }
             else
             {
-                
-                 if (attackKeyDown && isAirAttacked == false && canAttack)
+
+                if (attackKeyDown && isAirAttacked == false && canAttack)
                 {
-                    if(CheckSkillActive())
+                    if (CheckSkillActive())
                     {   //dont attack in air if using skill
                         return;
                     }
@@ -218,12 +219,12 @@ public class Scr_PlayerCtrl : MonoBehaviour
                         return;
                     }
                     if (MeleeStatemachine.CurrentState.GetType() == typeof(Scr_IdleComboState))
-                    
-                    MeleeStatemachine.SetNextState(new Scr_AirEntryState());
+
+                        MeleeStatemachine.SetNextState(new Scr_AirEntryState());
                 }
             }
-            
-         }
+
+        }
         else
         {
             if (knockedTime > 0)
@@ -237,12 +238,12 @@ public class Scr_PlayerCtrl : MonoBehaviour
             }
         }
 
-        if(isDead == true)
+        if (isDead == true)
         {
             print("Player Died!");
             Gamemanager.LoseFunc();
             Destroy(gameObject);
-            
+
         }
 
         hpbarUpdate();
@@ -261,14 +262,14 @@ public class Scr_PlayerCtrl : MonoBehaviour
         }
         //check for ground 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, jumpCheckRaidus, GroundObj);
-        if(isGrounded == true)
+        if (isGrounded == true)
         {
-            if(isAirAttacked)
+            if (isAirAttacked)
             {
                 resetAttack();
                 isAirAttacked = false;
-                
-                    
+
+
             }
 
             if (isJumping == true && !cancelGroundCheck)
@@ -283,16 +284,16 @@ public class Scr_PlayerCtrl : MonoBehaviour
                 jumpCount = MaxJumpNum;
             }
             if ((isHittingWall && !isGrounded))
-           {
+            {
                 //charaJumpFunc();
                 //isJumping = false;
-           }
+            }
             else
             {
-                if(CheckSkillActive() == false)
-                charaMoveFunc();
+                if (CheckSkillActive() == false)
+                    charaMoveFunc();
             }
-           
+
 
             if (CurrMeleeCD > 0)
             {
@@ -305,15 +306,15 @@ public class Scr_PlayerCtrl : MonoBehaviour
         }
         else
         { //getting knocked
-            
+
         }
 
-        if(comboNo >= 1)
+        if (comboNo >= 1)
         {
             meleeTimer += Time.fixedDeltaTime;
         }
-        
-        if(meleeTimer > meleeMaxInputTimer)
+
+        if (meleeTimer > meleeMaxInputTimer)
         {
             //reset all melee states
             comboNo = 0;
@@ -324,28 +325,30 @@ public class Scr_PlayerCtrl : MonoBehaviour
             isFourthMelee = false;
             meleeTimer = 0;
         }
+
+        CheckForStuckInPlatform();
     }
 
     void ReceiveInputFunc()
     {
-        
+
 
         //rb.velocity = new Vector2(PlayerSpd * moveDir, rb.velocity.y);
-        if(moveDir >0 && toRight == false)
+        if (moveDir > 0 && toRight == false)
         {
             flipChara();
         }
-        else if(moveDir <0 && toRight == true)
+        else if (moveDir < 0 && toRight == true)
         {
             flipChara();
         }
 
-      
+
     }
     public void MoveAxisFunc(InputAction.CallbackContext context)
     {
-       
-        if(CheckSkillActive() == true)
+
+        if (CheckSkillActive() == true)
         {
             return;
         }
@@ -369,25 +372,25 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
             }
         }
-        
+
     }
 
     public void attackKeyFunc(InputAction.CallbackContext context)
     {
-       
-        if(context.canceled)
+
+        if (context.canceled)
         {
-            if(!isImmune)
+            if (!isImmune)
             {
                 attackKeyDown = true;
             }
-            
-           // comboNo = 0;
+
+            // comboNo = 0;
         }
         else
         {
             attackKeyDown = false;
-            
+
         }
     }
 
@@ -398,7 +401,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
     public void attackKeyFuncOld()
     {
-        if(!attackKeyDown && Input.GetKeyDown(KeyCode.Z))
+        if (!attackKeyDown && Input.GetKeyDown(KeyCode.Z))
         {
             attackKeyDown = true;
         }
@@ -413,11 +416,11 @@ public class Scr_PlayerCtrl : MonoBehaviour
         rb.velocity = new Vector2(PlayerSpd * moveDir, rb.velocity.y);
         //charaJumpFunc();
         //isJumping = false;
-        if(moveDir == 0 && isGrounded && !isAttacking && !isDefending && !isJumping)
+        if (moveDir == 0 && isGrounded && !isAttacking && !isDefending && !isJumping)
         {
             animationSwitch("Idle");
         }
-        else if(isGrounded && !isAttacking && !isDefending && !isJumping)
+        else if (isGrounded && !isAttacking && !isDefending && !isJumping)
         {
             animationSwitch("Walk");
         }
@@ -430,8 +433,8 @@ public class Scr_PlayerCtrl : MonoBehaviour
             rb.velocity = Vector2.zero;
             rb.AddForce(new Vector2(0f, jumpForce));
             print("jumped");
-            animationSwitch("Jump",true);
-            
+            animationSwitch("Jump", true);
+
             jumpCount--;
         }
     }
@@ -440,25 +443,25 @@ public class Scr_PlayerCtrl : MonoBehaviour
     {
         toRight = !toRight;
 
-        playertransform.localScale = new Vector2(-playertransform.localScale.x,playertransform.localScale.y);
+        playertransform.localScale = new Vector2(-playertransform.localScale.x, playertransform.localScale.y);
     }
 
     void attack() //replaced by new system
     {
         //isInMeleeRange = Physics2D.OverlapCircle(attackArrow.position, meleeRange, EnemyLayer);
-        if(Input.GetKeyDown(KeyCode.Mouse0) && CurrMeleeCD == 0)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && CurrMeleeCD == 0)
         {
             print("Melee Pressed");
             //do melee attack
             //attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg);
-           // playerAnimator.Play("Attack");
+            // playerAnimator.Play("Attack");
             meleeComboFunc();
             isAttacking = true;
-            if(isGrounded)
+            if (isGrounded)
             {
                 Invoke(nameof(resetAttack), 0.45f);
             }
-            
+
             //CurrMeleeCD = meleeCD;
         }
     }
@@ -469,7 +472,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
     void animationSwitch(string animState)
     {
-        if(currentState == animState)
+        if (currentState == animState)
         {
             return;
         }
@@ -480,19 +483,19 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
     void animationSwitch(string animState, bool Replay)
     {
-        if(Replay == true)
+        if (Replay == true)
         {
-            playerAnimator.Play(animState,-1,0f);
+            playerAnimator.Play(animState, -1, 0f);
         }
     }
     public void takeDmg(float dmg)
     {
-        if(isImmune)
+        if (isImmune)
         {
             return;
         }
 
-        if(isDefending)
+        if (isDefending)
         {
             Debug.Log("successfully blocked attack!");
             return;
@@ -504,16 +507,17 @@ public class Scr_PlayerCtrl : MonoBehaviour
             isDead = true;
             return;
         }
-        if(CheckSkillActive())
+        if (CheckSkillActive())
         {
             return;
         }
-        if(gettingKnocked == false)
+        if (gettingKnocked == false)
         {
-            
+
             gettingKnocked = true;
             knockedTime = MaxKnockTimeMelee;
-        }else
+        }
+        else
         {
             knockedTime = MaxKnockTimeMelee;
         }
@@ -530,7 +534,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
     public void hpbarUpdate()
     {
-       
+
         float hpPercent = hitpoints / maxHp;
         hpBar.fillAmount = hpPercent;
     }
@@ -546,7 +550,8 @@ public class Scr_PlayerCtrl : MonoBehaviour
             CurrMeleeCD = meleeCD;
             isAirAttacked = true;
             return;
-        }else if(isGrounded == false && isAirAttacked == true)
+        }
+        else if (isGrounded == false && isAirAttacked == true)
         {
             return;
         }
@@ -563,22 +568,23 @@ public class Scr_PlayerCtrl : MonoBehaviour
             CurrMeleeCD = meleeCD;
             return;
         }
-        else if(comboNo == 1 && meleeTimer < meleeMaxInputTimer)
+        else if (comboNo == 1 && meleeTimer < meleeMaxInputTimer)
         {
-            if(isFirstMelee == true)
+            if (isFirstMelee == true)
             {
                 animationSwitch("Melee2");
                 attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg);
                 comboNo += 1;
-                isFirstMelee =false;
+                isFirstMelee = false;
                 isSecondMelee = true;
                 meleeTimer = 0;
                 CurrMeleeCD = meleeCD;
             }
             return;
-        }else if(comboNo == 2 && meleeTimer <meleeMaxInputTimer)
+        }
+        else if (comboNo == 2 && meleeTimer < meleeMaxInputTimer)
         {
-            if(isSecondMelee == true)
+            if (isSecondMelee == true)
             {
                 animationSwitch("Melee3");
                 attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg);
@@ -588,7 +594,8 @@ public class Scr_PlayerCtrl : MonoBehaviour
                 meleeTimer = 0;
                 CurrMeleeCD = meleeCD;
             }
-        }else if(comboNo == 3 && meleeTimer <meleeMaxInputTimer)
+        }
+        else if (comboNo == 3 && meleeTimer < meleeMaxInputTimer)
 
         {
 
@@ -603,7 +610,8 @@ public class Scr_PlayerCtrl : MonoBehaviour
                 CurrMeleeCD = meleeCD;
             }
 
-        }else if(comboNo == 4 && meleeTimer < meleeMaxInputTimer)
+        }
+        else if (comboNo == 4 && meleeTimer < meleeMaxInputTimer)
         {
             if (isFourthMelee == true)
             {
@@ -617,12 +625,12 @@ public class Scr_PlayerCtrl : MonoBehaviour
             }
         }
 
-       
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Obstacle")
+        if (collision.gameObject.tag == "Obstacle")
         {
             //stop movement
             isHittingWall = true;
@@ -631,7 +639,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Obstacle")
+        if (collision.gameObject.tag == "Obstacle")
         {
             //resume movement
             isHittingWall = false;
@@ -643,21 +651,21 @@ public class Scr_PlayerCtrl : MonoBehaviour
         meleeDmg += 3;
 
         maxHp += 10;
-        if(hitpoints < maxHp)
+        if (hitpoints < maxHp)
         {
             hitpoints += 30;
 
-            if(hitpoints > maxHp)
+            if (hitpoints > maxHp)
             {
                 hitpoints = maxHp;
             }
 
             OnHealthChanged?.Invoke(hitpoints, maxHp);
         }
-        
+
 
         //improve skills
-        
+
     }
 
     public void resetVelocity()
@@ -669,7 +677,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
     public void applyAttack()
     {
-        attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg*BuffMultiPlier*CalculateBuffMultiplier());
+        attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg * BuffMultiPlier * CalculateBuffMultiplier());
     }
 
     public void InvokeAttack(float time)
@@ -688,7 +696,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
     public void EndMoonSlicingEntryPoint()
     {
-        Invoke(nameof(EndMoonSlicing),0.4f);
+        Invoke(nameof(EndMoonSlicing), 0.4f);
     }
     public void EndMoonSlicing()
     {
@@ -696,7 +704,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
         meleeDmg = basicMeleeDmg;
     }
 
-    public IEnumerator RapidHitComboAttack(int comboCount,float comboDmg,float powerAttackDmg, float knockBackVal, bool isMaxLvl)
+    public IEnumerator RapidHitComboAttack(int comboCount, float comboDmg, float powerAttackDmg, float knockBackVal, bool isMaxLvl)
     {
         float timePerAttack = 1f / comboCount; // calculate time per attack
         Debug.Log("time between rapid hit: " + timePerAttack + " s");
@@ -707,13 +715,13 @@ public class Scr_PlayerCtrl : MonoBehaviour
             Debug.Log("rapid " + i + " hit");
             yield return new WaitForSeconds(timePerAttack); // wait for timePerAttack seconds
         }
-       /*
-        if (isMaxLvl)
-        {
-            yield return new WaitForSeconds(2.5f); // wait for 2.5 seconds
-            PoweredKnockHit(powerAttackDmg, knockBackVal);// execute PoweredKnockBack 
-        }
-       */
+        /*
+         if (isMaxLvl)
+         {
+             yield return new WaitForSeconds(2.5f); // wait for 2.5 seconds
+             PoweredKnockHit(powerAttackDmg, knockBackVal);// execute PoweredKnockBack 
+         }
+        */
 
 
     }
@@ -734,7 +742,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
         return (isMoonSlicing || isRapidHiting);
     }
 
-    public void PoweredKnockHit(float dmg , float forceval)
+    public void PoweredKnockHit(float dmg, float forceval)
     {
         attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRangeWithForce(dmg, forceval);
     }
@@ -799,7 +807,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public bool CanGuard()
     {
         return isGrounded && !isAttacking;
-    
+
     }
 
     public StateMachine getStateMachine()
@@ -829,11 +837,22 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public void RestoreHp(float hpIncrement)
     {
         hitpoints += hpIncrement;
-        if(hitpoints > maxHp)
+        if (hitpoints > maxHp)
         {
             hitpoints = maxHp;
         }
         OnHealthChanged?.Invoke(hitpoints, maxHp);
     }
+
+    void CheckForStuckInPlatform()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 1f, 1 << LayerMask.NameToLayer("OneWayPlatform"));
+        if (hit.collider != null)
+        {
+            
+            transform.position = new Vector3(transform.position.x, hit.collider.bounds.max.y + 0.6f, transform.position.z);
+        }
+    }
+
 }
 

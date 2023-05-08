@@ -13,7 +13,7 @@ public class Scr_JavelinBarrageObj : MonoBehaviour
     void Start()
     {
         audioSrc = GetComponent<AudioSource>();
-        FireJavelin();
+        //FireJavelin();
     }
 
     // Update is called once per frame

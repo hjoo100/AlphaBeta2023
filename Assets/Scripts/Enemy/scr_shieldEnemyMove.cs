@@ -208,7 +208,7 @@ public class scr_shieldEnemyMove : MonoBehaviour
         Debug.DrawLine(castPos.position, targetPos, Color.cyan);
 
 
-        if (Physics2D.Linecast(castPos.position, targetPos, 1 << LayerMask.NameToLayer("Ground")))
+        if (Physics2D.Linecast(castPos.position, targetPos, 1 << LayerMask.NameToLayer("Ground") | 1 << LayerMask.NameToLayer("OneWayPlatform")))
         {
             val = false;
         }

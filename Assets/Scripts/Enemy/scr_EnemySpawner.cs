@@ -5,13 +5,14 @@ using UnityEngine;
 public class scr_EnemySpawner : MonoBehaviour
 {
     public List<GameObject> enemyPrefabs;
-    public int spawnAmount;
+    public int spawnAmount = 10;
     public float spawnInterval;
     public scr_camerafollow cameraFollowScript;
     public List<GameObject> exitObjects;
     public Vector2 cameraLockedMinPos, cameraLockedMaxPos;
 
     private int enemySpawned = 0;
+    private bool stopSpawning = false; 
 
     private void Start()
     {
@@ -19,26 +20,27 @@ public class scr_EnemySpawner : MonoBehaviour
     }
     public void StartSpawning()
     {
+        Debug.Log("start spawing!");
         StartCoroutine(SpawnEnemies());
+        LockCameraAndExits();
     }
 
     private IEnumerator SpawnEnemies()
     {
-        while (enemySpawned < spawnAmount)
+        while (enemySpawned < spawnAmount) 
         {
             // Randomly choose a prefab from the list
             GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
 
-            GameObject spawnedMonster = Instantiate(enemyPrefab,transform.position,Quaternion.identity);
+            GameObject spawnedMonster = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
             scr_SpawnedEnemy spawnedEnemyScript = spawnedMonster.AddComponent<scr_SpawnedEnemy>();
             spawnedEnemyScript.spawner = this;
 
             enemySpawned++;
+
             yield return new WaitForSeconds(spawnInterval);
         }
     }
-
-    
 
     public void EnemyDestroyed()
     {
@@ -46,7 +48,7 @@ public class scr_EnemySpawner : MonoBehaviour
 
         if (enemySpawned <= 0)
         {
-            // Unlock the camera and exits
+            UnlockCameraAndExits();
         }
     }
 
@@ -57,7 +59,8 @@ public class scr_EnemySpawner : MonoBehaviour
 
         foreach (GameObject exit in exitObjects)
         {
-            exit.SetActive(false);
+            exit.SetActive(true);
+            
         }
     }
 
@@ -67,7 +70,7 @@ public class scr_EnemySpawner : MonoBehaviour
 
         foreach (GameObject exit in exitObjects)
         {
-            exit.SetActive(true);
+            exit.SetActive(false);
         }
     }
 }
