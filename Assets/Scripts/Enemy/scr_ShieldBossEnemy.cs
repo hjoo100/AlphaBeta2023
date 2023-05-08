@@ -60,7 +60,15 @@ public class scr_ShieldBossEnemy : MonoBehaviour
 
     private Scr_PauseManager pauseManager;
 
+    
+    public bool isJumpSlashing = false;
+
+
     public EnemyJavelinBarrageSkill JavelinBarrageSkillObj;
+
+    [SerializeField]
+    public bool isUsingBarrageSkill = false;
+
 
     private void Awake()
     {
@@ -129,8 +137,12 @@ public class scr_ShieldBossEnemy : MonoBehaviour
             return; // Do not attempt to attack if the cooldown has not passed
         }
 
+        if (isJumpSlashing)
+        {
+            return; // Do not attempt to attack if the enemy is performing a jumpslash
+        }
 
-        if (!isAttacked && !isDead && !moveSys.isKnockedBack)
+        if (!isAttacked && !isDead && !moveSys.isKnockedBack && !isUsingBarrageSkill)
         {
             // attack player
             if (player != null)
@@ -144,7 +156,7 @@ public class scr_ShieldBossEnemy : MonoBehaviour
                     int randInt = Random.Range(1, 3);
                     if (randInt == 1)
                     {
-                        enemyAnimator.Play("Attacking");
+                        enemyAnimator.Play("Attack");
                         isAttacked = true;
                         attacking = true;
                         enemyAudio.clip = punchAudio;
@@ -159,13 +171,14 @@ public class scr_ShieldBossEnemy : MonoBehaviour
                     }
                     else
                     {
-                        enemyAnimator.Play("hitGroundAttack");
+                        enemyAnimator.Play("Attack");
                         isAttacked = true;
                         attacking = true;
                         enemyAudio.clip = punchAudio;
+                        //cancel defence state if attacking
                         cancelDefence();
                         Invoke(nameof(playAudio), 0.92f);
-                        Invoke(nameof(hitGroundAttack), 0.92f);
+                        Invoke(nameof(attackPlayer), 0.92f);
                         Invoke(nameof(stopAttackingAnim), 1.01f);
                         // Invoke(nameof(cancelDefence), 1.02f);
                         Invoke(nameof(ResetAttack), attackCD);
@@ -440,5 +453,35 @@ public class scr_ShieldBossEnemy : MonoBehaviour
         JavelinBarrageSkillObj.BindLaunchers();
         
         NewSkillHolder.state = scr_EnemySkillHolder.SkillState.cooldown;
+    }
+
+    public void PlayJumpSlashAnimation()
+    {
+        if (!isJumpSlashing && !attacking && !isUsingBarrageSkill)
+        {
+            isJumpSlashing = true;
+            enemyAnimator.Play("JumpSlash");
+            Invoke(nameof(ResetJumpSlash), 1.5f);
+        }
+    }
+
+    private void ResetJumpSlash()
+    {
+        isJumpSlashing = false;
+    }
+
+    public void JavelinBarrageSkillAnimation()
+    {
+        if (!isUsingBarrageSkill)
+        {
+            isUsingBarrageSkill = true;
+            enemyAnimator.Play("BarrageSkill");
+            Invoke(nameof(ResetBarrageSkill), 1f);
+        }
+    }
+
+    private void ResetBarrageSkill()
+    {
+        isUsingBarrageSkill = false;
     }
 }

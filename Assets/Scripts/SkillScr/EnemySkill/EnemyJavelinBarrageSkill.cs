@@ -44,6 +44,8 @@ public class EnemyJavelinBarrageSkill : Skill
         JavelinLauncher1.GetComponent<Scr_JavelinBarrageObj>().FireJavelin();
 
         JavelinLauncher2.GetComponent<Scr_JavelinBarrageObj>().FireJavelin();
+
+        obj.GetComponent<scr_ShieldBossEnemy>().JavelinBarrageSkillAnimation();
     }
 
     public override void StartSkillCD(GameObject obj)

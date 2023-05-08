@@ -47,6 +47,7 @@ public class EnemySlamSkill : Skill
         IsSkillActive = true;
 
         obj.GetComponent<scr_ShieldBossEnemy>().lastSlamTime = Time.time;
+        obj.GetComponent<scr_ShieldBossEnemy>().PlayJumpSlashAnimation();
     }
 
     public override void StartSkillCD(GameObject obj)

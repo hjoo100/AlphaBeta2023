@@ -191,9 +191,14 @@ public class scr_enemyBase : MonoBehaviour
         {
             gameObject.GetComponent<scr_shieldEnemy>().CancelAttack();
         }
-       
-        
-        if(hitpoints <=0)
+
+        if (theEnemyType == enemyType.ranged)
+        {
+            gameObject.GetComponent<scr_movingRangedEnemy>().CancelAttack();
+        }
+
+
+        if (hitpoints <=0)
         {
             hitpoints = 0;
             GameObject playerArrow = GameObject.FindGameObjectWithTag("PlayerAttackArrow");
@@ -215,10 +220,10 @@ public class scr_enemyBase : MonoBehaviour
             {
                 enemyAudioSrc.clip = fallAudio;
                 enemyAudioSrc.Play();
-                thisEnemy.GetComponent<scr_turretEnemy>().deadFunc();
+                thisEnemy.GetComponent<scr_turretEnemy>().DeadFunc();
                 
             }
-            Invoke(nameof(deadFunc), 0.25f);
+            
 
             if(theEnemyType == enemyType.UnstoppableBoss)
             {
@@ -230,11 +235,13 @@ public class scr_enemyBase : MonoBehaviour
 
             if (theEnemyType == enemyType.ranged)
             {
-                animator.Play("Die");
+                animator.Play("WoodBowManDie");
                 enemyAudioSrc.clip = fallAudio;
                 enemyAudioSrc.Play();
                 thisEnemy.GetComponent<scr_movingRangedEnemy>().DeadFunc();
             }
+
+            Invoke(nameof(deadFunc), 0.25f);
             // Destroy(thisEnemy);
         }
         else
@@ -285,14 +292,20 @@ public class scr_enemyBase : MonoBehaviour
 
 
                 Invoke(nameof(disableHitParticle), 0.45f);
-            }
-            if (theEnemyType == enemyType.melee)
-            {
-                gameObject.GetComponent<scr_MeleeEnemy>().CancelAttack();
-            }
+        }
+
+        if (theEnemyType == enemyType.melee)
+        {
+            gameObject.GetComponent<scr_MeleeEnemy>().CancelAttack();
+        }
         if (theEnemyType == enemyType.shielded)
         {
             gameObject.GetComponent<scr_shieldEnemy>().CancelAttack();
+        }
+
+        if(theEnemyType == enemyType.ranged)
+        {
+            gameObject.GetComponent<scr_movingRangedEnemy>().CancelAttack();
         }
 
 
@@ -318,10 +331,10 @@ public class scr_enemyBase : MonoBehaviour
                 {
                     enemyAudioSrc.clip = fallAudio;
                     enemyAudioSrc.Play();
-                    thisEnemy.GetComponent<scr_turretEnemy>().deadFunc();
+                    thisEnemy.GetComponent<scr_turretEnemy>().DeadFunc();
 
                 }
-                Invoke(nameof(deadFunc), 0.25f);
+                
 
                 if (theEnemyType == enemyType.UnstoppableBoss)
                 {
@@ -333,13 +346,15 @@ public class scr_enemyBase : MonoBehaviour
 
                 if (theEnemyType == enemyType.ranged)
                 {
-                    animator.Play("Die");
+                    animator.Play("WoodBowManDie");
                     enemyAudioSrc.clip = fallAudio;
                     enemyAudioSrc.Play();
                     thisEnemy.GetComponent<scr_movingRangedEnemy>().DeadFunc();
                 }
-                // Destroy(thisEnemy);
-            }
+
+            Invoke(nameof(deadFunc), 0.25f);
+            // Destroy(thisEnemy);
+        }
             else
             {
                 if (theEnemyType == enemyType.melee)

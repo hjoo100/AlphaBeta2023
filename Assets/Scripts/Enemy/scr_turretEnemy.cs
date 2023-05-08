@@ -86,7 +86,7 @@ public class scr_turretEnemy : MonoBehaviour
     {
         turretAnimator.Play("Idle");
     }
-    public void deadFunc()
+    public void DeadFunc()
     {
         isdead = true;
     }
