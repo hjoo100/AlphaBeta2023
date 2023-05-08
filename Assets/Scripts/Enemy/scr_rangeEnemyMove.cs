@@ -33,6 +33,13 @@ public class scr_rangeEnemyMove : MonoBehaviour
     bool alerted = false;
 
     float baseCastDist = 0.6f;
+
+    [SerializeField]
+    private LayerMask groundAndOneWayPlatformMask;
+
+
+    public Animator animator;
+
     void Awake()
     {
         pauseManager = FindObjectOfType<Scr_PauseManager>();
@@ -55,6 +62,11 @@ public class scr_rangeEnemyMove : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (enemyBase.isDead || gameObject.GetComponent<scr_movingRangedEnemy>().canAttack == false)
+        {
+            return;
+        }
+
         if (pauseManager.IsPaused())
         {
             return;
@@ -67,6 +79,7 @@ public class scr_rangeEnemyMove : MonoBehaviour
 
         if (Player != null && !GetComponent<scr_movingRangedEnemy>().IsAttacking())
         {
+            
             float distance = Vector2.Distance(transform.position, Player.transform.position);
             if (distance < enemyBase.detectDist || alerted)
             {
@@ -92,6 +105,8 @@ public class scr_rangeEnemyMove : MonoBehaviour
                 {
                     changeFaceDir(LEFT);
                 }
+
+                animator.Play("WoodBowManMove");
             }
             else
             {
@@ -115,14 +130,17 @@ public class scr_rangeEnemyMove : MonoBehaviour
                     else if (facingDir == RIGHT)
                     {
                         changeFaceDir(LEFT);
-                        moveDirection = -1; // Change moveDirection to match the new facing direction
+                        moveDirection = -1; 
                     }
                 }
+
+                animator.Play("WoodBowManMove");
             }
         }
         else
         {
             enemyRB.velocity = Vector2.zero;
+            
         }
 
     }
@@ -134,6 +152,8 @@ public class scr_rangeEnemyMove : MonoBehaviour
     public void setDead(bool dead)
     {
         isDead = dead;
+
+        
     }
 
     public void setInAir(bool inAir)
@@ -187,7 +207,8 @@ public class scr_rangeEnemyMove : MonoBehaviour
         Debug.DrawLine(castPos.position, targetPos, Color.green);
         Debug.DrawLine(castPosHead.position, targetPos, Color.green);
 
-        if (Physics2D.Linecast(castPos.position, targetPos, 1 << LayerMask.NameToLayer("Wall")) || Physics2D.Linecast(castPosHead.position, targetPosHead, 1 << LayerMask.NameToLayer("Wall")))
+        // Use groundAndOneWayPlatformMask in the Linecast method
+        if (Physics2D.Linecast(castPos.position, targetPos, groundAndOneWayPlatformMask) || Physics2D.Linecast(castPosHead.position, targetPosHead, groundAndOneWayPlatformMask))
         {
             val = true;
         }
@@ -199,12 +220,11 @@ public class scr_rangeEnemyMove : MonoBehaviour
         return val;
     }
 
+
     bool isNearEdge()
     {
         bool val = true;
         float castDist = baseCastDist;
-        //define cast dist for L and R
-
 
         //determine target destination based on cast distance
         Vector3 targetPos = castPos.position;
@@ -212,8 +232,8 @@ public class scr_rangeEnemyMove : MonoBehaviour
 
         Debug.DrawLine(castPos.position, targetPos, Color.cyan);
 
-
-        if (Physics2D.Linecast(castPos.position, targetPos, 1 << LayerMask.NameToLayer("Ground")))
+        // Use groundAndOneWayPlatformMask in the Linecast method
+        if (Physics2D.Linecast(castPos.position, targetPos, groundAndOneWayPlatformMask))
         {
             val = false;
         }

@@ -24,7 +24,7 @@ public class scr_movingRangedEnemy : MonoBehaviour
     [SerializeField]
     private GameObject player;
     [SerializeField]
-    private Animator turretAnimator;
+    private Animator rangedEnemyAnimator;
     [SerializeField]
     private AudioSource audioSrc;
     [SerializeField]
@@ -36,6 +36,10 @@ public class scr_movingRangedEnemy : MonoBehaviour
     GameObject FireObj;
     //for multiple arrows
     public float arrowAngleOffset = 15f;
+
+
+
+    public bool canAttack = true;
     void Start()
     {
         moveSys = GetComponent<scr_rangeEnemyMove>();
@@ -59,7 +63,7 @@ public class scr_movingRangedEnemy : MonoBehaviour
             return;
         }
 
-        if (!isDead)
+        if (!isDead && canAttack)
         {
             ShootingLogic();
         }
@@ -101,7 +105,7 @@ public class scr_movingRangedEnemy : MonoBehaviour
 
     void bowFireFunc()
     {
-        turretAnimator.Play("Firing");
+        rangedEnemyAnimator.Play("WoodBowManShoot");
         Invoke(nameof(FireBullet), 0.15f);
         Invoke(nameof(ResetAnimation), 0.3f);
     }
@@ -143,21 +147,38 @@ public class scr_movingRangedEnemy : MonoBehaviour
 
     private void ResetAnimation()
     {
-        turretAnimator.Play("Idle");
+        rangedEnemyAnimator.Play("WoodBowManIdle");
     }
 
     public void DeadFunc()
     {
         isDead = true;
+
+        if (isDead)
+        {
+           rangedEnemyAnimator.Play("WoodBowManDie");
+        }
     }
 
     public bool IsAttacking()
     {
-        return turretAnimator.GetCurrentAnimatorStateInfo(0).IsName("Firing");
+        return rangedEnemyAnimator.GetCurrentAnimatorStateInfo(0).IsName("WoodBowManShoot");
     }
 
     public float GetHitpoints()
     {
         return hitpoints;
+    }
+
+    public void CancelAttack()
+    {
+        canAttack = false;
+        rangedEnemyAnimator.Play("WoodBowManBeaten");
+        Invoke(nameof(ResumeAttack), 2f); 
+    }
+
+    private void ResumeAttack()
+    {
+        canAttack = true;
     }
 }

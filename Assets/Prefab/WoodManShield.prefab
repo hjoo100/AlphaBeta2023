@@ -211,7 +211,7 @@ MonoBehaviour:
   airCheckRadius: 0.6
   GroundLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 16640
   playerobj: {fileID: 0}
 --- !u!58 &6699918941737281208
 CircleCollider2D:

@@ -454,7 +454,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8f498842d7a69e74caf9e5926342ad86, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f42a62ed35433c146ab61c104f125e60, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -475,7 +475,7 @@ Animator:
   m_GameObject: {fileID: 4934546415462894985}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2e8fe5fc677b01149a9fdc6bb924dfad, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3ee0a380c472e8b48b67e6a89f38b683, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5449,7 +5449,7 @@ MonoBehaviour:
   shieldEnabled: 0
   detectDist: 5
   theEnemyType: 6
-  exp: 40
+  exp: 300
 --- !u!114 &4774725352987983214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5488,8 +5488,8 @@ MonoBehaviour:
   isAwake: 0
   enemyAudio: {fileID: 0}
   punchAudio: {fileID: 8300000, guid: 3a8c60122554b5242b8175f28c25c107, type: 3}
-  shieldVal: 500
-  maxShieldVal: 500
+  shieldVal: 1000
+  maxShieldVal: 1000
   slamSkill: {fileID: 11400000, guid: 960f449e45ba3734eb405e6e84a4705a, type: 2}
   lastSlamTime: 0
   isShieldBroken: 0

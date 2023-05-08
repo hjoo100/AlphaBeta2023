@@ -75,16 +75,17 @@ public class scr_ShieldBossMove : MonoBehaviour
 
             if ((enemy.getInairBool() == false) && (enemy.getAttackedBool() == false) && isKnockedBack == false)
             {
-                if (rb.velocity.x != 0f)
+                // Check if the enemy is not performing an attack
+                if (!enemy.getAttackingBool() && !enemy.isJumpSlashing)
                 {
-                    if (enemy.getAttackingBool() == false)
-                        animator.Play("Walk");
-
-                }
-                else
-                {
-                    if (enemy.getAttackingBool() == false)
+                    if (rb.velocity.x != 0f)
+                    {
+                        animator.Play("Moving");
+                    }
+                    else
+                    {
                         animator.Play("Idle");
+                    }
                 }
             }
             if (isKnockedBack)

@@ -163,13 +163,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de9781f9982311d48a40c28986046f0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpd: 5
+  moveSpd: 1.5
   isAwake: 1
   isDead: 0
   isinAir: 0
   moveToPlayer: 0
   castPos: {fileID: 5105192194451188345}
   castPosHead: {fileID: 4593043999313168061}
+  groundAndOneWayPlatformMask:
+    serializedVersion: 2
+    m_Bits: 16640
+  animator: {fileID: 9003919812004031562}
 --- !u!114 &6834247593924784272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyBase: {fileID: 0}
   moveSys: {fileID: 6834247593924784273}
-  moveSpeed: 4
+  moveSpeed: 1.5
   hitpoints: 80
   maxhitpoints: 80
   dmg: 20
@@ -193,14 +197,15 @@ MonoBehaviour:
   bullet: {fileID: 2127047328342548146, guid: 05f48b6b8a43b7b4695886bcd0a50879, type: 3}
   bulletPos: {fileID: 1767034160987789700}
   timer: 0
-  maxTime: 1.2
+  maxTime: 3
   isDead: 0
   player: {fileID: 0}
-  turretAnimator: {fileID: 1767034161852763051}
+  rangedEnemyAnimator: {fileID: 9003919812004031562}
   audioSrc: {fileID: 3469714155094660405}
   fireSound: {fileID: 8300000, guid: 53667ad6a5357734ca46abaf98dd4432, type: 3}
   FireObj: {fileID: 1767034161852763054}
   arrowAngleOffset: 15
+  canAttack: 1
 --- !u!58 &6834247593924784271
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -408,7 +413,6 @@ GameObject:
   - component: {fileID: 1767034161852763050}
   - component: {fileID: 1767034161852763049}
   - component: {fileID: 1767034161852763048}
-  - component: {fileID: 1767034161852763051}
   - component: {fileID: 3469714155094660405}
   m_Layer: 7
   m_Name: TurretEnemy (1)
@@ -424,15 +428,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1767034161852763054}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.66, y: 0.42, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7011241, w: 0.7130393}
+  m_LocalPosition: {x: 0.464, y: 0.455, z: 0}
+  m_LocalScale: {x: 0.22044902, y: 0.22044902, z: 0.73483}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1767034160987789700}
   m_Father: {fileID: 1703409621561572174}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 89.035}
 --- !u!212 &1767034161852763049
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -440,7 +444,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1767034161852763054}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -474,7 +478,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6cd280ae949ec6c4d82493412d37c8e5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 59c64ca5b43ca8b438097374cf272015, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -501,27 +505,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.75
---- !u!95 &1767034161852763051
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1767034161852763054}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 69875f33f74b90c49a891319982a898e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!82 &3469714155094660405
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5535,7 +5518,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8f498842d7a69e74caf9e5926342ad86, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 59c64ca5b43ca8b438097374cf272015, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5556,7 +5539,7 @@ Animator:
   m_GameObject: {fileID: 4081249466241496310}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2e8fe5fc677b01149a9fdc6bb924dfad, type: 2}
+  m_Controller: {fileID: 9100000, guid: 949b0fec5e7a6f4498ef8f7bd3dfc922, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
