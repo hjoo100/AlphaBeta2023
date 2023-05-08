@@ -23,6 +23,12 @@ public class SkillSelectionManager : MonoBehaviour
 
     [SerializeField]
     private int selectedLevel = 1;
+
+    public Image levelPreviewImage;
+
+    
+    public Sprite[] levelPreviewSprites;
+
     private void Start()
     {
         selectedToggles = new HashSet<Toggle>();
@@ -115,8 +121,11 @@ public class SkillSelectionManager : MonoBehaviour
         if (levelNumber >= 1 && levelNumber <= 3)
         {
             selectedLevel = levelNumber;
+
+            
+            levelPreviewImage.sprite = levelPreviewSprites[levelNumber - 1];
         }
     }
 
-   
+
 }

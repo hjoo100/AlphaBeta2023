@@ -4691,7 +4691,7 @@ RectTransform:
   m_GameObject: {fileID: 1525825985}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.354976, y: 3.354976, z: 3.354976}
+  m_LocalScale: {x: 5.24215, y: 2.6840143, z: 3.354976}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1685452651}
@@ -5838,6 +5838,11 @@ MonoBehaviour:
   SkillsChosenList: []
   SkillsPage: {fileID: 1935959749}
   selectedLevel: 1
+  levelPreviewImage: {fileID: 1525825987}
+  levelPreviewSprites:
+  - {fileID: 21300000, guid: cba51ba3b8dc63f438163cbbc99793b6, type: 3}
+  - {fileID: 21300000, guid: 2fb1688ce51532d45b5fa39812af4874, type: 3}
+  - {fileID: 21300000, guid: a431c19876798b64898b2d3be447fcf3, type: 3}
 --- !u!1 &1944043977
 GameObject:
   m_ObjectHideFlags: 0
