@@ -22,7 +22,7 @@ public class SkillSelectionManager : MonoBehaviour
     private HashSet<Toggle> selectedToggles;
 
     [SerializeField]
-    private int selectedLevel = 1;
+    public int selectedLevel = 1;
 
     public Image levelPreviewImage;
 

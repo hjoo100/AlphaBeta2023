@@ -19,6 +19,6 @@ MonoBehaviour:
   cooldownTime: 0
   activeTime: 0
   isUsableSkill: 0
-  skillIcon: {fileID: 21300000, guid: c6444f602f0ebf046bbbf86aad254dbe, type: 3}
+  skillIcon: {fileID: 21300000, guid: 7bf2c1f5688b00845b5ca4987dc10d82, type: 3}
   bonusDamage: 40
   pierceArmorAtMaxLevel: 1

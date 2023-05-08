@@ -5661,7 +5661,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 282101770216328611}
   hpBar: {fileID: 7657427456536661276}
-  hpObj: {fileID: 0}
+  hpObj: {fileID: 7657427456536661276}
   hpMax: 0
   hpCurr: 0
   yOffset: 0

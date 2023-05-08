@@ -122,7 +122,7 @@ public class scr_enemyBase : MonoBehaviour
     void UpdateSortingOrder()
     {
         float yPos = transform.position.y;
-        enemySprRenderer.sortingOrder = (int)(yPos * -300);
+        enemySprRenderer.sortingOrder = (int)(yPos * -4);
     }
     public void receiveDmg(float dmg)
     {

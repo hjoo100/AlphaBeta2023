@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+//using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MainMenuCtrl : MonoBehaviour
@@ -42,7 +43,8 @@ public class MainMenuCtrl : MonoBehaviour
 
     public void RougeStart()
     {
-        SceneManager.LoadScene(1);
+        SkillSelectionManager skillManager = GameObject.FindObjectOfType<SkillSelectionManager>();
+        SceneManager.LoadScene(skillManager.selectedLevel);
     }
 
     public void ExitGame()

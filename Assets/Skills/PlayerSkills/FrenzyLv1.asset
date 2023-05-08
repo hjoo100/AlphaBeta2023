@@ -19,6 +19,6 @@ MonoBehaviour:
   cooldownTime: 0
   activeTime: 0
   isUsableSkill: 0
-  skillIcon: {fileID: 21300000, guid: e06f740563f557847877039784139483, type: 3}
+  skillIcon: {fileID: 21300000, guid: 328fdf24b523c76409616fddccf6fb56, type: 3}
   healthRecoveryAmount: 35
   cooldownRecoveryAmount: 0
