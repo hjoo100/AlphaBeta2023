@@ -152,6 +152,14 @@ public class scr_playerLevel : MonoBehaviour
 
         // Count the number of empty skill holders
         var playerSkillHolders = gameObject.GetComponents<scr_SkillHolder>();
+
+        if (playerSkillHolders.All(s => s.GetCurrentSkill() != null && s.GetCurrentSkill().Level == 2))
+        {
+            // All skills are at level 2, do not show the skill selection menu
+            yield break;
+        }
+
+
         int emptySkillHolders = playerSkillHolders.Count(s => s.GetCurrentSkill() == null);
 
         // Generate random skills based on the number of empty skill holders
