@@ -16454,6 +16454,7 @@ MonoBehaviour:
   isShieldBroken: 0
   isJumpSlashing: 0
   JavelinBarrageSkillObj: {fileID: 0}
+  isUsingBarrageSkill: 0
 --- !u!1001 &8071724402160163819
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -506,6 +506,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
         }
         hitpoints -= dmg;
         OnHealthChanged?.Invoke(hitpoints, maxHp);
+        FindObjectOfType<scr_camerafollow>().ShakeCamera();
         if (hitpoints < 0)
         {
             isDead = true;
