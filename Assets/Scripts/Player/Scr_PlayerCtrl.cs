@@ -75,7 +75,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
     private bool isMoonSlicing = false, isRapidHiting = false;
 
     [SerializeField]
-    private bool isImmune = false;
+    public bool isImmune = false;
 
     //Buff var
     [SerializeField]
@@ -102,6 +102,9 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public event HealthChangedDelegate OnHealthChanged;
 
     public bool cancelGroundCheck = false;
+
+    public bool isUsingSkill = false;
+
 
     public void Awake()
     {
@@ -852,6 +855,17 @@ public class Scr_PlayerCtrl : MonoBehaviour
             
             transform.position = new Vector3(transform.position.x, hit.collider.bounds.max.y + 0.6f, transform.position.z);
         }
+    }
+
+    public void StartSkill()
+    {
+        isUsingSkill = true;
+    }
+
+    public void EndSkill()
+    {
+        isUsingSkill = false;
+
     }
 
 }

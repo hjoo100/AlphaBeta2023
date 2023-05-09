@@ -220,6 +220,9 @@ public class scr_PlayerSkillManager : MonoBehaviour
 
     public Skill GetSkillByIdAndLevel(int skillId, int level)
     {
+        System.Diagnostics.StackTrace trace = new System.Diagnostics.StackTrace();
+        Debug.Log("GetSkillByIdAndLevel called from: " + trace.ToString());
+
         foreach (Skill skill in AllSkills)
         {
            

@@ -25,7 +25,12 @@ public class RapidHitSkill : Skill
 
     public override void ActivateSkill(GameObject playerObj)
     {
-       if(comboStarted == false)
+        if (playerObj.GetComponent<Scr_PlayerCtrl>().isImmune)
+        {
+            return;
+        }
+
+        if (comboStarted == false)
         {
             comboStarted = true;
             playerObj.GetComponent<Scr_PlayerCtrl>().StartRapidHitCombo();

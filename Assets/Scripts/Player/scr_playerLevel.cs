@@ -171,6 +171,10 @@ public class scr_playerLevel : MonoBehaviour
 
         // Show the skill selection UI to the player and wait for their input
         SkillUpgradeMenu skillUpgradeMenu = FindObjectOfType<SkillUpgradeMenu>();
+        if(skillUpgradeMenu == null)
+        {
+            Debug.Log("skillupgrademenu missing!!");
+        }
         int? chosenSkillIndex = null;
         skillUpgradeMenu.Initialize(skillsToChooseFrom, skillIndex =>
         {
@@ -179,8 +183,7 @@ public class scr_playerLevel : MonoBehaviour
 
         // Unsubscribe scr_PlayerSkillManager.HandleSelectedSkill from the OnSkillSelected event
         skillUpgradeMenu.OnSkillSelected -= skillManager.HandleSelectedSkill;
-
-        FindObjectOfType<SkillUpgradeMenu>().UpdateSkillSelectionUI();
+        skillUpgradeMenu.UpdateSkillSelectionUI();
 
         skillUpgradeMenu.ShowMenu();
 
@@ -219,7 +222,7 @@ public class scr_playerLevel : MonoBehaviour
                     SkillGainObj.SetActive(true);
                     SkillGainObj.GetComponent<SpriteRenderer>().sprite = SkillGainImg;
                     SkillNameObj.SetActive(true);
-                    SkillNameObj.GetComponent<SpriteRenderer>().sprite = SliceWaveUIimg; // Replace this with the chosen skill's UI image
+                    SkillNameObj.GetComponent<SpriteRenderer>().sprite = SliceWaveUIimg; 
                     skillGainObjActive = true;
                     Invoke(nameof(disableSkillGainImg), 2f);
                 }
@@ -232,7 +235,7 @@ public class scr_playerLevel : MonoBehaviour
 
     private void OnSkillButtonClicked(int skillIndex)
     {
-        // add code here for something happen after player choose skill
+        
         Debug.Log("Skill button clicked with index: " + skillIndex);
     }
 }

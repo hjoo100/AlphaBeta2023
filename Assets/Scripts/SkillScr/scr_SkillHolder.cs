@@ -78,6 +78,11 @@ public class scr_SkillHolder : MonoBehaviour
                     }
 
                     //use skill
+                    if(gameObject.GetComponent<Scr_PlayerCtrl>().isImmune)
+                    {
+                        return;
+                        //no skill allowed in immune state
+                    }
                     currentSkill.ActivateSkill(gameObject);
                     state = SkillState.active;
                     activeTime = currentSkill.activeTime;

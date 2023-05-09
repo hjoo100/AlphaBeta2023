@@ -35,6 +35,15 @@ public class SkillUpgradeMenu : MonoBehaviour
 
     public void Initialize(List<Skill> skillsToChooseFrom, Action<int> onSkillChosen)
     {
+        if(skillsToChooseFrom == null)
+        {
+            Debug.Log("skills to choose is null!");
+        }
+
+        if(onSkillChosen == null)
+        {
+            Debug.Log("onskillchosen is null!");
+        }
         this.skillsToChooseFrom = skillsToChooseFrom;
         this.onSkillChosen = onSkillChosen;
 

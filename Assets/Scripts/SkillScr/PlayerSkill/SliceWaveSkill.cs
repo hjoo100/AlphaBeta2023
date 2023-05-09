@@ -20,6 +20,10 @@ public class SliceWaveSkill : Skill
 
     public override void ActivateSkill(GameObject player)
     {
+        if (player.GetComponent<Scr_PlayerCtrl>().isImmune)
+        {
+            return;
+        }
         Scr_PlayerCtrl playerScr = player.GetComponent<Scr_PlayerCtrl>();
         AttackPos = player.transform.Find("Arrow");
 

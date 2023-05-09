@@ -18,6 +18,10 @@ public class GuardSkill : Skill
 
     public override void ActivateSkill(GameObject playerObj)
     {
+        if (playerObj.GetComponent<Scr_PlayerCtrl>().isImmune)
+        {
+            return;
+        }
         _playerCtrl = playerObj.GetComponent<Scr_PlayerCtrl>();
 
         if (_playerCtrl.CanGuard())

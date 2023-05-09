@@ -20,7 +20,10 @@ public class MoonSliceSkill : Skill
 
     public override void ActivateSkill(GameObject player)
     {
-
+        if (player.GetComponent<Scr_PlayerCtrl>().isImmune)
+        {
+            return;
+        }
         if (sliceStarted == false)
         {
             sliceStarted = true;
