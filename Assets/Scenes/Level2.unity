@@ -4882,6 +4882,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WoodManBoss (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 282101770216328610, guid: 3c79d0750c109914f8319680f34ff908, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 282101770216328615, guid: 3c79d0750c109914f8319680f34ff908, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -13468,6 +13472,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WoodManBoss (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 282101770216328610, guid: 3c79d0750c109914f8319680f34ff908, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 282101770216328615, guid: 3c79d0750c109914f8319680f34ff908, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -17028,6 +17036,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WoodManBoss
       objectReference: {fileID: 0}
+    - target: {fileID: 282101770216328610, guid: 3c79d0750c109914f8319680f34ff908, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 282101770216328615, guid: 3c79d0750c109914f8319680f34ff908, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -17756,7 +17768,7 @@ PrefabInstance:
     - target: {fileID: 5750989499382841069, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: currentSkill
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 6e0836439c5dcc14998de819e929016a, type: 2}
     - target: {fileID: 6237839265426032399, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: MaxDistance
       value: 1.7099304
