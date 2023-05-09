@@ -105,6 +105,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
     public bool isUsingSkill = false;
 
+    public bool isChoosingSkill = false;
 
     public void Awake()
     {

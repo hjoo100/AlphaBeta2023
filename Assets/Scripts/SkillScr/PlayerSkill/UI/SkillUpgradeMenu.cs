@@ -62,6 +62,7 @@ public class SkillUpgradeMenu : MonoBehaviour
         menuPanel.SetActive(true);
         //  Time.timeScale = 0; // pause game
         pauseManager.PauseGame();
+        FindObjectOfType<Scr_PlayerCtrl>().isChoosingSkill = true;
         OnMenuVisibilityChanged?.Invoke(true);
     }
 
@@ -70,6 +71,7 @@ public class SkillUpgradeMenu : MonoBehaviour
         menuPanel.SetActive(false);
         //  Time.timeScale = 1; // resume game
         pauseManager.ResumeGame();
+        FindObjectOfType<Scr_PlayerCtrl>().isChoosingSkill = false;
         OnMenuVisibilityChanged?.Invoke(false);
     }
 

@@ -48,10 +48,7 @@ public class scr_GManager : MonoBehaviour
             checkBossFunc();
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            ExitGame();
-        }
+       
 
         if(failed)
         {
