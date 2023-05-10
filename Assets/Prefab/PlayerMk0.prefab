@@ -168,6 +168,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6107447076169596605, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+      propertyPath: playerSprite
+      value: 
+      objectReference: {fileID: 5640592895435695750}
+    - target: {fileID: 6107447076169596605, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
       propertyPath: basicMeleeDmg
       value: 15
       objectReference: {fileID: 0}
@@ -198,3 +202,8 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 8817083002762220604, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+--- !u!212 &5640592895435695750 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7582274117322864772, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+  m_PrefabInstance: {fileID: 2845940135149936130}
+  m_PrefabAsset: {fileID: 0}

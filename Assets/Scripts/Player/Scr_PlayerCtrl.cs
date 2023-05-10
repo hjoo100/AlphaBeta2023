@@ -115,6 +115,8 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
     public bool playerIsOnEnemy = false;
     public CircleCollider2D playerFeetCollider;
+
+    public SpriteRenderer playerSprite;
     public void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -833,11 +835,13 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public void TriggerImmune()
     {
         isImmune = true;
+        ImmuneVisual();
     }
 
     public void StopImmune()
     {
         isImmune = false;
+        RestoreVisual();
     }
 
     public void resumeGroundCheck()
@@ -948,5 +952,15 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
     }
 
+    public void ImmuneVisual()
+    {
+        Color transparentColor = new Color(Color.white.r, Color.white.g, Color.white.b, 0.27f);
+        playerSprite.color = transparentColor;
+    }
+
+    public void RestoreVisual()
+    {
+        playerSprite.color = Color.white;
+    }
 }
 
