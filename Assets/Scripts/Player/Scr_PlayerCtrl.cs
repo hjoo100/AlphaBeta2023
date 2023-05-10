@@ -114,9 +114,12 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public bool isChoosingSkill = false;
 
     public bool playerIsOnEnemy = false;
-    public CircleCollider2D playerFeetCollider;
+    public EdgeCollider2D playerFeetCollider;
 
     public SpriteRenderer playerSprite;
+    //edge collider stuff
+    public int resolution = 20; // the number of points on the arc
+    public float radius = 0.7f; // the radius of the arc
     public void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -135,13 +138,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
         playercolliders = GetComponents<Collider2D>();
 
         CircleCollider2D[] circleCollider2Ds = GetComponents<CircleCollider2D>();
-        foreach(CircleCollider2D circleCollider2D in circleCollider2Ds)
-        {
-            if(circleCollider2D.offset.y < 0)
-            {
-                playerFeetCollider = circleCollider2D;
-            }
-        }
+        playerFeetCollider = GetComponent<EdgeCollider2D>();
        
     }
     // Start is called before the first frame update
@@ -156,7 +153,8 @@ public class Scr_PlayerCtrl : MonoBehaviour
             skillUpgradeMenu.OnMenuVisibilityChanged += HandleMenuVisibilityChanged;
         }
         originalJumpForce = jumpForce;
-        
+
+        CreateArcEdgeCollider();
     }
 
     private void HandleMenuVisibilityChanged(bool menuVisible)
@@ -961,6 +959,28 @@ public class Scr_PlayerCtrl : MonoBehaviour
     public void RestoreVisual()
     {
         playerSprite.color = Color.white;
+    }
+
+    public void CreateArcEdgeCollider()
+    {
+
+        Vector2[] points = new Vector2[resolution + 1];
+
+        float angleDegrees = 25f; // Set angle to the desired value in degrees
+        float angleRadians = angleDegrees * Mathf.PI / 180f; // Convert angle to radians
+
+        float startAngle = -angleRadians / 2f; // Calculate the starting angle
+        float endAngle = angleRadians / 2f; // Calculate the ending angle
+
+        for (int i = 0; i <= resolution; i++)
+        {
+            float t = i / (float)resolution;
+            float angle = Mathf.Lerp(startAngle, endAngle, t) - Mathf.PI / 2f; // Arc from startAngle to endAngle, rotate -90 degrees
+            points[i] = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
+        }
+
+
+        playerFeetCollider.points = points;
     }
 }
 
