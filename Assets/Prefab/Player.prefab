@@ -541,10 +541,12 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  isJumping: 0
   jumpCount: 0
   PlayerSpd: 4
   basicSpd: 4
   jumpForce: 2000
+  reducedJumpForce: 3.2
   cellingCheck: {fileID: 6107447075752454853}
   groundCheck: {fileID: 6107447076082362689}
   GroundObj:
@@ -553,6 +555,7 @@ MonoBehaviour:
   EnemyTag: Enemy
   jumpCheckRaidus: 0.55
   MaxJumpNum: 2
+  maxJumpTime: 2
   isHittingWall: 0
   hitpoints: 100
   maxHp: 100
@@ -596,6 +599,12 @@ MonoBehaviour:
   canDefend: 0
   isDefending: 0
   comboSystem: {fileID: 0}
+  cancelGroundCheck: 0
+  isUsingSkill: 0
+  isChoosingSkill: 0
+  playerIsOnEnemy: 0
+  playerFeetCollider: {fileID: 0}
+  playerSprite: {fileID: 0}
 --- !u!95 &8473302939333591654
 Animator:
   serializedVersion: 5
@@ -996,6 +1005,8 @@ MonoBehaviour:
   comboThreshold: 299
   comboResetTime: 2
   UIShown: 0
+  UIObj: {fileID: 0}
+  TextObj: {fileID: 0}
 --- !u!114 &1139421089144728171
 MonoBehaviour:
   m_ObjectHideFlags: 0

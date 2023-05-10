@@ -161,6 +161,11 @@ public class scr_enemyBase : MonoBehaviour
                 {
                     shieldVal = 0;
                     shieldEnabled = false;
+                    if(theEnemyType == enemyType.shielded)
+                    {
+                        thisEnemy.GetComponent<scr_shieldEnemy>().CancelAttack();
+                        
+                    }
                     return;
                 }
                 return;
