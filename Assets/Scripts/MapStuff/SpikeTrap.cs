@@ -12,10 +12,13 @@ public class SpikeTrap : MonoBehaviour
     private float spikeDelay = 1f;
     [SerializeField]
     private float spikeHeight = 2f;
+    [SerializeField]
+    private float resetDelay = 5f; // delay before trap resets
 
     private Vector3 initialPosition;
     private bool isActivated = false;
     private bool isEnabled = false;
+    private bool playerInside = false; 
 
     private void Start()
     {
@@ -30,31 +33,44 @@ public class SpikeTrap : MonoBehaviour
             {
                 transform.position = Vector3.MoveTowards(transform.position, initialPosition + Vector3.up * spikeHeight, spikeSpeed * Time.deltaTime);
             }
-            else
+            else if (!playerInside) // only move down if player is not on the spikes
             {
                 transform.position = Vector3.MoveTowards(transform.position, initialPosition, spikeSpeed * Time.deltaTime);
             }
         }
     }
 
-    public IEnumerator ActivateTrap()
+    public IEnumerator ActivateTrap(Collider2D player) // Pass the player collider to the coroutine
     {
         isEnabled = true;
+        player.GetComponent<Scr_PlayerCtrl>().takeDmg(damage); // Deal damage immediately when spikes are activated
 
         if (!isActivated)
         {
             isActivated = true;
             yield return new WaitForSeconds(spikeDelay);
             isActivated = false;
-            isEnabled = false; // Add this line
+
+            // Start resetting trap
+            yield return new WaitForSeconds(resetDelay);
+            isEnabled = false; // Reset finished
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.collider.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            other.collider.GetComponent<Scr_PlayerCtrl>().takeDmg(damage);
+            playerInside = true; // Player entered the spikes
+            StartCoroutine(ActivateTrap(other)); // Pass the player collider to the coroutine
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInside = false; // Player left the spikes
         }
     }
 }

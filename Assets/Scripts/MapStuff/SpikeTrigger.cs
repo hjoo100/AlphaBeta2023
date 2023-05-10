@@ -12,7 +12,7 @@ public class SpikeTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             spikeTrap.gameObject.SetActive(true);
-            StartCoroutine(spikeTrap.ActivateTrap());
+            StartCoroutine(spikeTrap.ActivateTrap(other)); 
         }
     }
 }
