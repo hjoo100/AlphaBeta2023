@@ -53289,7 +53289,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1973462363701136545, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: m_Offset.y
-      value: 0.12
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: 1973462363701136545, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
@@ -53597,7 +53597,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8339766802895970495, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: radius
-      value: 0.43
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 8339766802895970495, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: hitpoints
@@ -53609,7 +53609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8339766802895970495, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: resolution
-      value: 46
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8339766802895970495, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: GroundObj.m_Bits
