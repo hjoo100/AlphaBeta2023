@@ -21,19 +21,25 @@ public class Scr_PlayerCtrl : MonoBehaviour
     private float moveDir;
     private bool toRight = true;
     [SerializeField]
-    private bool isJumping = false;
+    public bool isJumping = false;
 
     private bool isInMeleeRange;
     public float jumpCount;
 
     public float PlayerSpd = 4f, basicSpd = 4f;
     public float jumpForce = 5f;
+    private float originalJumpForce;
+    public float reducedJumpForce = 3.2f;
+    
+    private Collider2D[] playercolliders;
     public Transform cellingCheck;
     public Transform groundCheck;
     public LayerMask GroundObj;
     public string EnemyTag;
     public float jumpCheckRaidus;
     public float MaxJumpNum;
+    private float jumpTimeCounter;
+    public float maxJumpTime = 2f;
     public bool isHittingWall = false;
 
     public float hitpoints = 100;
@@ -107,6 +113,8 @@ public class Scr_PlayerCtrl : MonoBehaviour
 
     public bool isChoosingSkill = false;
 
+    public bool playerIsOnEnemy = false;
+    public CircleCollider2D playerFeetCollider;
     public void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -121,6 +129,18 @@ public class Scr_PlayerCtrl : MonoBehaviour
         MeleeStatemachine = GetComponent<StateMachine>();
 
         comboSystem = GetComponent<ComboSystem>();
+
+        playercolliders = GetComponents<Collider2D>();
+
+        CircleCollider2D[] circleCollider2Ds = GetComponents<CircleCollider2D>();
+        foreach(CircleCollider2D circleCollider2D in circleCollider2Ds)
+        {
+            if(circleCollider2D.offset.y < 0)
+            {
+                playerFeetCollider = circleCollider2D;
+            }
+        }
+       
     }
     // Start is called before the first frame update
     void Start()
@@ -133,6 +153,8 @@ public class Scr_PlayerCtrl : MonoBehaviour
         {
             skillUpgradeMenu.OnMenuVisibilityChanged += HandleMenuVisibilityChanged;
         }
+        originalJumpForce = jumpForce;
+        
     }
 
     private void HandleMenuVisibilityChanged(bool menuVisible)
@@ -158,6 +180,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
         {
             return; // Do not execute the rest of the Update logic if the game is paused
         }
+        playerIsOnEnemy = playerFeetCollider.IsTouchingLayers(LayerMask.GetMask("Enemy"));
         if (!gettingKnocked)
         {
             ReceiveInputFunc();
@@ -242,6 +265,28 @@ public class Scr_PlayerCtrl : MonoBehaviour
             }
         }
 
+        bool isTouchingEnemy = false;
+        foreach (Collider2D colliderOnPlayer in playercolliders)
+        {
+            if (colliderOnPlayer.IsTouchingLayers(LayerMask.NameToLayer("Enemy")))
+            {
+                isTouchingEnemy = true;
+                break;
+            }
+        }
+
+        if (isTouchingEnemy)
+        {
+            jumpForce = reducedJumpForce;
+        }
+        else
+        {
+            jumpForce = originalJumpForce;
+        }
+
+
+
+
         if (isDead == true)
         {
             print("Player Died!");
@@ -281,6 +326,35 @@ public class Scr_PlayerCtrl : MonoBehaviour
                 isJumping = false;
             }
         }
+
+        if (isJumping)
+        {
+            if (jumpTimeCounter > 0)
+            {
+                rb.AddForce(new Vector2(0f, jumpForce));
+                jumpTimeCounter -= Time.deltaTime; // Reduce the jump time counter
+            }
+            else
+            {
+                isJumping = false; // Stop the jump when jump time counter is depleted
+            }
+        }
+
+        if (playerIsOnEnemy )
+        {
+            Debug.Log("Player is on enemy's head");
+            //rb.AddForce(Vector2.down * 20f);
+            if(moveDir >= 0)
+            {
+                rb.AddForce(Vector2.right * 130f);
+            }
+            
+            else
+            {
+                rb.AddForce(Vector2.left * 130f);
+            }
+        }
+
         if (!gettingKnocked)
         {
             if (isGrounded)
@@ -365,7 +439,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
             return;
         }
 
-        if (context.performed)
+        if (context.started) // When space key is pressed
         {
             if (jumpCount > 0)
             {
@@ -373,10 +447,13 @@ public class Scr_PlayerCtrl : MonoBehaviour
                 charaJumpFunc();
                 cancelGroundCheck = true;
                 Invoke(nameof(resumeGroundCheck), 0.2f);
-
             }
         }
 
+        if (context.canceled) // When space key is released
+        {
+            isJumping = false;
+        }
     }
 
     public void attackKeyFunc(InputAction.CallbackContext context)
@@ -434,14 +511,15 @@ public class Scr_PlayerCtrl : MonoBehaviour
     {
         if (isJumping && jumpCount > 0)
         {
-            rb.velocity = Vector2.zero;
-            rb.AddForce(new Vector2(0f, jumpForce));
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce); // Use velocity instead of AddForce
             print("jumped");
             animationSwitch("Jump", true);
 
             jumpCount--;
+            jumpTimeCounter = maxJumpTime;
         }
     }
+
 
     void flipChara()
     {

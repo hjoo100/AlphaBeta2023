@@ -59,6 +59,18 @@ PrefabInstance:
       propertyPath: AllSkills.Array.data[23]
       value: 
       objectReference: {fileID: 11400000, guid: ca4bce82e28eda94c92a7f36741d22dd, type: 2}
+    - target: {fileID: 3401689054591587825, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+      propertyPath: m_Radius
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3401689054591587825, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.055
+      objectReference: {fileID: 0}
+    - target: {fileID: 3401689054591587825, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.26
+      objectReference: {fileID: 0}
     - target: {fileID: 3858366609976860876, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
       propertyPath: UIObj
       value: 
@@ -152,6 +164,10 @@ PrefabInstance:
       value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 6107447076169596605, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+      propertyPath: jumpForce
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107447076169596605, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
       propertyPath: basicMeleeDmg
       value: 15
       objectReference: {fileID: 0}
@@ -179,5 +195,6 @@ PrefabInstance:
       propertyPath: currentSkill
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8817083002762220604, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}

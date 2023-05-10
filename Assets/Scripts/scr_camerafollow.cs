@@ -21,11 +21,18 @@ public class scr_camerafollow : MonoBehaviour
 
     public Vector2 initialMinPos, initialMaxPos;
 
+    public Scr_PlayerCtrl playerScript; 
+    private Vector3 normalOffset = new Vector3(0, 0, -10);  // Normal camera offset
+    private Vector3 jumpOffset = new Vector3(0, -5, -10);  // Offset when player is jumping
+
+
     void Start()
     {
         originalPos = transform.localPosition;
         initialMaxPos = maxPos;
         initialMinPos = minPos;
+
+        camOffset = normalOffset;
     }
     private void FixedUpdate()
     {
@@ -35,6 +42,15 @@ public class scr_camerafollow : MonoBehaviour
             ZoomCamera();
         }
 
+        // If player is jumping or not grounded, use jump offset
+        if (playerScript.isJumping || !playerScript.isGrounded)
+        {
+            SetCamOffset(jumpOffset, 0.8f);
+        }
+        else  // Otherwise, use normal offset
+        {
+            SetCamOffset(normalOffset, 0.5f);
+        }
     }
 
     void follow()
@@ -77,5 +93,23 @@ public class scr_camerafollow : MonoBehaviour
         }
         transform.localPosition = pos;
         isShaking = false;
+    }
+
+    public void SetCamOffset(Vector3 newOffset, float duration)
+    {
+        StartCoroutine(LerpCamOffset(newOffset, duration));
+    }
+
+    IEnumerator LerpCamOffset(Vector3 newOffset, float duration)
+    {
+        Vector3 initialOffset = camOffset;
+        float time = 0;
+        while (time < duration)
+        {
+            camOffset = Vector3.Lerp(initialOffset, newOffset, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        camOffset = newOffset;
     }
 }
