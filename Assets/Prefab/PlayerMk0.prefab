@@ -152,6 +152,10 @@ PrefabInstance:
       value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 6107447076169596605, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+      propertyPath: radius
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107447076169596605, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
       propertyPath: meleeCD
       value: 0.5
       objectReference: {fileID: 0}
@@ -213,8 +217,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6107447076169596606, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
   m_PrefabInstance: {fileID: 2845940135149936130}
   m_PrefabAsset: {fileID: 0}
---- !u!68 &5701478308515425758
-EdgeCollider2D:
+--- !u!60 &1973462363701136545
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -226,12 +230,20 @@ EdgeCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.06, y: 0.12}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   m_Points:
-  - {x: -0.40457806, y: -0.60574675}
-  - {x: 0.5207492, y: -0.61403006}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
+    m_Paths:
+    - - {x: 0, y: 0.649947}
+      - {x: -0.25095057, y: 0.20961685}
+      - {x: -0.3155248, y: -0.48057157}
+      - {x: 0.38034755, y: -0.61021674}
+      - {x: 0.46702588, y: 0.30036592}

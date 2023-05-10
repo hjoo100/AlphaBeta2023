@@ -52943,6 +52943,54 @@ PrefabInstance:
       propertyPath: TextObj
       value: 
       objectReference: {fileID: 301697181}
+    - target: {fileID: 1973462363701136545, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973462363701136545, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973462363701136545, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
+      value: -0.020572118
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973462363701136545, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
+      value: 0.32963502
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973462363701136545, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
+      value: -0.16965663
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973462363701136545, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].y
+      value: 0.22265494
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973462363701136545, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].x
+      value: -0.25876752
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973462363701136545, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].y
+      value: -0.30314732
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973462363701136545, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].x
+      value: 0.15423131
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973462363701136545, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].y
+      value: -0.18805227
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973462363701136545, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].x
+      value: 0.43697155
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973462363701136545, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].y
+      value: 0.24732801
+      objectReference: {fileID: 0}
     - target: {fileID: 3048450125411959859, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: SkillImage
       value: 
@@ -52953,7 +53001,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 793dad3b0d452e34692a28eebbdd77af, type: 2}
     - target: {fileID: 5701478308515425758, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: m_Offset.x
-      value: 0
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 5701478308515425758, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: m_Offset.y
@@ -53209,7 +53257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8339766802895970495, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: radius
-      value: 2
+      value: 0.43
       objectReference: {fileID: 0}
     - target: {fileID: 8339766802895970495, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: hitpoints
@@ -53221,7 +53269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8339766802895970495, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: resolution
-      value: 30
+      value: 46
       objectReference: {fileID: 0}
     - target: {fileID: 8339766802895970495, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: GroundObj.m_Bits
@@ -53235,7 +53283,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0.621
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5701478308515425758, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
 --- !u!1001 &3886389573810956384
 PrefabInstance:
