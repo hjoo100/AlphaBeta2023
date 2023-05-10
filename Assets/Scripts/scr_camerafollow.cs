@@ -22,10 +22,12 @@ public class scr_camerafollow : MonoBehaviour
     public Vector2 initialMinPos, initialMaxPos;
 
     public Scr_PlayerCtrl playerScript; 
-    private Vector3 normalOffset = new Vector3(0, 0, -10);  // Normal camera offset
-    private Vector3 jumpOffset = new Vector3(0, -5, -10);  // Offset when player is jumping
+    private Vector3 normalOffset = new Vector3(0, 0, -20);  // Normal camera offset
+   // private Vector3 jumpOffset = new Vector3(0, -2, -20);  // Offset when player is jumping
+    public float followSpeed = 0.05f; // The speed when the camera follows the player
+    public float jumpFollowSpeed = 0.02f; // The speed when the camera follows the player when jumping
 
-
+    private Coroutine currentLerpCoroutine;
     void Start()
     {
         originalPos = transform.localPosition;
@@ -33,6 +35,8 @@ public class scr_camerafollow : MonoBehaviour
         initialMinPos = minPos;
 
         camOffset = normalOffset;
+
+        playerScript = FindObjectOfType<Scr_PlayerCtrl>();
     }
     private void FixedUpdate()
     {
@@ -41,16 +45,6 @@ public class scr_camerafollow : MonoBehaviour
             follow();
             ZoomCamera();
         }
-
-        // If player is jumping or not grounded, use jump offset
-        if (playerScript.isJumping || !playerScript.isGrounded)
-        {
-            SetCamOffset(jumpOffset, 0.8f);
-        }
-        else  // Otherwise, use normal offset
-        {
-            SetCamOffset(normalOffset, 0.5f);
-        }
     }
 
     void follow()
@@ -58,7 +52,12 @@ public class scr_camerafollow : MonoBehaviour
         Vector3 targetPos = followTarget.position + camOffset;
         targetPos.x = Mathf.Clamp(targetPos.x, minPos.x, maxPos.x);
         targetPos.y = Mathf.Clamp(targetPos.y, minPos.y, maxPos.y);
-        transform.position = targetPos;
+
+        // Use slower follow speed if the player is jumping
+        float currentFollowSpeed = (playerScript.isJumping || !playerScript.isGrounded) ? jumpFollowSpeed : followSpeed;
+
+        // Smoothly interpolate the camera position
+        transform.position = Vector3.Lerp(transform.position, targetPos, currentFollowSpeed);
     }
 
     public void ResetCameraBounds()
@@ -95,9 +94,17 @@ public class scr_camerafollow : MonoBehaviour
         isShaking = false;
     }
 
+    /*
     public void SetCamOffset(Vector3 newOffset, float duration)
     {
-        StartCoroutine(LerpCamOffset(newOffset, duration));
+        // If a lerp coroutine is already running, stop it
+        if (currentLerpCoroutine != null)
+        {
+            StopCoroutine(currentLerpCoroutine);
+        }
+
+        // Start a new lerp coroutine and keep a reference to it
+        currentLerpCoroutine = StartCoroutine(LerpCamOffset(newOffset, duration));
     }
 
     IEnumerator LerpCamOffset(Vector3 newOffset, float duration)
@@ -111,5 +118,5 @@ public class scr_camerafollow : MonoBehaviour
             yield return null;
         }
         camOffset = newOffset;
-    }
+    }*/
 }

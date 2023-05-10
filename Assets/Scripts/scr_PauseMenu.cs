@@ -57,7 +57,7 @@ public class scr_PauseMenu : MonoBehaviour
 
     public void OnMainMenuButtonClicked()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(0);
     }
     public void OnResumeButtonClicked()
     {

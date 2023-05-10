@@ -133,4 +133,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followTarget: {fileID: 0}
   camOffset: {x: 0, y: 8.5, z: -2}
+  maxPos: {x: 0, y: 0}
+  minPos: {x: 0, y: 0}
   smoothVal: 11.49
+  cameraZoom: 5
+  shakeDuration: 0.2
+  shakeMagnitude: 0.2
+  initialMinPos: {x: 0, y: 0}
+  initialMaxPos: {x: 0, y: 0}
+  playerScript: {fileID: 0}
+  followSpeed: 0.15
+  jumpFollowSpeed: 0.08

@@ -39029,7 +39029,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8339766802895970491, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -67.7
+      value: -68.38
       objectReference: {fileID: 0}
     - target: {fileID: 8339766802895970491, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: m_LocalPosition.z
@@ -39381,11 +39381,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7538435054668998458, guid: b5d60490964d2b74cb1c72a4128a887d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.58
+      value: -71.3
       objectReference: {fileID: 0}
     - target: {fileID: 7538435054668998458, guid: b5d60490964d2b74cb1c72a4128a887d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.11
+      value: -66.41
       objectReference: {fileID: 0}
     - target: {fileID: 7538435054668998458, guid: b5d60490964d2b74cb1c72a4128a887d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -39433,7 +39433,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7538435054668998459, guid: b5d60490964d2b74cb1c72a4128a887d, type: 3}
       propertyPath: minPos.y
-      value: -9999
+      value: -70
       objectReference: {fileID: 0}
     - target: {fileID: 7538435054668998459, guid: b5d60490964d2b74cb1c72a4128a887d, type: 3}
       propertyPath: cameraZoom
@@ -39442,6 +39442,10 @@ PrefabInstance:
     - target: {fileID: 7538435054668998459, guid: b5d60490964d2b74cb1c72a4128a887d, type: 3}
       propertyPath: camOffset.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7538435054668998459, guid: b5d60490964d2b74cb1c72a4128a887d, type: 3}
+      propertyPath: followSpeed
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: 7538435054668998459, guid: b5d60490964d2b74cb1c72a4128a887d, type: 3}
       propertyPath: followTarget
