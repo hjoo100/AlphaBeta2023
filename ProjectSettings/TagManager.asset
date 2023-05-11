@@ -24,6 +24,8 @@ TagManager:
   - JavelinLauncher1
   - JavelinLauncher2
   - TimerManager
+  - WinMenu
+  - BlockAnimation
   layers:
   - Default
   - TransparentFX

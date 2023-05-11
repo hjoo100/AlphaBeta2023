@@ -153,7 +153,8 @@ public class scr_enemyBase : MonoBehaviour
             if(shieldVal > 0)
             {
                 shieldVal -= dmg;
-                if(theEnemyType == enemyType.shieldedBoss)
+                ShieldHitEffect();
+                if (theEnemyType == enemyType.shieldedBoss)
                 {
                     thisEnemy.GetComponent<scr_ShieldBossEnemy>().alertEnemy();
                 }
@@ -269,6 +270,7 @@ public class scr_enemyBase : MonoBehaviour
         {
             //not penning shield
             shieldVal -= dmg;
+            ShieldHitEffect();
             if(shieldVal <0)
             {
                 shieldVal = 0;
@@ -431,4 +433,45 @@ public class scr_enemyBase : MonoBehaviour
         
         
     }
+
+    public void ShieldHitEffect()
+    {
+        Debug.Log("shieldEffectTriggered");
+        if(theEnemyType == enemyType.shielded)
+        {
+            
+            Animator animator = gameObject.AddComponent<Animator>();
+
+            // set animator
+            animator.runtimeAnimatorController =
+            Resources.Load("Animator/ShieldEnemyHitAnimator") as RuntimeAnimatorController;
+            animator.Play("ShieldHit");
+            Debug.Log("ShieldAnimatorAdded");
+            // remove animator after sec
+            StartCoroutine(RemoveAnimatorAfterSeconds(0.5f, animator));
+        }
+        else if(theEnemyType == enemyType.shieldedBoss)
+        {
+            Animator animator = gameObject.AddComponent<Animator>();
+
+            // set animator
+            animator.runtimeAnimatorController =
+            Resources.Load("Animator/ShieldBossShieldHitAnimator") as RuntimeAnimatorController;
+            animator.Play("ShieldHit");
+            Debug.Log("ShieldAnimatorAdded");
+            // remove animator after sec
+            StartCoroutine(RemoveAnimatorAfterSeconds(0.5f, animator));
+        }
+    }
+
+    IEnumerator RemoveAnimatorAfterSeconds(float seconds, Animator animator)
+    {
+        Debug.Log("Started RemoveAnimatorAfterSeconds coroutine");
+        yield return new WaitForSeconds(seconds);
+
+        GetComponent<SpriteRenderer>().sprite = null;
+        Destroy(animator);
+        Debug.Log("destroriedTheAnimator");
+    }
+
 }

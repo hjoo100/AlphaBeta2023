@@ -5,7 +5,7 @@ using UnityEngine;
 public class Scr_PlayerAudioCtrl : MonoBehaviour
 {
     public AudioSource audioSource;
-    public AudioClip meleeHit,meleeNothit,rangeSword,rapidHitAudio;
+    public AudioClip meleeHit,meleeNothit,rangeSword,rapidHitAudio,successfulBlock;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +44,22 @@ public class Scr_PlayerAudioCtrl : MonoBehaviour
             audioSource.clip = rapidHitAudio;
             audioSource.Play();
         }
+        if (num == 5)
+        {
+            //block sound
+            audioSource.clip = successfulBlock;
+            audioSource.volume = 0.7f;
+            audioSource.Play();
+            Debug.Log("Played Block Audio");
+            Invoke(nameof(restoreVolume), 0.4f);
 
-        
+        }
+
+
+    }
+
+    public void restoreVolume()
+    {
+        audioSource.volume = 0.1f;
     }
 }

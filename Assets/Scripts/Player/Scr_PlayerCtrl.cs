@@ -562,6 +562,8 @@ public class Scr_PlayerCtrl : MonoBehaviour
         if (isDefending)
         {
             Debug.Log("successfully blocked attack!");
+            FindObjectOfType<Scr_PlayerAudioCtrl>().PlayAudio(5);
+            GameObject.FindGameObjectWithTag("BlockAnimation").GetComponent<Animator>().Play("BlockAnim");
             return;
         }
         hitpoints -= dmg;
