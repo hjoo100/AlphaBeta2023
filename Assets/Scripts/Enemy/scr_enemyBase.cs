@@ -117,6 +117,18 @@ public class scr_enemyBase : MonoBehaviour
     void Update()
     {
        // UpdateSortingOrder();
+       if(theEnemyType == enemyType.shielded || theEnemyType == enemyType.shieldedBoss)
+        {
+            //fix shield infinate issue
+            if(shieldVal <0)
+            {
+                if(shieldEnabled)
+                {
+                    shieldEnabled = false;
+                    shieldVal = 0;
+                }
+            }
+        }
     }
 
     void UpdateSortingOrder()
@@ -271,7 +283,7 @@ public class scr_enemyBase : MonoBehaviour
             //not penning shield
             shieldVal -= dmg;
             ShieldHitEffect();
-            if(shieldVal <0)
+            if(shieldVal <= 0)
             {
                 shieldVal = 0;
                 shieldEnabled = false;

@@ -409,6 +409,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RangeEnemyTest (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1703409621561572171, guid: 809120049fd3f7a4c88d81cd20b57f27, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1703409621561572174, guid: 809120049fd3f7a4c88d81cd20b57f27, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -8691,6 +8695,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Woodman(With HP)
       objectReference: {fileID: 0}
+    - target: {fileID: 440418096402362372, guid: 187cc30de7786d3478df26a06624671a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 187cc30de7786d3478df26a06624671a, type: 3}
 --- !u!1 &1695560106
@@ -15311,12 +15319,20 @@ PrefabInstance:
       value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 8339766802895970495, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
+      propertyPath: meleeDmg
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8339766802895970495, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: hitpoints
       value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 8339766802895970495, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: MaxJumpNum
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8339766802895970495, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
+      propertyPath: basicMeleeDmg
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8663812182372939512, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16031,7 +16047,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1549591468802698617, guid: fdd5943964988b243b6d2e5c5d599a70, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.384822
+      value: -3.287
       objectReference: {fileID: 0}
     - target: {fileID: 1549591468802698617, guid: fdd5943964988b243b6d2e5c5d599a70, type: 3}
       propertyPath: m_LocalPosition.y
@@ -16075,7 +16091,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1549591468802698620, guid: fdd5943964988b243b6d2e5c5d599a70, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdd5943964988b243b6d2e5c5d599a70, type: 3}
