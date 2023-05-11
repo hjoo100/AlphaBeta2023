@@ -439,7 +439,7 @@ public class scr_enemyBase : MonoBehaviour
         Debug.Log("shieldEffectTriggered");
         if(theEnemyType == enemyType.shielded)
         {
-            
+            GetComponent<scr_shieldEnemy>().alertEnemy();
             Animator animator = gameObject.AddComponent<Animator>();
 
             // set animator
