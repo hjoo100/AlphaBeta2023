@@ -92,7 +92,7 @@ public class Scr_TimerManager : MonoBehaviour
         return bestTimes[levelIndex];
     }
 
-    private string FormatTime(float timeInSeconds)
+    public string FormatTime(float timeInSeconds)
     {
         int minutes = Mathf.FloorToInt(timeInSeconds / 60F);
         int seconds = Mathf.FloorToInt(timeInSeconds - minutes * 60);

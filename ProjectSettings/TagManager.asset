@@ -28,6 +28,7 @@ TagManager:
   - BlockAnimation
   - BestTimeNum
   - TimerText
+  - ClearTimeText
   layers:
   - Default
   - TransparentFX

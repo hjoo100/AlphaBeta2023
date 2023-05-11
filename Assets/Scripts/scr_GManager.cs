@@ -135,6 +135,7 @@ public class scr_GManager : MonoBehaviour
         GameEndText.GetComponent<TextMeshProUGUI>().SetText("You Win!");
         timerManager.StopTimer(SceneManager.GetActiveScene().buildIndex);
         WinMenu.SetActive(true);
+        GameObject.FindGameObjectWithTag("ClearTimeText").GetComponent<TextMeshProUGUI>().SetText(timerManager.FormatTime(timerManager.GetCurrentTime()));
         Cursor.visible = true;
         
     }

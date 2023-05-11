@@ -2670,6 +2670,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7744853325206290994, guid: 3f921789bf3648a4d9f9fa4cc913b397, type: 3}
+      propertyPath: m_Mass
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7744853325206290994, guid: 3f921789bf3648a4d9f9fa4cc913b397, type: 3}
+      propertyPath: m_GravityScale
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 7744853325206290996, guid: 3f921789bf3648a4d9f9fa4cc913b397, type: 3}
       propertyPath: m_Name
       value: ManShieldBoss (1)
@@ -53457,7 +53465,7 @@ PrefabInstance:
     - target: {fileID: 1347432578983465963, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: currentSkill
       value: 
-      objectReference: {fileID: 11400000, guid: ca4bce82e28eda94c92a7f36741d22dd, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 1366108581002591950, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: UIObj
       value: 
@@ -53521,7 +53529,7 @@ PrefabInstance:
     - target: {fileID: 3048450125411959859, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: currentSkill
       value: 
-      objectReference: {fileID: 11400000, guid: 793dad3b0d452e34692a28eebbdd77af, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 5701478308515425758, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: m_Offset.x
       value: 0.06
@@ -53705,7 +53713,7 @@ PrefabInstance:
     - target: {fileID: 5750989499382841069, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: currentSkill
       value: 
-      objectReference: {fileID: 11400000, guid: 6e0836439c5dcc14998de819e929016a, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 6237839265426032399, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: MaxDistance
       value: 1.7099304
@@ -53732,11 +53740,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8339766802895970491, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -72.2
+      value: -73.2
       objectReference: {fileID: 0}
     - target: {fileID: 8339766802895970491, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -67.83
+      value: -68.18
       objectReference: {fileID: 0}
     - target: {fileID: 8339766802895970491, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: m_LocalPosition.z
@@ -53776,7 +53784,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8339766802895970495, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: maxHp
-      value: 1200
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 8339766802895970495, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: radius
@@ -53784,7 +53792,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8339766802895970495, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: hitpoints
-      value: 1200
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 8339766802895970495, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: MaxJumpNum
