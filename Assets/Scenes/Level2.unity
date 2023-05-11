@@ -2600,7 +2600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4774725352987983214, guid: 3f921789bf3648a4d9f9fa4cc913b397, type: 3}
       propertyPath: shieldVal
-      value: 10
+      value: 880
       objectReference: {fileID: 0}
     - target: {fileID: 4774725352987983214, guid: 3f921789bf3648a4d9f9fa4cc913b397, type: 3}
       propertyPath: punchAudio
@@ -2616,7 +2616,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 41753be32db63c144affe8436d7d0ecf, type: 3}
     - target: {fileID: 4774725352987983214, guid: 3f921789bf3648a4d9f9fa4cc913b397, type: 3}
       propertyPath: enemyhitpoints
-      value: 10
+      value: 1200
       objectReference: {fileID: 0}
     - target: {fileID: 4774725352987983214, guid: 3f921789bf3648a4d9f9fa4cc913b397, type: 3}
       propertyPath: BarrageSkillSound
@@ -34231,6 +34231,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: ComboObj
       objectReference: {fileID: 0}
+    - target: {fileID: 5678845436871425042, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
+      propertyPath: m_TagString
+      value: TimerText
+      objectReference: {fileID: 0}
     - target: {fileID: 5793354996624225316, guid: 885a0e9afc60d7345bfcf09e7220bfe5, type: 3}
       propertyPath: m_TagString
       value: ComboCount
@@ -53728,11 +53732,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8339766802895970491, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 209.37
+      value: -72.2
       objectReference: {fileID: 0}
     - target: {fileID: 8339766802895970491, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -66.17
+      value: -67.83
       objectReference: {fileID: 0}
     - target: {fileID: 8339766802895970491, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: m_LocalPosition.z

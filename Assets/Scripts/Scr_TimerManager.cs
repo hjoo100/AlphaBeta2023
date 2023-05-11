@@ -36,6 +36,8 @@ public class Scr_TimerManager : MonoBehaviour
         {
             bestTimes[i] = PlayerPrefs.GetFloat("BestTime" + i, 88888f);
         }
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void Start()
@@ -51,6 +53,10 @@ public class Scr_TimerManager : MonoBehaviour
         if (isTiming && SceneManager.GetActiveScene().buildIndex != 0)
         {
             currentTime += Time.deltaTime;
+            if(timerText == null)
+            {
+                timerText = GameObject.FindGameObjectWithTag("TimerText").GetComponent<TextMeshProUGUI>();
+            }
             timerText.text = FormatTime(currentTime);
         }
     }
@@ -115,5 +121,20 @@ public class Scr_TimerManager : MonoBehaviour
         return string.Format("{0:0}:{1:00}:{2:000}", minutes, seconds, milliseconds);
 
        
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // If not the main menu scene, start the timer
+        if (scene.buildIndex != 0)
+        {
+            StartTimer();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        // Always unsubscribe from events when the object is destroyed
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

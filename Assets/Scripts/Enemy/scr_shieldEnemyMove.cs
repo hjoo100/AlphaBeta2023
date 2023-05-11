@@ -98,7 +98,7 @@ public class scr_shieldEnemyMove : MonoBehaviour
                 }
                 else
                 {
-                    animator.Play("Knockedback");
+                    animator.Play("KnockBack");
                 }
             }
             else
@@ -229,6 +229,7 @@ public class scr_shieldEnemyMove : MonoBehaviour
     {
         isKnockedBack = true;
         knockbackTime = knockBackMaxTime;
+        animator.Play("KnockBack");
         Transform attackerTrans = playerobj.transform;
         Vector2 knockBackDir = new Vector2(transform.position.x - attackerTrans.transform.position.x, 0);
         rb.velocity = new Vector2(knockBackDir.x, 0.2f) * 0.8f;
