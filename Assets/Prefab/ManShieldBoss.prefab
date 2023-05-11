@@ -5717,6 +5717,8 @@ MonoBehaviour:
   isJumpSlashing: 0
   JavelinBarrageSkillObj: {fileID: 11400000, guid: 9fb7d815fffcbcf4e9e4db4e4ee31cea, type: 2}
   isUsingBarrageSkill: 0
+  BarrageSkillSound: {fileID: 8300000, guid: e6230fe6b0920d9459bde66117a6db7c, type: 3}
+  SlamSkillSound: {fileID: 8300000, guid: 41753be32db63c144affe8436d7d0ecf, type: 3}
 --- !u!114 &4774725352987983213
 MonoBehaviour:
   m_ObjectHideFlags: 0
