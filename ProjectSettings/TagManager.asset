@@ -26,6 +26,7 @@ TagManager:
   - TimerManager
   - WinMenu
   - BlockAnimation
+  - BestTimeNum
   layers:
   - Default
   - TransparentFX
