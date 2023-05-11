@@ -5437,7 +5437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7b12a69219c4441a9ea016b7bdc66b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyStats: {fileID: 0}
+  enemyStats: {fileID: 6582905874237606214}
   hpBar: {fileID: 6451136757735328285}
   hpObj: {fileID: 6301485662769010415}
   hpMax: 0
@@ -5595,7 +5595,6 @@ MonoBehaviour:
   enemyAudio: {fileID: 0}
   punchAudio: {fileID: 0}
   shieldVal: 85
-  maxShieldVal: 85
 --- !u!114 &8242478447789159965
 MonoBehaviour:
   m_ObjectHideFlags: 0

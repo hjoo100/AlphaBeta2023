@@ -11,7 +11,8 @@ public class scr_EnemySpawner : MonoBehaviour
     public List<GameObject> exitObjects;
     public Vector2 cameraLockedMinPos, cameraLockedMaxPos;
 
-    private int enemySpawned = 0;
+    public int enemySpawned = 0;
+    public int enemyDefeated = 0;
     //private bool stopSpawning = false; 
 
     private void Start()
@@ -44,9 +45,9 @@ public class scr_EnemySpawner : MonoBehaviour
 
     public void EnemyDestroyed()
     {
-        enemySpawned--;
+        enemyDefeated++;
 
-        if (enemySpawned <= 0)
+        if (enemyDefeated >= 10)
         {
             UnlockCameraAndExits();
         }
