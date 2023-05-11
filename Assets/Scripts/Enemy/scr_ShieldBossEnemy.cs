@@ -66,9 +66,12 @@ public class scr_ShieldBossEnemy : MonoBehaviour
 
     public EnemyJavelinBarrageSkill JavelinBarrageSkillObj;
 
-    [SerializeField]
+    
     public bool isUsingBarrageSkill = false;
 
+    public AudioClip BarrageSkillSound;
+
+    public AudioClip SlamSkillSound;
 
     private void Awake()
     {
@@ -461,6 +464,8 @@ public class scr_ShieldBossEnemy : MonoBehaviour
         {
             isJumpSlashing = true;
             enemyAnimator.Play("JumpSlash");
+            GetComponent<AudioSource>().clip = SlamSkillSound;
+            GetComponent<AudioSource>().Play();
             Invoke(nameof(ResetJumpSlash), 1.5f);
         }
     }
@@ -476,6 +481,8 @@ public class scr_ShieldBossEnemy : MonoBehaviour
         {
             isUsingBarrageSkill = true;
             enemyAnimator.Play("BarrageSkill");
+            GetComponent<AudioSource>().clip = BarrageSkillSound;
+            GetComponent<AudioSource>().Play();
             Invoke(nameof(ResetBarrageSkill), 1f);
         }
     }
@@ -484,4 +491,6 @@ public class scr_ShieldBossEnemy : MonoBehaviour
     {
         isUsingBarrageSkill = false;
     }
+
+
 }

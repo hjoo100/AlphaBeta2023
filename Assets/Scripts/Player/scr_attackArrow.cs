@@ -125,6 +125,27 @@ public class scr_attackArrow : MonoBehaviour
 
               }
 
+            if (enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.shieldedBoss)
+            {
+                if (enemy.GetComponent<scr_enemyBase>().shieldVal == 0)
+                {
+                    
+                    
+                    print("shield Boss received dmg");
+                    playerAudio.PlayAudio(1);
+                }
+                else
+                {
+                    playerAudio.PlayAudio(0);
+                }
+
+
+            }
+
+            if(enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.ranged)
+            {
+                playerAudio.PlayAudio(1);
+            }
 
 
             FindObjectOfType<Scr_PlayerCtrl>().SuccessfulAttack();
