@@ -747,7 +747,6 @@ public class Scr_PlayerCtrl : MonoBehaviour
         }
 
 
-        //improve skills
 
     }
 
@@ -798,13 +797,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
             Debug.Log("rapid " + i + " hit");
             yield return new WaitForSeconds(timePerAttack); // wait for timePerAttack seconds
         }
-        /*
-         if (isMaxLvl)
-         {
-             yield return new WaitForSeconds(2.5f); // wait for 2.5 seconds
-             PoweredKnockHit(powerAttackDmg, knockBackVal);// execute PoweredKnockBack 
-         }
-        */
+        
 
 
     }

@@ -116,7 +116,7 @@ public class scr_enemyBase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateSortingOrder();
+       // UpdateSortingOrder();
     }
 
     void UpdateSortingOrder()

@@ -11,7 +11,7 @@ public class Scr_GroundThirdHitState: Scr_MeleeBaseState
         attackIndex = 3;
         duration = 0.5f;
         animator.Play("Melee3");
-        playerCtrl.InvokeAttack(0.25f);
+        playerCtrl.InvokeAttack(0.125f);
         Debug.Log("Player melee3 pressed!");
 
     }

@@ -37,7 +37,7 @@ public class scr_shieldEnemy : MonoBehaviour
 
 
     [SerializeField]
-    private float shieldVal = 85f, maxShieldVal = 85f;
+    private float shieldVal = 85f; //maxShieldVal = 85f;
     // Start is called before the first frame update
     private void Awake()
     {

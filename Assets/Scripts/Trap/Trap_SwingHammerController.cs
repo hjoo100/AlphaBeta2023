@@ -5,9 +5,13 @@ using UnityEngine;
 
 public class Trap_SwingHammerController : MonoBehaviour
 {
-    [SerializeField] private float swingSpeed = 3f;
-    [SerializeField] private float maxSwingAngle = 45f;
-    [SerializeField] private int damage = 10;
+    [SerializeField] 
+    private float swingSpeed = 3f;
+
+    [SerializeField]
+    private float maxSwingAngle = 45f;
+
+    
 
     private float currentAngle;
 

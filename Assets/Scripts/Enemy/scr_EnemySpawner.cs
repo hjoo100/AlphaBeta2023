@@ -12,7 +12,7 @@ public class scr_EnemySpawner : MonoBehaviour
     public Vector2 cameraLockedMinPos, cameraLockedMaxPos;
 
     private int enemySpawned = 0;
-    private bool stopSpawning = false; 
+    //private bool stopSpawning = false; 
 
     private void Start()
     {

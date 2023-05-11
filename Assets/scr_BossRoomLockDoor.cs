@@ -9,16 +9,9 @@ public class scr_BossRoomLockDoor : MonoBehaviour
     public float doorMoveSpeed = 5f; 
     private bool isDoorLocked = false;
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        // If the player enters the boss room
-        if (other.gameObject.tag == "Player" && !isDoorLocked)
-        {
-            StartCoroutine(MoveDoorToLockedPosition());
-        }
-    }
+    
 
-    IEnumerator MoveDoorToLockedPosition()
+    public IEnumerator MoveDoorToLockedPosition()
     {
         isDoorLocked = true;
         while ((door.transform.position - lockedPosition.position).magnitude > 0.02f) 

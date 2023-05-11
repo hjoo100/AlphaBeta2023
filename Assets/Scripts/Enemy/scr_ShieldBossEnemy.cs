@@ -48,7 +48,7 @@ public class scr_ShieldBossEnemy : MonoBehaviour
     private AudioClip punchAudio;
 
     [SerializeField]
-    private float shieldVal = 85f, maxShieldVal = 85f;
+    private float shieldVal = 85f; //maxShieldVal = 85f;
 
     [SerializeField]
     private EnemySlamSkill slamSkill;
