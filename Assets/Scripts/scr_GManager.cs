@@ -214,4 +214,6 @@ public class scr_GManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    
 }

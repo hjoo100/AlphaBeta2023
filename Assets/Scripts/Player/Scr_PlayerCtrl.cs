@@ -98,7 +98,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
     private scr_SkillHolder[] skillHolders;
 
     [SerializeField]
-    private bool canDefend = false, isDefending = false;
+    public bool isDefending = false;
 
     public ComboSystem comboSystem;
     public event Action OnSuccessfulAttack;

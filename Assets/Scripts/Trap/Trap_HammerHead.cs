@@ -6,7 +6,7 @@ public class Trap_HammerHead : MonoBehaviour
 {
     [SerializeField] private int damage = 10;
     [SerializeField] private float timer = 0;
-    [SerializeField] private float MaxWaitTimer = 0.4f;
+    //[SerializeField] private float MaxWaitTimer = 0.4f;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log(collision.gameObject.name);

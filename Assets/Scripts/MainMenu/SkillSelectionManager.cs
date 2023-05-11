@@ -124,6 +124,8 @@ public class SkillSelectionManager : MonoBehaviour
 
             
             levelPreviewImage.sprite = levelPreviewSprites[levelNumber - 1];
+
+            FindObjectOfType<Scr_TimerManager>().SetBestTime(levelNumber);
         }
     }
 
