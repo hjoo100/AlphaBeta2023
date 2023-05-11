@@ -528,25 +528,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
         playertransform.localScale = new Vector2(-playertransform.localScale.x, playertransform.localScale.y);
     }
 
-    void attack() //replaced by new system
-    {
-        //isInMeleeRange = Physics2D.OverlapCircle(attackArrow.position, meleeRange, EnemyLayer);
-        if (Input.GetKeyDown(KeyCode.Mouse0) && CurrMeleeCD == 0)
-        {
-            print("Melee Pressed");
-            //do melee attack
-            //attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg);
-            // playerAnimator.Play("Attack");
-            meleeComboFunc();
-            isAttacking = true;
-            if (isGrounded)
-            {
-                Invoke(nameof(resetAttack), 0.45f);
-            }
-
-            //CurrMeleeCD = meleeCD;
-        }
-    }
+   
 
 
 
@@ -622,94 +604,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
         hpBar.fillAmount = hpPercent;
     }
 
-    //Melee Combo func is replaced by a new combosystem
-    public void meleeComboFunc()
-    {
-        if (isGrounded == false && isAirAttacked == false)
-        {
-            animationSwitch("AirMelee");
-            attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg);
-            meleeTimer = 0;
-            CurrMeleeCD = meleeCD;
-            isAirAttacked = true;
-            return;
-        }
-        else if (isGrounded == false && isAirAttacked == true)
-        {
-            return;
-        }
-
-        //call func when pressed melee key
-        if (comboNo == 0)
-        {
-            //First melee anim
-            animationSwitch("Melee1");
-            attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg);
-            comboNo += 1;
-            isFirstMelee = true;
-            meleeTimer = 0;
-            CurrMeleeCD = meleeCD;
-            return;
-        }
-        else if (comboNo == 1 && meleeTimer < meleeMaxInputTimer)
-        {
-            if (isFirstMelee == true)
-            {
-                animationSwitch("Melee2");
-                attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg);
-                comboNo += 1;
-                isFirstMelee = false;
-                isSecondMelee = true;
-                meleeTimer = 0;
-                CurrMeleeCD = meleeCD;
-            }
-            return;
-        }
-        else if (comboNo == 2 && meleeTimer < meleeMaxInputTimer)
-        {
-            if (isSecondMelee == true)
-            {
-                animationSwitch("Melee3");
-                attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg);
-                comboNo += 1;
-                isSecondMelee = false;
-                isThirdMelee = true;
-                meleeTimer = 0;
-                CurrMeleeCD = meleeCD;
-            }
-        }
-        else if (comboNo == 3 && meleeTimer < meleeMaxInputTimer)
-
-        {
-
-            if (isThirdMelee == true)
-            {
-                animationSwitch("Melee4");
-                attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg);
-                comboNo += 1;
-                isThirdMelee = false;
-                isFourthMelee = true;
-                meleeTimer = 0;
-                CurrMeleeCD = meleeCD;
-            }
-
-        }
-        else if (comboNo == 4 && meleeTimer < meleeMaxInputTimer)
-        {
-            if (isFourthMelee == true)
-            {
-                animationSwitch("Melee5");
-                attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg);
-                comboNo += 1;
-                isFourthMelee = false;
-                isFifthMelee = true;
-                meleeTimer = 0;
-                CurrMeleeCD = ComboEndMeleeCd;
-            }
-        }
-
-
-    }
+    
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -762,6 +657,11 @@ public class Scr_PlayerCtrl : MonoBehaviour
         attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRange(meleeDmg * BuffMultiPlier * CalculateBuffMultiplier());
     }
 
+    public void applyAttackNoSound()
+    {
+        attackArrow.GetComponent<scr_attackArrow>().attackEnemyInRangeNoSound(meleeDmg * BuffMultiPlier * CalculateBuffMultiplier());
+    }
+
     public void InvokeAttack(float time)
     {
         Invoke(nameof(applyAttack), time);
@@ -798,8 +698,6 @@ public class Scr_PlayerCtrl : MonoBehaviour
             yield return new WaitForSeconds(timePerAttack); // wait for timePerAttack seconds
         }
         
-
-
     }
     public void StartRapidHitCombo()
     {
@@ -928,7 +826,7 @@ public class Scr_PlayerCtrl : MonoBehaviour
         if (hit.collider != null)
         {
             
-            transform.position = new Vector3(transform.position.x, hit.collider.bounds.max.y + 0.6f, transform.position.z);
+            transform.position = new Vector3(transform.position.x, hit.collider.bounds.max.y + 0.45f, transform.position.z);
         }
     }
 

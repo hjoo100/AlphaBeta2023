@@ -5085,6 +5085,10 @@ MonoBehaviour:
   enemySprRenderer: {fileID: 420459469892759322}
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
   hitParticle: {fileID: 0}
+  shieldVal: 0
+  shieldMaxVal: 0
+  shieldEnabled: 0
+  detectDist: 5
   theEnemyType: 1
   exp: 40
 --- !u!114 &8577214885032793299
@@ -5099,6 +5103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca09ea8035eb6a741bf138b7e4ff36f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyBase: {fileID: 0}
   enemyAnimator: {fileID: 2425761115619724699}
   player: {fileID: 0}
   moveSys: {fileID: 0}
@@ -5362,7 +5367,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 8f498842d7a69e74caf9e5926342ad86, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

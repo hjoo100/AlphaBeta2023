@@ -14,7 +14,8 @@ public class scr_attackArrow : MonoBehaviour
     public Scr_PlayerAudioCtrl playerAudio;
     // Start is called before the first frame update
 
-    
+    //public bool isPlayingRapitHitAudio = false;
+
     private void Awake()
     {
         enemyTag = "Enemy";
@@ -136,6 +137,88 @@ public class scr_attackArrow : MonoBehaviour
         }
     }
 
+
+    public void attackEnemyInRangeNoSound(float dmg)
+    {
+
+        foreach (var enemy in enemyInRange)
+        {
+
+            if (enemy == null)
+            {
+                continue;
+            }
+
+            if (enemy.GetComponent<scr_enemyBase>().isDead)
+            {
+                enemiesToRemove.Add(enemy);
+                continue;
+            }
+
+            enemy.GetComponent<scr_enemyBase>().receiveDmg(dmg);
+            Vector2 attackForce = new Vector2();
+            attackForce.y = transform.localPosition.y;
+            attackForce.x = 70f;
+
+            Vector2 difference = enemy.transform.position - transform.position;
+            difference = difference.normalized * 80f;
+            difference.y = 0;
+            difference *= 100f;
+            if (enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.dummy)
+            {
+               // playerAudio.PlayAudio(1);
+            }
+            if (enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.melee)
+            {
+                enemy.GetComponent<scr_meleeEnemyMove>().tempFreeze();
+                enemy.GetComponent<scr_meleeEnemyMove>().knockBack();
+                print("enemy received dmg");
+                //playerAudio.PlayAudio(1);
+
+            }
+
+            if (enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.turret)
+            {
+                print("Turret received dmg");
+               // playerAudio.PlayAudio(1);
+            }
+
+            if (enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.UnstoppableBoss)
+            {
+
+                print("boss received dmg");
+              //  playerAudio.PlayAudio(1);
+            }
+
+            if (enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.shielded)
+            {
+                if (enemy.GetComponent<scr_enemyBase>().shieldVal == 0)
+                {
+                    enemy.GetComponent<scr_shieldEnemyMove>().tempFreeze();
+                    enemy.GetComponent<scr_shieldEnemyMove>().knockBack();
+                    print("shield enemy received dmg");
+                   // playerAudio.PlayAudio(1);
+                }
+                else
+                {
+                    //playerAudio.PlayAudio(0);
+                }
+
+
+            }
+
+
+
+            FindObjectOfType<Scr_PlayerCtrl>().SuccessfulAttack();
+
+        }
+        if (enemyInRange.Count <= 0)
+        {//Melee Not hit
+            print("melee not hit");
+           // playerAudio.PlayAudio(0);
+        }
+    }
+
     public void attackEnemyInRangeWithForce(float dmg,float forceVal)
     {
         
@@ -157,14 +240,14 @@ public class scr_attackArrow : MonoBehaviour
            
             if (enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.dummy)
             {
-                playerAudio.PlayAudio(1);
+                //playerAudio.PlayAudio(1);
             }
             if (enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.melee)
             {
                 enemy.GetComponent<scr_meleeEnemyMove>().tempFreeze();
                 enemy.GetComponent<scr_meleeEnemyMove>().PoweredKnockBack(forceVal);
                 print("enemy received dmg");
-                playerAudio.PlayAudio(1);
+               // playerAudio.PlayAudio(1);
 
             }
 
@@ -173,21 +256,21 @@ public class scr_attackArrow : MonoBehaviour
                 enemy.GetComponent<scr_meleeEnemyMove>().tempFreeze();
                 enemy.GetComponent<scr_meleeEnemyMove>().PoweredKnockBack(forceVal);
                 print("enemy received dmg");
-                playerAudio.PlayAudio(1);
+                //playerAudio.PlayAudio(1);
 
             }
 
             if (enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.turret)
             {
                 print("Turret received dmg");
-                playerAudio.PlayAudio(1);
+                //playerAudio.PlayAudio(1);
             }
 
             if (enemy.GetComponent<scr_enemyBase>().theEnemyType == scr_enemyBase.enemyType.UnstoppableBoss)
             {
 
                 print("boss received dmg");
-                playerAudio.PlayAudio(1);
+               // playerAudio.PlayAudio(1);
             }
 
             FindObjectOfType<Scr_PlayerCtrl>().SuccessfulAttack();
@@ -197,7 +280,7 @@ public class scr_attackArrow : MonoBehaviour
         if (enemyInRange.Count <= 0)
         {//Melee Not hit
             print("melee not hit");
-            playerAudio.PlayAudio(0);
+           // playerAudio.PlayAudio(0);
         }
     }
 
@@ -216,7 +299,7 @@ public class scr_attackArrow : MonoBehaviour
     }
 
     
-
+    
     public void PoweredKnockHit(float forceVal)
     {
         foreach (var enemy in enemyInRange)

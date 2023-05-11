@@ -23,6 +23,7 @@ TagManager:
   - ComboCount
   - JavelinLauncher1
   - JavelinLauncher2
+  - TimerManager
   layers:
   - Default
   - TransparentFX

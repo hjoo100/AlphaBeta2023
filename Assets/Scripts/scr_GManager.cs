@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -22,11 +23,17 @@ public class scr_GManager : MonoBehaviour
     public Animator clearAnim;
     public bool winned = false;
 
-    public GameObject BossObj;
+    public GameObject[] BossObj;
+
+    public Scr_TimerManager timerManager;
+
+    public GameObject WinMenu;
     // Start is called before the first frame update
     void Start()
     {
         clearAnim = GameObject.FindGameObjectWithTag("UI.Hud.Clear").GetComponent<Animator>();
+        timerManager = FindObjectOfType<Scr_TimerManager>();
+        //WinMenu = GameObject.FindGameObjectWithTag("WinMenu");
     }
 
     // Update is called once per frame
@@ -126,6 +133,10 @@ public class scr_GManager : MonoBehaviour
     {
         GameEndText.SetActive(true);
         GameEndText.GetComponent<TextMeshProUGUI>().SetText("You Win!");
+        timerManager.StopTimer(SceneManager.GetActiveScene().buildIndex);
+        WinMenu.SetActive(true);
+        Cursor.visible = true;
+        
     }
 
     public void LoseFunc()
@@ -189,7 +200,7 @@ public class scr_GManager : MonoBehaviour
 
     void checkBossFunc()
     {
-        if(BossObj == null && winned == false)
+        if (BossObj.All(boss => boss == null) && winned == false)
         {
             allClear = true;
             winned = true;
@@ -197,5 +208,10 @@ public class scr_GManager : MonoBehaviour
             Invoke(nameof(resetClearImg), 5f);
             WinFunc();
         }
+    }
+
+   public void ReturnToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

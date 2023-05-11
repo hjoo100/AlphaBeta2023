@@ -34,7 +34,7 @@ public class RapidHitSkill : Skill
         {
             comboStarted = true;
             playerObj.GetComponent<Scr_PlayerCtrl>().StartRapidHitCombo();
-
+            FindObjectOfType<Scr_PlayerAudioCtrl>().PlayAudio(4);//play skill audio
             playerObj.GetComponent<Scr_PlayerCtrl>().StartCoroutine(playerObj.GetComponent<Scr_PlayerCtrl>().RapidHitComboAttack(rapidComboCount, damage, powerattackDmg, knockBackVal, isMaxLvl));
             
         }

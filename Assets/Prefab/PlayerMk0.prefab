@@ -59,6 +59,10 @@ PrefabInstance:
       propertyPath: AllSkills.Array.data[23]
       value: 
       objectReference: {fileID: 11400000, guid: ca4bce82e28eda94c92a7f36741d22dd, type: 2}
+    - target: {fileID: 1294813057170782725, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
+      propertyPath: rapidHitAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 2ad398e82d6821b4c8a75141021c5755, type: 3}
     - target: {fileID: 3401689054591587825, guid: e1225f8920f774b4bb3b933bb259a442, type: 3}
       propertyPath: m_Radius
       value: 0.6
