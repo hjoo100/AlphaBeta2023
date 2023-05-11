@@ -34,7 +34,7 @@ public class Scr_TimerManager : MonoBehaviour
         // Read the saved best times
         for (int i = 0; i < bestTimes.Length; i++)
         {
-            bestTimes[i] = PlayerPrefs.GetFloat("BestTime" + i, float.MaxValue);
+            bestTimes[i] = PlayerPrefs.GetFloat("BestTime" + i, 88888f);
         }
     }
 

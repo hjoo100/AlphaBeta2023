@@ -21,8 +21,8 @@ MonoBehaviour:
   isUsableSkill: 0
   skillIcon: {fileID: 0}
   jumpForce: 35
-  hoverDuration: 0.2
-  slamSpeed: 22
+  hoverDuration: 0.4
+  slamSpeed: 14
   slamDamage: 20
   knockbackRadius: 2
   knockbackForce: 7
