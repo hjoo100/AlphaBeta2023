@@ -138,7 +138,11 @@ public class scr_enemyBase : MonoBehaviour
     }
     public void receiveDmg(float dmg)
     {
-        if(theEnemyType == enemyType.UnstoppableBoss)
+        if (isDead)
+        {
+            return;
+        }
+        if (theEnemyType == enemyType.UnstoppableBoss)
         {
             var bossScr = gameObject.GetComponent<scr_meleeBoss>();
             if(bossScr.getDefendBool())
@@ -224,7 +228,7 @@ public class scr_enemyBase : MonoBehaviour
             if(theEnemyType == enemyType.dummy)
             {
                 //Dummy
-                deadFunc();
+                DeadFunc();
 
             }
             if (theEnemyType == enemyType.melee)
@@ -258,8 +262,8 @@ public class scr_enemyBase : MonoBehaviour
                 enemyAudioSrc.Play();
                 thisEnemy.GetComponent<scr_movingRangedEnemy>().DeadFunc();
             }
-
-            Invoke(nameof(deadFunc), 0.25f);
+            BeforeDead();
+            Invoke(nameof(DeadFunc), 0.25f);
             // Destroy(thisEnemy);
         }
         else
@@ -278,6 +282,10 @@ public class scr_enemyBase : MonoBehaviour
 
     public void receiveDmg(float dmg,bool shieldPen)
     {
+        if(isDead)
+        { 
+            return;
+        }
         if (shieldEnabled && !shieldPen)
         {
             //not penning shield
@@ -336,7 +344,7 @@ public class scr_enemyBase : MonoBehaviour
                 if (theEnemyType == enemyType.dummy)
                 {
                     //Dummy
-                    deadFunc();
+                    DeadFunc();
 
                 }
                 if (theEnemyType == enemyType.melee)
@@ -371,7 +379,8 @@ public class scr_enemyBase : MonoBehaviour
                     thisEnemy.GetComponent<scr_movingRangedEnemy>().DeadFunc();
                 }
 
-            Invoke(nameof(deadFunc), 0.25f);
+            BeforeDead();
+            Invoke(nameof(DeadFunc), 0.25f);
             // Destroy(thisEnemy);
         }
             else
@@ -396,13 +405,18 @@ public class scr_enemyBase : MonoBehaviour
 
              }
     }
-    void deadFunc()
+    void DeadFunc()
+    {
+        
+        Destroy(thisEnemy);
+    }
+
+    void BeforeDead()
     {
         var playerLv = GameObject.FindGameObjectWithTag("Player").GetComponent<scr_playerLevel>();
         playerLv.gainExp(exp);
         isDead = true;
         FindObjectOfType<Scr_PlayerCtrl>().NotifyEnemyDefeated();
-        Destroy(thisEnemy);
     }
 
     void HitChangeColor()
