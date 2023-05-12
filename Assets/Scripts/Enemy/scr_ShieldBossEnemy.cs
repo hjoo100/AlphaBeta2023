@@ -155,7 +155,7 @@ public class scr_ShieldBossEnemy : MonoBehaviour
                     alertEnemy();
 
                     //do melee attack 
-                    Debug.Log("Enemy attacking (melee)");
+                    //Debug.Log("Enemy attacking (melee)");
                     int randInt = Random.Range(1, 3);
                     if (randInt == 1)
                     {
@@ -197,7 +197,7 @@ public class scr_ShieldBossEnemy : MonoBehaviour
 
     void stopAttackingAnim()
     {
-        Debug.Log("playing idle animation");
+        //Debug.Log("playing idle animation");
         //enemyAnimator.Play("Idle");
         attacking = false;
     }

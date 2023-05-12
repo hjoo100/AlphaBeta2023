@@ -112,7 +112,7 @@ public class scr_meleeBossMove : MonoBehaviour
                 {
                     if (bossEnemy.getAttackingBool() == false && bossEnemy.getDefendBool() == false)
                     {
-                        Debug.Log("walk speed is: " + rb.velocity.x);
+                        //Debug.Log("walk speed is: " + rb.velocity.x);
                         animator.Play("Walk");
                     }
                     if(bossEnemy.getAttackingBool() == false && bossEnemy.getDefendBool() )
@@ -152,7 +152,7 @@ public class scr_meleeBossMove : MonoBehaviour
                     if (facingDir == LEFT)
                     {
                         velocityX = -movespeed;
-                        Debug.Log("velocity direction swapped");
+                      //  Debug.Log("velocity direction swapped");
                     }
                     //enemy patrol move
                     if (isGrounded == true && (bossEnemy.getAttackedBool() == false))

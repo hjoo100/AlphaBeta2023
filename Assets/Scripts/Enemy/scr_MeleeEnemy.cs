@@ -79,7 +79,7 @@ public class scr_MeleeEnemy : MonoBehaviour
                     alertEnemy();
                     //attackArrow.attackEnemyInRange(meleeDmg);
                     //do melee attack 
-                    Debug.Log("Enemy attacking (melee)");
+                 //   Debug.Log("Enemy attacking (melee)");
                     enemyAnimator.Play("Attacking");
 
                     // add trigger to attack animation

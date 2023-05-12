@@ -104,7 +104,7 @@ public class scr_enemyBase : MonoBehaviour
 
         if(enemySprRenderer == null)
         {
-            Debug.Log(theEnemyType.ToString() + " has sprite that not binded correctly");
+           // Debug.Log(theEnemyType.ToString() + " has sprite that not binded correctly");
         }
         defaultColor = enemySprRenderer.color;
 
@@ -462,7 +462,7 @@ public class scr_enemyBase : MonoBehaviour
 
     public void ShieldHitEffect()
     {
-        Debug.Log("shieldEffectTriggered");
+        //Debug.Log("shieldEffectTriggered");
         if(theEnemyType == enemyType.shielded)
         {
             GetComponent<scr_shieldEnemy>().alertEnemy();
@@ -472,7 +472,7 @@ public class scr_enemyBase : MonoBehaviour
             animator.runtimeAnimatorController =
             Resources.Load("Animator/ShieldEnemyHitAnimator") as RuntimeAnimatorController;
             animator.Play("ShieldHit");
-            Debug.Log("ShieldAnimatorAdded");
+            //Debug.Log("ShieldAnimatorAdded");
             // remove animator after sec
             StartCoroutine(RemoveAnimatorAfterSeconds(0.5f, animator));
         }
@@ -484,7 +484,7 @@ public class scr_enemyBase : MonoBehaviour
             animator.runtimeAnimatorController =
             Resources.Load("Animator/ShieldBossShieldHitAnimator") as RuntimeAnimatorController;
             animator.Play("ShieldHit");
-            Debug.Log("ShieldAnimatorAdded");
+            //Debug.Log("ShieldAnimatorAdded");
             // remove animator after sec
             StartCoroutine(RemoveAnimatorAfterSeconds(0.5f, animator));
         }
@@ -492,12 +492,12 @@ public class scr_enemyBase : MonoBehaviour
 
     IEnumerator RemoveAnimatorAfterSeconds(float seconds, Animator animator)
     {
-        Debug.Log("Started RemoveAnimatorAfterSeconds coroutine");
+        //Debug.Log("Started RemoveAnimatorAfterSeconds coroutine");
         yield return new WaitForSeconds(seconds);
 
         GetComponent<SpriteRenderer>().sprite = null;
         Destroy(animator);
-        Debug.Log("destroriedTheAnimator");
+        //Debug.Log("destroriedTheAnimator");
     }
 
 }

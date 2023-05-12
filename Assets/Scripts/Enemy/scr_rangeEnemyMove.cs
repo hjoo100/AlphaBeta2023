@@ -116,11 +116,11 @@ public class scr_rangeEnemyMove : MonoBehaviour
                 {
                     if(isHittingWall())
                     {
-                        Debug.Log("Hitting wall");
+                       // Debug.Log("Hitting wall");
                     }
                     if(isNearEdge())
                     {
-                        Debug.Log("Nearing Edge");
+                       // Debug.Log("Nearing Edge");
                     }
                     if (facingDir == LEFT)
                     {

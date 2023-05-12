@@ -21,7 +21,7 @@ public class scr_EnemySpawner : MonoBehaviour
     }
     public void StartSpawning()
     {
-        Debug.Log("start spawing!");
+        //Debug.Log("start spawing!");
         StartCoroutine(SpawnEnemies());
         LockCameraAndExits();
     }
