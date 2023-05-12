@@ -502,13 +502,13 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - "Assets/\u65B0\u52A0\u7684\u7D20\u6750"
+    - Assets
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - "Assets/\u65B0\u52A0\u7684\u7D20\u6750"
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: E:\UnityFolder\Projects\AlphaBeta_2023
   m_LockTracker:
