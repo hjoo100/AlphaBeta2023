@@ -76006,6 +76006,10 @@ PrefabInstance:
       propertyPath: currentSkill
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5640592895435695750, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5750989499382841069, guid: e4e14d9cc95bc9441b65335cd2ad64df, type: 3}
       propertyPath: currentSkill
       value: 
