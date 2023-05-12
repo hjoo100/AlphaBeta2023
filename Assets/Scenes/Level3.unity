@@ -23853,6 +23853,10 @@ PrefabInstance:
       propertyPath: shieldVal
       value: 660
       objectReference: {fileID: 0}
+    - target: {fileID: 4774725352987983214, guid: 3f921789bf3648a4d9f9fa4cc913b397, type: 3}
+      propertyPath: punchAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 4cd4b78b0ef83b24287cf8c9e92afe8c, type: 3}
     - target: {fileID: 7744853325206290993, guid: 3f921789bf3648a4d9f9fa4cc913b397, type: 3}
       propertyPath: m_RootOrder
       value: 121

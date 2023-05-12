@@ -178,11 +178,11 @@ public class scr_SkillHolder : MonoBehaviour
         // bind skill
         if (nextLevelSkill != null)
         {
-            currentSkill.UnbindSkill(FindObjectOfType<Scr_PlayerCtrl>().gameObject); // Add this line to unbind the old skill
+            currentSkill.UnbindSkill(FindObjectOfType<Scr_PlayerCtrl>().gameObject); 
             currentSkill = nextLevelSkill;
             currentSkill.SetLevel(nextLevel);
 
-            currentSkill.PassiveSkillBind(FindObjectOfType<Scr_PlayerCtrl>().gameObject); // Add this line to bind the new skill
+            currentSkill.PassiveSkillBind(FindObjectOfType<Scr_PlayerCtrl>().gameObject); 
 
             Debug.Log("Skill: " + currentSkill.name + " upgraded! Level: " + currentSkill.Level);
             // update skillIcon

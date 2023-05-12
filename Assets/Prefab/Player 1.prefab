@@ -298,9 +298,21 @@ MonoBehaviour:
   M_left: 97
   M_right: 100
   M_jump: 0
+  playerCtrlSystem:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: cf97cbbf-be2b-4695-8cb0-86bfea555708
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  isJumping: 0
+  jumpCount: 0
   PlayerSpd: 4
   basicSpd: 4
   jumpForce: 2000
+  reducedJumpForce: 3.2
   cellingCheck: {fileID: 1284988842166520238}
   groundCheck: {fileID: 1284988842364308010}
   GroundObj:
@@ -309,6 +321,8 @@ MonoBehaviour:
   EnemyTag: Enemy
   jumpCheckRaidus: 0.3
   MaxJumpNum: 2
+  maxJumpTime: 2
+  isHittingWall: 0
   hitpoints: 100
   maxHp: 100
   isDead: 0
@@ -318,10 +332,14 @@ MonoBehaviour:
   meleeCD: 0.15
   ComboEndMeleeCd: 0.6
   meleeDmg: 20
+  basicMeleeDmg: 40
+  attackKeyDown: 0
+  MeleeStatemachine: {fileID: 0}
   isWalking: 0
   isAir: 0
   isAttacking: 0
   isHited: 0
+  isAirAttacked: 0
   isGrounded: 0
   gettingKnocked: 0
   MaxKnockTimeMelee: 0.4
@@ -330,9 +348,27 @@ MonoBehaviour:
   isFirstMelee: 0
   isSecondMelee: 0
   isThirdMelee: 0
+  isFourthMelee: 0
+  isFifthMelee: 0
   meleeMaxInputTimer: 0.6
   meleeTimer: 0
   hpBar: {fileID: 0}
+  isMoonSlicing: 0
+  isRapidHiting: 0
+  isImmune: 0
+  BuffMultiPlier: 1
+  currentAddedBuff: 0
+  skillHolders: []
+  isDefending: 0
+  comboSystem: {fileID: 0}
+  cancelGroundCheck: 0
+  isUsingSkill: 0
+  isChoosingSkill: 0
+  playerIsOnEnemy: 0
+  playerFeetCollider: {fileID: 0}
+  playerSprite: {fileID: 0}
+  resolution: 20
+  radius: 0.7
 --- !u!95 &3494802569485918477
 Animator:
   serializedVersion: 5
@@ -353,6 +389,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &6120156422218422638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,6 +406,8 @@ MonoBehaviour:
   meleeHit: {fileID: 8300000, guid: a226f7acc7451cb499a7dbd80e877012, type: 3}
   meleeNothit: {fileID: 8300000, guid: a5ad045398a7b894a8173ab84eff2726, type: 3}
   rangeSword: {fileID: 8300000, guid: 242fad1d34e8dd745a07cdf472bfcb39, type: 3}
+  rapidHitAudio: {fileID: 0}
+  successfulBlock: {fileID: 0}
 --- !u!82 &3817010625771764326
 AudioSource:
   m_ObjectHideFlags: 0
@@ -477,7 +516,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70853f93d6034694db8b6868fdac4ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 11400000, guid: e49168eb035dd944f8ad91588d13fe16, type: 2}
+  skillNo: 0
+  currentSkill: {fileID: 0}
+  SkillImage: {fileID: 0}
+  isUsableSkill: 1
   key: 99
 --- !u!114 &1284988842048562224
 MonoBehaviour:
@@ -491,7 +533,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70853f93d6034694db8b6868fdac4ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 11400000, guid: 447f0b303752c1d45a9a4b86ea46ca9e, type: 2}
+  skillNo: 0
+  currentSkill: {fileID: 0}
+  SkillImage: {fileID: 0}
+  isUsableSkill: 1
   key: 120
 --- !u!1 &1826017824126928583
 GameObject:
